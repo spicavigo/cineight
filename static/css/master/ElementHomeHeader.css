@@ -1,0 +1,9 @@
+#header {
+  width: 100%;
+  background: #3F4C6B;
+  height: 50px;
+  position: relative;
+  z-index: 10;
+}
+
+

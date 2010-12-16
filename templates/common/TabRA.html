@@ -1,0 +1,29 @@
+<div class="lzTab RATab">
+{% autoescape off %}
+  {{display_title}}
+
+  <div class="elements">
+    {% for e in elements %}
+      <div class="{% cycle 'elementEven' 'elementOdd' %}">
+     {{ e }}
+      </div>
+    {% endfor %}
+  </div>
+  {% ifequal elements|length 0 %}
+    <div class="RAEmpty">
+      {% if desc %}
+        {{desc}}
+      {% else %}
+        Sorry, no matching results found.
+      {% endif %}
+    </div>
+  {% endifequal %}
+      <div class="tabBtns">
+        {% if Next %}
+        <div class="tabNextBtn tabNav" data-id="{{Next.data_id}}">
+          More
+        </div>
+        {% endif %}
+      </div>
+{% endautoescape %}
+</div>

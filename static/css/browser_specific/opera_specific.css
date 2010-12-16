@@ -1,0 +1,21 @@
+/* 
+    Document   : opera_specific
+    Created on : 24 Jul, 2010, 2:46:09 PM
+    Author     : naved
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.opera .BoxHomeRA {
+    padding-top: 25px;
+
+}
+
+.opera #searchWrapper{
+    padding-bottom: 20px;
+}

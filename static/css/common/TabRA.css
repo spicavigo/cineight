@@ -1,0 +1,100 @@
+.elementEven {
+  background: #f6f6f6;
+}
+
+.elementOdd {
+  background: #f6e7f1;
+}
+
+.RATab {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+.lzTab {
+  position: relative;
+}
+
+.tabBtns {
+  position: relative;
+  width: 100%;
+  height: 20px;
+}
+
+.tabPrevBtn {
+  position: absolute;
+  left: 1px;
+  bottom: -10px;
+}
+
+.tabNextBtn {
+  position: absolute;
+  right: 1px;
+  bottom: -10px;
+}
+
+.tabNav {
+  font-size: 12px;
+  cursor: pointer;
+  color: #fff;
+  z-index: 100;
+  background: #666;
+  padding: 5px;
+  border: 1px solid #666;
+}
+
+.tabNav:hover {
+  background: #fff;
+  color: #666;
+}
+
+a.data {
+ color: #EA9C38;
+ font-weight: bold;
+ text-decoration: underline; 
+}
+
+.desc {
+  color: #999;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.date {
+  color: #999;
+  font-size: 9px;
+}
+
+.ElementRA {
+  width: 90%;
+  font-size: 13px;
+  margin-left: auto;
+  margin-right: auto;
+/*
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  padding: 5px;
+*/
+  margin-top: 10px;
+  }
+
+.elementOdd .ElementDefault {
+
+  }
+
+.elementEven .ElementDefault {
+
+  }
+  
+.reco_element {
+    padding:10px;
+    font-size: 11px;
+    color: #363637;
+}
+
+.reco_mname, .reco_myear {
+    float:left;
+    margin-right: 5px;
+}

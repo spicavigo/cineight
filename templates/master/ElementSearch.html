@@ -1,0 +1,19 @@
+<div class="search_movie col" data-id="{{data_id}}">
+    <form method='post' action='/search'>
+        <div class="search_input">
+        <label>Search</label>
+        <input id="main-query" type='text' name='q' value='{{q}}'/>
+        </div>
+        <div class="search_btn">
+        <input type="image" value="submit" src="/static/images/search.png">
+        </div>
+        <div class="clear"></div>
+    </form>
+</div>
+
+<a id="help_site" href="http://blog.cineight.com/get-started" class="col site_help" title="How does this work?">How does this work?</a>
+
+<div class="clear"></div>
+{% if q %}
+    <span class="italic" style="margin-bottom:5px"> If you didn't find the movie you were looking for, Leave the name plus any other detail in the Feedback Section. I will add it ASAP</span>
+{% endif %}

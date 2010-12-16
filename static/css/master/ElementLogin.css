@@ -1,0 +1,18 @@
+.login{
+    margin-top:20px;
+    margin-left: 50px;
+    font-size:14px;
+}
+
+.signup{
+    margin-top:20px;
+    margin-left: 50px;
+    font-size:14px;
+}
+
+#login_btn, #signup_btn{
+    margin-top: 3px;
+    margin-left:auto;
+    
+    margin-left:45px;
+}

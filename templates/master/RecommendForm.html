@@ -1,0 +1,86 @@
+        <div class="reco_form">
+            <div class="reco_action clickable" style="float:left; margin-right:10px">
+                Recommend
+            </div>
+            <div style="float:left">or</div>
+            <div class="warn_action clickable" style="float:left; margin-left:10px">
+                Warn
+            </div>
+            <div class="clear"></div>
+            <form class="reco_form_movie hidden">
+                <fieldset>
+                    <legend><b>Recommend</b></legend>
+                    <div class="fieldWrapper" style="float:left">
+                        <div class="fieldLabel">
+                            <label>Rating</label>
+                        </div>
+                        <select class="rating" name="rating">
+                            <option value="1"  selected="yes">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="fieldWrapper" style="float:left;margin-left:10px;">
+                        <div class="fieldLabel">
+                            <label>Comment</label>
+                        </div>
+                        <textarea name="comment"></textarea>
+                    </div>
+                    <input type="hidden" name="data_id" value="{{recommend}}"/>
+                    <div class="fieldWrapper hidden" style="float:left;margin-left:10px;">
+                        <div class="fieldLabel">
+                            <label>To</label>
+                        </div>
+                        <div class="peer_selector">All</div>
+                        <div class="peer_selection hidden" style="height:100px; width: 100px; overflow:auto">
+                            {% for peer in followers %}
+                            <input name="peer" type="checkbox" value="{{peer.id}}">{{peer.user.username}}<br/>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="submit_reco" style="float:right; margin-top:43px;">
+                        <input type="submit" value="Submit"/>
+                    </div>
+                </fieldset>
+            </form>
+            <form class="warn_form_movie hidden">
+                <fieldset>
+                    <legend><b>Warn</b></legend>
+                    <div class="fieldWrapper" style="float:left">
+                        <div class="fieldLabel">
+                            <label>Rating</label>
+                        </div>
+                        <select class="rating" name="rating">
+                            <option value="-1"  selected="yes">-1</option>
+                            <option value="-2">-2</option>
+                            <option value="-3">-3</option>
+                            <option value="-4">-4</option>
+                            <option value="-5">-5</option>
+                        </select>
+                    </div>
+                    <div class="fieldWrapper" style="float:left;margin-left:10px;">
+                        <div class="fieldLabel">
+                            <label>Comment</label>
+                        </div>
+                        <textarea name="comment"></textarea>
+                    </div>
+                    <input type="hidden" name="data_id" value="{{recommend}}"/>
+                    <div class="fieldWrapper hidden" style="float:left;margin-left:10px;">
+                        <div class="fieldLabel">
+                            <label>To</label>
+                        </div>
+                        <div class="peer_selector">All</div>
+                        <div class="peer_selection hidden" style="height:100px; width: 100px; overflow:auto">
+                            {% for peer in followers %}
+                            <input name="peer" type="checkbox" value="{{peer.id}}">{{peer.user.username}}<br/>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="submit_reco" style="float:right; margin-top:43px;">
+                        <input type="submit" value="Submit"/>
+                    </div>
+                </fieldset>
+            </form>
+        </div>

@@ -1,0 +1,24 @@
+{% if movies %}
+<table id="myTable" class="tablesorter"> 
+<thead> 
+<tr> 
+    <th>Name</th> 
+    <th>Year</th> 
+    <th>Rating</th> 
+</tr> 
+</thead> 
+<tbody>
+{% for m in movies %}
+<tr class="{% cycle 'odd' 'even' %}"> 
+    <td><a href='/movie/{{m.id}}/{{m.name|slugify}}'>{{m.name}}</a></td> 
+    <td>{{m.released.year}}</td> 
+    <td>{{m.imdb_rating}}</td> 
+</tr>
+{% endfor %}
+</tbody> 
+</table> 
+
+<span id="purgelist" data-id="{{purge}}">Purge</span>
+{% else %}
+<span>No Movies to compare</span>
+{% endif %}

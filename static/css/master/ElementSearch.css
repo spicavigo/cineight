@@ -1,0 +1,17 @@
+.search_movie{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.search_input {
+    float:left;
+}
+
+.search_btn {
+    float:left;
+    margin-left:5px;
+}
+.search_btn input{
+    padding: 0px;
+    height: auto;
+}

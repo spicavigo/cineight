@@ -1,0 +1,137 @@
+html, body {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11px;
+  color: #363637;
+  height: 100%;
+  width:100%;
+}
+
+#wrapper {
+  height: auto !important;
+  margin: 0 auto -22px;
+  min-height: 100%;
+  }
+
+#header {
+  position: relative;
+  height: 50px;
+  text-align: center;
+  background: #333;
+  color: #ccc;
+  }
+
+#headerBtns {
+  position: absolute;
+  right: 10px;
+  top: 1px;
+  }
+
+#leftCol {
+  width: 25%;
+  float: left;
+  }
+
+#centerCol {
+  width: 50%;
+  float: left;
+  background: #0f0;
+  }
+
+#rightCol {
+  width: 25%;
+  float: left;
+  background: #00f;
+  }
+
+.italic {
+  font-style:italic;
+}
+
+.light {
+  color: #a7a7a8;
+}
+
+.elementEven {
+  background: #f6f6f6 !important;
+}
+
+.elementOdd {
+  background: #C3D9FF !important;
+}
+
+.selected {
+  color: #D15600;
+  text-decoration: none;
+}
+a  {
+  color: #043763;
+  text-decoration: none;
+}
+
+fieldset {
+  border: 1px solid #a7a7a8;
+  padding: 10px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.hidden {
+  display:none;
+}
+
+input {
+  background: #fff;
+  border: 1px solid #ccc;
+  height: 20px;
+  margin-bottom: 2px;
+  padding: 2px;
+}
+
+.push{
+  clear:both;
+  height: 22px;
+  padding-top:5px;
+}
+
+.site_help{
+  font-size: 14px;
+  margin-left:50px;
+  margin-top: 15px;
+}
+
+.help_title{
+  font-weight:bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+.help_text{
+  margin-bottom:3px;
+  text-indent: 5px;
+}
+
+.about {
+  width: 540px;
+  margin-top:20px;
+  margin-left:auto;
+  margin-right:auto;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size:13px;
+  line-height:20px;
+}
+
+.signupnow{
+  font-size:14px;
+}
+
+.how_to{
+  width:500px;
+  margin-top: 20px;
+  font-size: 14px;
+  margin-left:100px;
+}
+

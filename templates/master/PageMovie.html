@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="/static/css/master/PageTwoColumnCommon.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/master/PageMovie.css" />
+{% endblock %}
+
+{% block header %}
+    {{ header }}
+    {{ menu }}
+<!--
+    <div class="col left_col">      
+        <div class="blank_box"></div>
+    </div>
+    <div class="col right_col_full">
+        {{ subheader }}
+    </div>
+-->
+
+{% endblock %}
+
+{% block main_body %}
+  <div class="main_body home_body">
+    <div class="col centre_col">
+        {{boxes.0}}
+        {{boxes.1}}
+    </div>
+    <div class="col right_col">
+        {{boxes.2}}
+    </div>
+    <div class="clear"></div>
+    {{boxes.3}}
+    {{boxes.4}}
+    {{boxes.5}}
+  </div>
+
+    {{ footer }}
+
+{% endblock %}
+
+

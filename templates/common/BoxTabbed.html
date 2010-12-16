@@ -1,0 +1,28 @@
+  <div class="BoxTabbed {{extra_classes}}" data-id="{{id}}" data-client="{{client}}" data-len="{{elem_len}}">
+
+  {% if title %}
+    <div class="boxTitle">
+      {{title}}
+    </div>
+  {% endif %}
+
+    <div class="boxContent">
+    <div class="{% ifnotequal tabs|length 1 %} boxTabs {% endifnotequal %} {{tab_style}}">
+      {% ifnotequal tabs|length 1 %}
+      <ul class="tabs">
+      {% for t in tabs %}       
+          <li> <a href="#{{t.id}}" title="{{t.desc}}"><span>{{t.title}}</span></a></li>
+      {% endfor %}
+      </ul>
+      {% endifnotequal %}
+        <div class="tab_container">
+        {% for t in tabs %}
+            <div class="tab_content hidden" id="{{t.id}}""> 
+             {{ t.html }}
+            </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+

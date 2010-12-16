@@ -1,0 +1,12 @@
+<div class="header">
+    <div class="header_wrapper">
+        <a class="logo" href="/home"><img src="/static/images/logo.png"/></a>
+        {% if user %}
+            <div class="user_links">
+                <a href="/home">Home</a>
+                |
+                <a href="/logout">Logout</a>
+            </div>
+        {% endif %}
+    </div>
+</div>

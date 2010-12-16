@@ -1,0 +1,12 @@
+<div class="lzBox BoxEmpty">
+<!--
+{% if title %}
+  <div class="boxTitle">
+    {{ title }}
+  </div>
+{% endif %}
+-->
+{% for t in tabs %}
+  {{ t.html }}
+{% endfor %}
+</div>

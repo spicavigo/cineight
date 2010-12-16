@@ -1,0 +1,27 @@
+
+<div class="reco_element" data-id="{{id}}">
+    <div class="reco_left">
+        <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">
+        <div class="reco_mname">
+            {{movie.name}}
+        </div>
+        {% if movie.released.year %}
+        <div class="reco_myear">
+            ({{movie.released.year}})
+        </div>
+        {% endif %}
+        </a>
+        <div class="clear"></div>
+        {% include "master/RecommendForm.html" %}
+    </div>
+    <div class="reco_right">
+        <ul class="list_buttons" data-id="{{movie.id}}">
+            <li class="italic">Add To</li>
+            <li data-id="{{wl_list}}" class="list mutex list_WL {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>
+            <li data-id="{{sl_list}}" class="list mutex list_SL {% ifequal list 'SL'%}selected{% endifequal %}">Seen 'Em</li>
+            <li data-id="{{fl_list}}" class="list mutex list_FL {% ifequal list 'FL'%}selected{% endifequal %}">Trash Can</li>
+            <li data-id="{{cl_list}}" class="list {% if is_cl %}selected{% endif %} compare_list">Compare List</li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>

@@ -1,0 +1,17 @@
+
+<a id="compare_movie" style="display:scroll;position:fixed;center:5px;left:-1px; top:80px;" href="{% url ajax_url %}" title="Compare">
+    <img src="/static/images/compare.png" />
+</a>
+<script type="text/javascript">
+    $(function() {
+        
+        $('#compare_movie').fancybox({
+            ajax: {
+                type:'POST',
+                data:'data_id={{get_data}}'
+            },
+            titleShow: false,
+            onComplete: function(){$("#myTable").tablesorter();$.fancybox.resize();}
+        });
+    });
+</script>

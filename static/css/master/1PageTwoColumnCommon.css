@@ -1,0 +1,34 @@
+.clear {
+  clear: both;
+  }
+
+.main_body {
+  width: 1020px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-left: 1px solid #666;
+  border-right: 1px solid #666;
+  min-height: 100%;
+}
+
+#wrapper {
+  height: 100%;
+}
+
+.col {
+  float: left;
+  }
+
+.centre_col {
+  width: 800px;
+  }
+
+.right_col {
+  position: relative;
+  width: 200px;
+  margin-left: 10px;
+  top: 20px;
+  }
+

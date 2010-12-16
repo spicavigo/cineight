@@ -1,0 +1,14 @@
+ .slide-out-div {
+          padding: 20px;
+          width: 250px;
+          background: #eee;
+          border: 1px solid #a6a6a6;
+      }
+      
+.handle:hover{
+         left: 291px;
+}
+
+.slide-out-div.open .handle:hover{
+         left:290px;
+}

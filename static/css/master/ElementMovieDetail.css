@@ -1,0 +1,58 @@
+  
+.movie_detail {
+    padding:10px;
+    font-size: 11px;
+    color: #363637;
+    background: #f6f6f6;
+    margin-bottom:10px;
+    
+}
+
+.elementOdd .movie_detail {
+  background:inherit;
+}
+.movie_mname, .movie_myear {
+    float:left;
+    margin-right: 5px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.movie_left {
+  float:left;
+  width: 450px;
+}
+
+.movie_right {
+  float:right;
+  margin-top:70px;
+}
+
+.movie_plot{
+  margin:5px;
+}
+.show_reco {
+  cursor:pointer;
+}
+
+ul.list_buttons li.list {
+  cursor: pointer;
+}
+
+select {
+  width: 100px;
+}
+
+a.reveal {
+  font-size:10px;
+  padding: 1px;
+  background: #3F4C6B;
+  color: white;
+  font-style: italic;
+  cursor: pointer;
+  margin:2px;
+}
+
+#purgelist {
+  cursor:pointer;
+}

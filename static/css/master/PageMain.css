@@ -1,0 +1,8 @@
+
+.right_col {
+  position: relative;
+  background: url('/static/images/prelogin/vertical_gradient_register.png') repeat-x scroll;
+  z-index: 5;
+  top: 0px !important;
+  }
+

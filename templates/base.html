@@ -1,0 +1,66 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html>
+<script> document.domain = document.domain; </script>
+<head>
+  <title>{% block title %} CinEight {% endblock %}</title>
+  <meta name="description" content="Recommend movies, recieve recommendation on movies. Also, manage movies that you have seen or want to. Its all about movies." />
+  <meta name="keywords" content="movie, recommend, get recommendation, manage movies, review, movie rating, share revies, share movies" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf8" />
+  <link rel="stylesheet" type="text/css" href="/static/css/common/reset.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/master/footer.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/ie_specific.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/opera_specific.css" />
+  
+{% for c in css %}
+  <link rel="stylesheet" type="text/css" href="{{c}}" />
+{% endfor %}
+  <script type="text/javascript" src="/static/js/jquery.js"></script>
+  <script type="text/javascript" src="/static/js/base.js"></script>
+  <script  type="text/javascript" src="/static/js/css_browser_selector.js"></script>
+  {% if USER %}
+  <script type="text/javascript" src="/static/js/Orbited.js"></script>
+  <script type="text/javascript" src="/static/js/lzOrbited.js">  </script>
+  {% endif %}
+
+{% for j in js %}
+  <script type="text/javascript" src="{{j}}"></script>
+{% endfor %}
+  {% block extra_head %}
+  {% endblock %}
+<script type="text/javascript">
+	AJAX_URL = "{% url ajax_url %}";
+	{% if USER %}
+	USER = {{USER}};
+	{% endif %}
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18224770-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+  {% block js_templates %} {% endblock %}
+  <div id="wrapper">        
+        {% block header %} {% endblock %}
+        {% block main_body %} {% endblock %}
+		 <div class="push"></div>
+  </div>
+  {% include "master/footer.html" %}
+  <div class="clear"></div>
+</body>
+
+</html>
+{% endspaceless %}

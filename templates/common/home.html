@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Welcome to Lazy Zach
+{% endblock %}
+
+{% block extra_head %}
+  <!-- Jquery Tooltip plugin: http://jquery.bassistance.de/tooltip/demo/ -->
+  <script type="text/javascript" src="/static/js/jquery.tooltip.js"></script>
+  <script type="text/javascript" src="/static/js/formUtils.js"></script>
+  <script type="text/javascript" src="/static/js/lzBoxes.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/base.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/jquery.tooltip.css" />
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#leftBox1').initBoxes();
+      $('.itemImage').tooltip({
+        showURL: false
+        });
+      });
+  </script>
+
+{% endblock %}
+
+{% block header %}
+  <div id="header">
+    Welcome to Lazy Zach...
+    <div id="headerBtns">
+      <a href="/logout">Log out</a>
+    </div>
+    <div id="searchDiv">
+      <input type="text" class="hasDefault" data-default="Search" id="search" /> Some foo bar text
+    </div>
+  </div>
+{% endblock %}
+
+{% block main_body %}
+  <div id="leftCol">
+    <div id="leftBox1" class="box">
+      <div class="collapseButtons">
+        <div class="collapseButton">
+          -
+        </div>
+      </div>
+      <div class="boxTitle">
+        This is the title of the box
+      </div>
+      <div class="boxContent">
+        <div class="boxItems">
+          <div class="boxItem">
+            <div class="itemText">
+             <a href="Javascript:showPopup('leftBox1')">This</a> is an item- what an item.
+            </div>
+            <div class="itemImages">
+              <img class="itemImage" src="/static/images/testIcons/help_16.png" title="Some stupid icon" />
+              <img class="itemImage" src="/static/images/testIcons/home_16.png" title="Some other stupid icon" />
+            </div>
+            <div class="itemPopup">
+              <div class="popupCollapse">
+                -
+              </div>
+              This is some extra content that is only shown if the user clicks on some word.
+            </div>
+          </div>
+          <div class="boxItem">
+            <div class="itemText">
+              This is a second item - woohoo.  
+            </div>
+            <div class="itemImages">
+              
+            </div>
+          </div>
+        </div>
+<!--
+        <div class="hoverImages">
+          <div class="hoverImage">
+            <img src="" width="100" height="100" alt="foo">
+          </div>
+          <div class="hoverImage">
+            <img src="" width="100" height="100" alt="bar">
+          </div>
+        </div>
+-->
+      </div>
+    </div>
+<!--
+    <div id="leftBox2" class="box">
+      Bar foo foo bar
+    </div>
+-->
+  </div>
+
+  <div id="centerCol">
+
+  </div>
+
+  <div id="rightCol">
+
+  </div>
+
+{% endblock %}

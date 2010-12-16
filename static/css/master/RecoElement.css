@@ -1,0 +1,38 @@
+  
+.reco_element {
+    padding:10px;
+    font-size: 11px;
+    color: #363637;
+}
+
+.reco_mname, .reco_myear {
+    float:left;
+    margin-right: 5px;
+}
+
+.reco_left {
+  float:left;
+  width: 70%
+}
+
+.reco_right {
+  float:right;
+}
+
+.show_reco {
+  cursor:pointer;
+}
+
+ul.list_buttons li.list {
+  cursor: pointer;
+}
+
+
+
+select {
+  width: 100px;
+}
+
+.warn {
+  color: #A82232;
+}

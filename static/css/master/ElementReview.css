@@ -1,0 +1,13 @@
+.review_elem {
+    padding: 5px;
+    margin-bottom: 2px;
+}
+
+.reviewer_name {
+    font-weight: bold;
+}
+
+.review_ts {
+    font-size: 9px;
+    color: #565656;
+}

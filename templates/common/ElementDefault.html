@@ -1,0 +1,36 @@
+{% load extra_tags %}
+<div class="lzElement ElementDefault {{extra_classes}}" data-id="{{elem_id}}">
+{% for l in lines %}
+  <div class="itemHtml">
+    <div class="lzLine line_{{l.class}}">
+      {% for n in l %}
+        {{ n|render_node }}
+      {% endfor %}
+    </div>
+    {% include 'common/ShareBar.html' %}
+  </div>
+
+<!--
+  <div class="itemImages">
+{% for icon in i.icons %}
+    <img class="itemImage tooltip" src="{{icon.path}}" title="{{icon.tooltipText}}" />
+    <img class="itemImage tooltip" src="{{icon.path}}" title="{{icon.tooltipText}}" />
+{% endfor %}
+  </div>
+-->
+
+{% if has_popup %}
+  <div class="itemPopup">
+    <div class="popupCollapse">
+      -
+    </div>
+    <div class="popupHtml">
+      Loading...
+    </div>
+  </div>
+{% endif %}
+{% endfor %}
+</div>
+<div class="RASeparator">
+
+</div>

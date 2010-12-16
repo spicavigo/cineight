@@ -1,0 +1,14 @@
+.home_body {
+  position: relative;
+  top: 28px;
+}
+
+.right_col {
+  width: 400px !important;
+  margin-left: 20px;
+  top: 0px;
+  }
+
+.centre_col {
+  width: 580px !important;
+}

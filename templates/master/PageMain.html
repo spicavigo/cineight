@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block extra_head %}
+<link rel="stylesheet" type="text/css" href="/static/css/master/PageMain.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/master/PageTwoColumnCommon.css" />
+{% endblock %}
+
+{% block header %}
+    {{ header }}
+{% endblock %}
+
+{% block main_body %}
+  <div class="main_body">
+    <div class="col centre_col">
+      {{ boxes.0 }}
+      {{ boxes.1 }}
+    </div>
+    <div class="col right_col">
+      {{ boxes.2 }}
+      {{ boxes.3 }}
+      {{ boxes.4 }}
+      {{ boxes.5 }}
+    </div>
+  </div>
+    {{ footer }}
+
+{% endblock %}
+
+

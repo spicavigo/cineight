@@ -1,0 +1,15 @@
+.recommender {
+    margin-bottom:2px;
+}
+
+.recommender .uname {
+    width: 150px;
+    float: left;
+}
+
+.recommender .uaction {
+    width: 150px;
+    float:right;
+    text-align: right;
+    cursor: pointer;
+}

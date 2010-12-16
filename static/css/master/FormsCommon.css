@@ -1,0 +1,81 @@
+.FormWrapper {
+  border: 1px solid #0f0;
+  padding: 10px;
+  overflow: auto;
+}
+
+.fieldWrapper div {
+  float: left;
+}
+
+.fieldWrapper {
+  margin-bottom: 8px;
+}
+
+select {
+  height: 22px;
+  font-size: 11px;
+  -moz-border-radius: 0px;
+}
+
+.fieldLabel {
+  text-align: right;
+  width: 250px;
+  font-size: 11px;
+  color: #636363;
+  position: relative;
+  top: 2px;
+}
+
+.data_section {
+  overflow: auto;
+}
+
+.submitBtn {
+  text-align: center;
+}
+
+.fieldErrors {
+  font-size: 10px;
+  color: #f00;
+  width: 100%;
+}
+
+.fieldErrors ul {
+  width: 100%;
+}
+
+
+.fieldInput input, .loginInput, .passInput input {
+  background: #fafbf2;
+  border: 1px solid #7d7d7d;
+}
+
+.fieldErrors ul li {
+  width: 100%;
+  text-align: center;
+}
+
+.fieldWrapperFloat {
+  float: left;
+}
+
+.lzFieldset {
+  position: relative;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 6px;
+  border: 1px solid #0f0;
+  margin-bottom: 20px;
+}
+
+.lzFieldset legend {
+  position: absolute;
+  background: #666;
+  color: #fff;
+  top: -14px;
+  height: 20px;
+  left: 20px;
+  z-index:  10;
+}

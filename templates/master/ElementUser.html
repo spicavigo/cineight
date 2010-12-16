@@ -1,0 +1,67 @@
+<div class="user_info">
+    <div>
+        <a href="/user/{{user.id}}/{{user.user.first_name|slugify}}">{{user}}</a>
+    </div>
+    {% ifequal user.id logged_user.id %}
+    <div class="edit_profile">
+        <a id="edit_user_profile" href="#user_info" class="" title="Update Profile">Edit Personal Info</a>
+    </div>
+    <div class="hidden">
+        <form id="user_info">
+            <div class="fieldLabel">
+                <label for="id_user_firstname">First Name</label>
+            </div>
+            <div class="fieldInput">
+                <input type="text" id="id_user_firstname" name="first_name" value="{{user.user.first_name}}"/>
+            </div>
+            <div class="fieldLabel">
+                <label for="id_user_lastname">Last Name</label>
+            </div>
+            <div class="fieldInput">
+                <input type="text" id="id_user_lastname" name="last_name" value="{{user.user.last_name}}"/>
+            </div>
+            <div class="fieldLabel">
+                <label for="id_user_title">Title</label>
+            </div>
+            <div class="fieldInput">
+                <select name="title" id="id_user_title">
+                    <option value="MG" {% ifequal "MG" user.title %} selected="yes" {% endifequal %}>Moviegoer</option>
+                    <option value="AT" {% ifequal "AT" user.title %} selected="yes" {% endifequal %}>Actor</option>
+                    <option value="DI" {% ifequal "DI" user.title %} selected="yes" {% endifequal %}>Director</option>
+                    <option value="CI" {% ifequal "CI" user.title %} selected="yes" {% endifequal %}>Critic</option>
+                </select>
+            </div>
+            <br/>
+            <input type="hidden" name="data_id" value="{{edit}}"/>
+            <input type="submit" value="Update" class="clickable"/>
+        </form>
+    </div>
+    {% endifequal %}
+    <div>
+        Member since {{user.user.date_joined|timesince}}
+    </div>
+    {% if other %}
+    <div class="user_action">
+        <span data-id="{{data_id}}">{% if is_following %} Stop Following {% else %} Follow {% endif %}</span>
+    </div>
+    {% endif %}
+    <div class="clear"></div>
+    <a title="Follwers of {{user}}" id="follower_detail" href="#user_followers">
+        {{follower.count}} Folowers
+    </a><br/>
+    <a title="Follwed by {{user}}" id="following_detail" href="#user_following">
+        {{following.count}} Following
+    </a>
+    <div class="hidden">
+        <div id="user_followers" >
+            {% for f in follower %}
+            <a href="/user/{{f.id}}/{{f.user.first_name|slugify}}">{{f.user.first_name}}</a><br/>
+            {% endfor %}
+        </div>
+        <div id="user_following" >
+            {% for f in following %}
+            <a href="/user/{{f.id}}/{{f.user.first_name|slugify}}">{{f.user.first_name}}</a><br/>
+            {% endfor %}
+        </div>
+    </div>
+</div>

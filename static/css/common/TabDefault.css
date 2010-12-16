@@ -1,0 +1,15 @@
+/*
+
+.TabDefault .elementOdd {
+  background: #999;
+  }
+
+.TabDefault .elementEven {
+  background: #fff;
+  }
+
+*/
+.tabNav {
+  cursor: pointer;
+  color: #f00;
+  }

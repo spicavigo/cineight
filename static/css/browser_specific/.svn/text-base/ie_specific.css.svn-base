@@ -1,0 +1,42 @@
+/* 
+    Document   : ie_specific
+    Created on : 24 Jul, 2010, 2:45:53 PM
+    Author     : naved
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.ie7 #signupForm .fieldErrors {
+    height:3px;
+}
+
+
+.ie7 #signupForm .fieldWrapper {
+    display:inline;
+}
+.ie7 #NavigationMenu{
+    margin-left: 160px;
+}
+
+.ie7 #headerTextBG{
+    left: 0;
+    right: 0;
+}
+
+.ie7 .SelectRA{
+    position:absolute;    
+}
+
+.ie7 .BoxInnerRA {
+margin-top:80px;
+}
+
+
+.ie7 .report_job_form {
+	    height: 22px;
+	}

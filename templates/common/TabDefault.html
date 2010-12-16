@@ -1,0 +1,24 @@
+<div class="lzTab TabDefault" data-id="{{id}}">
+{% autoescape off %}
+  {{display_title}}
+  {% for e in elements %}
+    <div class="{% cycle 'elementEven' 'elementOdd' %}">
+   {{ e }}
+    </div>
+  {% endfor %}
+
+    <div class="tabBtns">
+      {% if Prev %}
+      <div class="tabPrevBtn tabNav" data-id="{{Prev.data_id}}">
+        Previous
+      </div>
+      {% endif %}
+      {% if Next %}
+      <div class="tabNextBtn tabNav" data-id="{{Next.data_id}}">
+        Next
+      </div>
+      {% endif %}
+    </div>
+{% endautoescape %}
+
+</div>

@@ -1,0 +1,50 @@
+  <div class="lzBox BoxDefaultTabbed {{extra_classes}}" data-id="{{id}}" data-client="{{client}}" data-len="{{elem_len}}">
+    <div class="topRight">
+
+  {% if topRightIcon %} 
+      <div class="topRightIcon">
+        <img class="topRightImg tooltip" src="{{icon_path}}" title="{{tooltipText}}" />
+      </div>
+  {% endif %}
+
+  {% if is_collapsible %}
+      <div class="collapseButton">
+        -
+      </div>
+  {% endif %}
+    </div>
+
+  {% if title %}
+    <div class="boxTitle">
+      {{title}}
+    </div>
+  {% endif %}
+
+    <div class="boxContent">
+    <div class="{% ifnotequal tabs|length 1 %} boxTabs {% endifnotequal %} {{tab_style}}">
+      {% ifnotequal tabs|length 1 %}
+      <ul class="tabs">
+      {% for t in tabs %}
+        {% if t.is_default %}
+          <li> <a href="#tabdiv{{id}}{{t.id}}" title="tabdiv{{id}}{{t.id}}"><span>{{t.title.text}}</span></a></li>
+        {% else %}        
+          <li> <a href="{% url ajax_url %}?data_id={{t.title.data_id}}" title="tabdiv{{id}}{{t.id}}"><span>{{t.title.text}}</span></a></li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+      {% endifnotequal %}
+        <div class="tabContent">
+        {% for t in tabs %}
+          {% if t.is_default %}
+            <div class="panes" id="tabdiv{{id}}{{t.id}}" data-next="{{Next.data_id}}"> 
+             {{ t.html }}
+            </div>
+          {% endif %}
+            <div class="panes" id="tabdiv{{id}}{{t.id}}" data-next="{{Next.data_id}}">
+            </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+

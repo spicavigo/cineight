@@ -1,0 +1,60 @@
+/*
+.shareOdd {
+  background: #666;
+  }
+
+.shareEven {
+  background: #fff;
+  }
+*/
+
+.yes_0 {
+    background: #f00;
+}
+
+.yes_1 {
+    background: #fff;
+}
+
+.no_0 {
+    background: #f00;
+}
+
+.no_1 {
+    background: #fff;
+}
+
+.maybe_0 {
+    background: #f00;
+}
+
+.maybe_1 {
+    background: #fff;
+}
+
+.ElementDefault .has_data_id {
+    color: #00f;
+    cursor: pointer;
+}
+
+.shareBar {
+    margin-top: 2px;
+    border-top: 1px dashed #666;
+}
+
+.shareQ {
+    font-weight: bold;
+    color: #333;
+}
+
+.shareStats {
+    background: #CFB3B3;
+}
+
+.shareStatLine {
+    margin: 5px;
+}
+
+.heading {
+    font-size: 120%;
+}

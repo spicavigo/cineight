@@ -1,0 +1,33 @@
+.ui-rating .ui-rating-star, .ui-rating .ui-rating-cancel{
+    width:16px;
+    height:16px;
+    font-size:2px;
+    float:left;
+    text-decoration:none;
+    vertical-align:bottom;
+    background-image:url(/static/images/star.gif);
+    background-repeat:no-repeat;
+}
+.ui-rating a {
+	cursor: pointer;
+}
+.reco_form_movie .ui-rating-full  {
+    background-position:left -32px;;
+}
+
+.ui-rating-empty {
+    background-position:left top;
+}
+
+
+.reco_form_movie .ui-rating-hover {
+    background-position:left -32px;
+}
+
+.warn_form_movie .ui-rating-full  {
+    background-position:left -16px;;
+}
+
+.warn_form_movie .ui-rating-hover {
+    background-position:left -16px;
+}
