@@ -3,7 +3,10 @@ from django.conf import settings
 import base64
 import hashlib
 import hmac
-import simplejson as json
+try:
+    import json
+except ImportError:
+    import simplejson as json
 
 def base64_url_decode(inp):
     padding_factor = (4 - len(inp) % 4) % 4
