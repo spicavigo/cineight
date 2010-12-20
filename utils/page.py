@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 import inspect
 import operator
+import urlparse
 
 from utils.auth import login_required as lr
 from utils import data_methods as dm

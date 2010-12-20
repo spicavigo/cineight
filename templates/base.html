@@ -19,6 +19,7 @@
   <script type="text/javascript" src="/static/js/jquery.js"></script>
   <script type="text/javascript" src="/static/js/base.js"></script>
   <script  type="text/javascript" src="/static/js/css_browser_selector.js"></script>
+  <script type="text/javascript" src="/static/js/master/fb.js"></script>
   {% if USER %}
   <script type="text/javascript" src="/static/js/Orbited.js"></script>
   <script type="text/javascript" src="/static/js/lzOrbited.js">  </script>
@@ -33,7 +34,27 @@
 	AJAX_URL = "{% url ajax_url %}";
 	{% if USER %}
 	USER = {{USER}};
+	{% else %}
+	  {% if FB_REDIRECT %}
+	  $(function(){
+		{% autoescape off %}
+	  top.location.href = "{{FB_URL}}";
+		{% endautoescape %}
+	  });
+	  {% endif %}
 	{% endif %}
+	
+	$(function(){
+	  
+	  if(window.parent.location !=  window.location){
+		$('.main_body').css('width', 730);
+		$('.centre_col').css('width', 705);
+		$('.centre_col').css('margin-left', 25);
+		$('.centre_col').prepend($('.BoxUser').html());
+		$('.BoxUser').html('');
+		$('.footerWrap').css('width', 730);
+	  }
+	});
 </script>
 <script type="text/javascript">
 
@@ -48,11 +69,27 @@
   })();
 
 </script>
-
 </head>
 
 <body>
   {% block js_templates %} {% endblock %}
+  <div id="fb-root">
+    </div>
+  <script type="text/javascript">
+  $(function(){
+	if(window.parent.location !=  window.location){
+	  $.getScript("http://connect.facebook.net/en_US/all.js", function(){
+		FB.init({
+		  appId  : '103058839759878',
+		  status : true, // check login status
+		  cookie : true, // enable cookies to allow the server to access the session
+		  xfbml  : false  // parse XFBML
+		});
+		FB.Canvas.setAutoResize( 100 );
+	  });
+	}
+  });
+  </script>
   <div id="wrapper">        
         {% block header %} {% endblock %}
         {% block main_body %} {% endblock %}

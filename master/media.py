@@ -2,6 +2,8 @@ from utils.media import Media
 
 class HeaderBoxMedia(Media):
     template = 'common/BoxEmpty.html'
+    js=['jquery.fancybox-1.3.1.pack.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js']
+    css=['jquery.fancybox-1.3.1.css']
 
 class HeaderTabMedia(Media):
     template = 'common/TabEmpty.html'
@@ -96,11 +98,11 @@ class ReviewElementMedia(Media):
     
 class CompareBoxMedia(Media):
     template='master/BoxCompare.html'
-    js=['jquery.fancybox-1.3.1.pack.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js', 'jquery.tablesorter.js', 'master/BoxCompare.js']
-    css=['jquery.fancybox-1.3.1.css', 'tablesorter.css', 'master/BoxCompare.css']
+    js=['jquery.tablesorter.js', 'master/BoxCompare.js']
+    css=[ 'tablesorter.css', 'master/BoxCompare.css']
     
 class UserBoxMedia(Media):
-    template = 'common/BoxEmpty.html'
+    template = 'master/BoxUser.html'
 
 class UserTabMedia(Media):
     template = 'common/TabEmpty.html'

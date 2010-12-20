@@ -4,8 +4,12 @@ from utils.page import DefaultPage
 from utils.page import Page
 
 from django.contrib.auth.models import User
-
+from django.conf import settings
 from master import box as B
+from master import data_methods as dm
+
+from django.contrib.auth import authenticate, login
+import urllib
 
 class LandingPage(Page):
     url = 'master_landing_page',
@@ -13,10 +17,28 @@ class LandingPage(Page):
     
     def __init__(self):
         self.header = B.HeaderBox
-        self.boxes = [B.LoginBox, B.SignUpBox]
+        self.boxes = [B.LoginBox, ]#B.SignUpBox]
         super(LandingPage, self).__init__(login_required=False)
     
     def view(self, request):
+        self.context['FB_REDIRECT'] = False
+        user = None
+        if request.GET.get('signed_request'):
+            data = dm.parse_signed_request(request.GET.get('signed_request'))
+            print data
+            #if not data or not data.get('user_id'):
+            args = dict(client_id=settings.FACEBOOK_APP_ID, redirect_uri='http://apps.facebook.com/cineight/', scope  = ','.join(settings.FACEBOOK_EXTENDED_PERMISSIONS))#,type='user_agent', display='popup')
+            self.context['FB_URL'] = "https://graph.facebook.com/oauth/authorize?" + urllib.urlencode(args)
+            self.context['FB_REDIRECT'] = True
+            #else:
+            #    user = authenticate(username=data['user_id'], password='')
+                
+                #return HttpResponseRedirect(self.context['FB_URL'])
+        if request.GET.get('code'):
+            user = authenticate(request=request)
+
+        if user:
+            login(request, user)
         if request.user.is_authenticated():
             return HttpResponseRedirect('/home')
         return super(LandingPage, self).show(request)

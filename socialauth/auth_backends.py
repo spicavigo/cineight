@@ -256,9 +256,11 @@ class TwitterBackend:
         
 class FacebookBackend:
     def authenticate(self, request, user=None):
+        print 'In Facebook'
         cookie = facebook.get_user_from_cookie(request.COOKIES,
                                                FACEBOOK_APP_ID,
                                                FACEBOOK_SECRET_KEY)
+
         if cookie:
             uid = cookie['uid']
             access_token = cookie['access_token']
@@ -268,23 +270,26 @@ class FacebookBackend:
             params = {}
             params["client_id"] = FACEBOOK_APP_ID
             params["client_secret"] = FACEBOOK_SECRET_KEY
-            params["redirect_uri"] = '%s://%s%s' % (
-                         'https' if request.is_secure() else 'http',
-                         Site.objects.get_current().domain,
-                         reverse("socialauth_facebook_login_done"))
+            #params["redirect_uri"] = '%s://%s%s' % (
+            #             'https' if request.is_secure() else 'http',
+            #             Site.objects.get_current().domain,
+            #             reverse("socialauth_facebook_login_done"))
+            params["redirect_uri"] = "http://apps.facebook.com/cineight/"
             params["code"] = request.GET.get('code', '')
 
             url = ("https://graph.facebook.com/oauth/access_token?"
                    + urllib.urlencode(params))
+
             from cgi import parse_qs
             userdata = urllib.urlopen(url).read()
             res_parse_qs = parse_qs(userdata)
             # Could be a bot query
+
             if not res_parse_qs.has_key('access_token'):
                 return None
                 
             access_token = res_parse_qs['access_token'][-1]
-            
+
             graph = facebook.GraphAPI(access_token)
             uid = graph.get_object('me')['id']
             

@@ -13,6 +13,13 @@ $(function() {
             $('.TabReview').replaceWith(html);
        });
        $(this).hide('slide');
+       if(window.parent.location !=  window.location){
+        var movie_name = $.trim($(this).parents('.reco_left').find('.reco_mname').html());
+        var movie_year = $.trim($(this).parents('.reco_left').find('.reco_myear').html());
+        var comment = $(this).find('[name=comment]').val();
+        var rating = $(this).find('[name=rating]').val();
+        publishRec(movie_name + '(' + movie_year + '): ' + comment + '(+' + rating + '/5)' );
+       }
     });
     $('.warn_form_movie').live('submit', function(e){
        e.preventDefault();
@@ -21,6 +28,13 @@ $(function() {
             $('.TabReview').replaceWith(html);
        });
        $(this).hide('slide');
+       if(window.parent.location !=  window.location){
+        var movie_name = $.trim($(this).parents('.reco_left').find('.reco_mname').html());
+        var movie_year = $.trim($(this).parents('.reco_left').find('.reco_myear').html());
+        var comment = $(this).find('[name=comment]').val();
+        var rating = $(this).find('[name=rating]').val();
+        publishRec(movie_name + ' ' + movie_year + ': ' + comment + '(-' + rating + '/5)' );
+        }
     })
     $('.reco_action').live('click', function(){
         var form_acted = $(this).siblings('.reco_form_movie');
