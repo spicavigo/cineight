@@ -25,7 +25,6 @@ class LandingPage(Page):
         user = None
         if request.GET.get('signed_request'):
             data = dm.parse_signed_request(request.GET.get('signed_request'))
-            print data
             #if not data or not data.get('user_id'):
             args = dict(client_id=settings.FACEBOOK_APP_ID, redirect_uri='http://apps.facebook.com/cineight/', scope  = ','.join(settings.FACEBOOK_EXTENDED_PERMISSIONS))#,type='user_agent', display='popup')
             self.context['FB_URL'] = "https://graph.facebook.com/oauth/authorize?" + urllib.urlencode(args)

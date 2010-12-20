@@ -10,6 +10,9 @@
 {% endblock %}
 
 {% block main_body %}
+{{FB_REDIRECT}}
+{% if FB_REDIRECT %}
+{% else %}
   <div class="main_body">
 
     <div class="col how_to">
@@ -50,6 +53,6 @@
       <div><a href="http://blog.cineight.com/get-started">CinEight - Getting Started</a></div>
     </div>
   </div>
-
+{% endif %}
 
 {% endblock %}
