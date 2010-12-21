@@ -298,7 +298,7 @@ class SearchElement(Element):
         query_url = 'e_name:(%s) e_alternative_name:(%s) e_original_name:(%s)' % (q,q,q)
         query_url = urllib2.quote(query_url)
         static_url = settings.SOLR_URL + 'q=%s'
-        conn = urllib2.urlopen(static_url % query_url + '&version=2.2&wt=python&rows=10&start=0&qt=standard&fl=name%2Cid&sort=votes+desc')
+        conn = urllib2.urlopen(static_url % query_url + '&version=2.2&wt=python&rows=10&start=0&qt=standard&fl=name%2Cid')
         rsp = ast.literal_eval(conn.read())    
         result = [e for e in rsp['response']['docs']]
         ret = {
