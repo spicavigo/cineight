@@ -1,9 +1,10 @@
 .home_body {
-  
+  position: relative;
+  top: 28px;
 }
 
 .right_col {
-
+  top: 0px;
   margin-left: 20px;
 
   }
