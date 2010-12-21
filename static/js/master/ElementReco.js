@@ -16,9 +16,13 @@ $(function() {
        if(window.parent.location !=  window.location){
         var movie_name = $.trim($(this).parents('.reco_left').find('.reco_mname').html());
         var movie_year = $.trim($(this).parents('.reco_left').find('.reco_myear').html());
+        if (movie_name == "" && movie_year == ""){
+            movie_name = $.trim($('.movie_mname').html());
+            movie_year = $.trim($('.movie_year').html());
+        }
         var comment = $(this).find('[name=comment]').val();
         var rating = $(this).find('[name=rating]').val();
-        publishRec(movie_name + '(' + movie_year + '): ' + comment + '(+' + rating + '/5)' );
+        publishRec(movie_name +  movie_year + ': ' + comment + '(+' + rating + '/5)' );
        }
     });
     $('.warn_form_movie').live('submit', function(e){
@@ -31,6 +35,10 @@ $(function() {
        if(window.parent.location !=  window.location){
         var movie_name = $.trim($(this).parents('.reco_left').find('.reco_mname').html());
         var movie_year = $.trim($(this).parents('.reco_left').find('.reco_myear').html());
+        if (movie_name == "" && movie_year == ""){
+            movie_name = $.trim($('.movie_mname').html());
+            movie_year = $.trim($('.movie_year').html());
+        }
         var comment = $(this).find('[name=comment]').val();
         var rating = $(this).find('[name=rating]').val();
         publishRec(movie_name + ' ' + movie_year + ': ' + comment + '(-' + rating + '/5)' );
