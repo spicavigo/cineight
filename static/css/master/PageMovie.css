@@ -4,11 +4,16 @@
 }
 
 .right_col {
-  width: 400px !important;
+
   margin-left: 20px;
-  top: 0px;
+
   }
 
 .centre_col {
-  width: 580px !important;
+
+}
+
+.TabRecommender{
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

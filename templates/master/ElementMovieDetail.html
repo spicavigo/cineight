@@ -16,7 +16,7 @@
                 <span class="spoiler hidden">{% if movie.plot %} {{movie.plot}} {% else %} No plot available {% endif %}<br/></span>
             </p>
         </div>
-        {% include "master/RecommendForm.html" %}
+        
     </div>
     <div class="movie_right">
         <ul class="list_buttons">
@@ -28,4 +28,5 @@
         </ul>
     </div>
     <div class="clear"></div>
+    {% include "master/RecommendForm.html" %}
 </div>

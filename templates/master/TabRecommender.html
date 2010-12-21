@@ -1,6 +1,8 @@
 <div class="TabRecommender" data-id="{{id}}">
 {% autoescape off %}
+  {% if elements %}
   {{title}}
+  {% endif %}
   {% for e in elements %}
     <div class="{% cycle 'elementEven' 'elementOdd' %}">
    {{ e }}
