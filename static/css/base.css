@@ -138,3 +138,11 @@ input {
 .small{
   font-size: 9px;
 }
+
+textarea {
+  width: 520px;
+  height: 150px;
+  border: 3px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif;
+}
