@@ -248,5 +248,5 @@ class SuggestionTab(Tab):
         for e in recs:
             if not e['user_from'] in follows:
                 self.ids.append(e['user_from'])
-        self.ids = M.UserProfile.objects.filter(id__in=self.ids)
+        self.ids = M.UserProfile.objects.filter(id__in=self.ids)[:3]
         
