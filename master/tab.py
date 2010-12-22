@@ -245,8 +245,11 @@ class SuggestionTab(Tab):
         recs = sorted(M.Reco.objects.filter(user_to=1).values('user_from').annotate(count=Count('user_from')), key=lambda rec: rec['count'], reverse=True)
         self.ids=[]
         follows = [item for e in  self.user.follow.values_list('id') for item in e] + [self.user.id]
+        count = 0
         for e in recs:
             if not e['user_from'] in follows:
-                self.ids.append(e['user_from'])
-        self.ids = M.UserProfile.objects.filter(id__in=self.ids)[:3]
+                self.ids.append(M.UserProfile.objects.get(id=e['user_from']))
+                count += 1
+                if count == 3:break
+        
         
