@@ -48,7 +48,7 @@ class HomePage(Page):
     
     def __init__(self):
         self.header = B.HeaderBox
-        self.boxes = [B.SearchBox, B.RecoBox, B.UserBox, B.CompareBox, B.FeedbackBox]
+        self.boxes = [B.SearchBox, B.RecoBox, B.UserBox, B.CompareBox, B.FeedbackBox, B.SuggestionBox]
         super(HomePage, self).__init__(login_required=True)
         
     def view(self, request):
@@ -72,7 +72,7 @@ class UserPage(Page):
     
     def __init__(self):
         self.header = B.HeaderBox
-        self.boxes = [B.SearchBox, B.UserRecoBox, B.UserBox, B.CompareBox, B.FeedbackBox]
+        self.boxes = [B.SearchBox, B.UserRecoBox, B.UserBox, B.CompareBox, B.FeedbackBox, B.SuggestionBox]
         super(UserPage, self).__init__(login_required=True)
         
     def view(self, request, *args, **kwargs):

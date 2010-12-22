@@ -146,3 +146,12 @@ textarea {
   padding: 5px;
   font-family: Tahoma, sans-serif;
 }
+
+.rcol{
+  float: right;
+}
+
+.topbox{
+  border-bottom: 1px dotted #a7a7a8;
+  padding-bottom: 5px;
+}

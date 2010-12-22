@@ -151,3 +151,9 @@ class FeedbackElementMedia(Media):
     template = 'master/ElementFeedback.html'
     css = ['master/ElementFeedback.css']
     js = ['jquery.tabSlideOut.v1.3.js', 'master/ElementFeedback.js']
+
+class SuggestionBoxMedia(Media):
+    template  = 'master/BoxSuggestion.html'
+    
+class SuggestionTabMedia(Media):
+    template  = 'master/TabSuggestion.html'

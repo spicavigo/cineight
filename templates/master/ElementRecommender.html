@@ -1,6 +1,7 @@
 <div class="recommender">
     <div class="uname">
         <a href="/user/{{name.id}}/{{name.user.first_name|slugify}}">{{name}}</a>
+        <div class="small">{{name.follow.count}} Following, {{name.follower.count}} Follwers</div>
     </div>
     <div class="uaction">
         <span data-id="{{data_id}}">{% if is_following %} Stop Following {% else %} Follow {% endif %}</span>

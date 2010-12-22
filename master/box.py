@@ -136,3 +136,10 @@ class FeedbackBox(Box):
     def __init__(self, request, * args, ** kwargs):
         self.user = request.user.userprofile
         super(FeedbackBox, self).__init__(request, * args, ** kwargs)
+
+class SuggestionBox(Box):
+    _tab_class = [T.SuggestionTab]
+    
+    def __init__(self, request, * args, ** kwargs):
+        self.user = request.user.userprofile
+        super(SuggestionBox, self).__init__(request, * args, ** kwargs)

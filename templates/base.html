@@ -46,12 +46,15 @@
 	
 	$(function(){
 	  
-	  if(window.parent.location !=  window.location){
+	  if(window.parent.location ==  window.location){
 		$('.main_body').css('width', 730);
 		$('.centre_col').css('width', 705);
 		$('.centre_col').css('margin-left', 25);
-		$('.centre_col').prepend($('.BoxUser').html());
+		$('.centre_col').prepend('<div class="topbox"><div class="col">' + $('.BoxUser').html() + '</div>' + '<div class="rcol">' + $('.BoxSuggestion').html() + '</div>' + '<div class="clear"></div></div>');
 		$('.BoxUser').html('');
+		$('.BoxSuggestion').html('');
+		$('.TabSuggestion').css('margin-top', 10).css('margin-left', 10);
+		$('.user_info').css('margin-top', 10);
 		$('.footerWrap').css('width', 730);
 	  }
 	});

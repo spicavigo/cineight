@@ -2,6 +2,7 @@ from django.utils.datastructures import SortedDict
 from django.http import HttpResponse
 from utils.json_utils import JsonResponse
 from django.conf import settings
+from django.db.models import Avg, Max, Min, Count
 import ast
 import urllib2
 from utils.tab import Tab
@@ -236,3 +237,16 @@ class SearchResultUserTab(Tab):
 class FeedbackTab(Tab):
     _element_class = E.FeedbackElement
     title = 'Feedback'
+
+class SuggestionTab(Tab):
+    _element_class = E.SearchResultUserElement
+    
+    def _prepare(self):
+        recs = sorted(M.Reco.objects.filter(user_to=1).values('user_from').annotate(count=Count('user_from')), key=lambda rec: rec['count'], reverse=True)
+        self.ids=[]
+        follows = [item for e in  self.user.follow.values_list('id') for item in e] + [self.user.id]
+        for e in recs:
+            if not e['user_from'] in follows:
+                self.ids.append(e['user_from'])
+        self.ids = M.UserProfile.objects.filter(id__in=self.ids)
+        
