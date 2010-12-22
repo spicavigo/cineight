@@ -47,7 +47,14 @@
 	{% endif %}
 	
 	$(function(){
-	  $('.list').addClass('btn blue');
+	  $('.reco_element').live('mouseout', function(event){
+			$(this).find('.list').removeClass('btn blue');
+		});
+	  $('.reco_element').live('mouseover', function(event){
+			$(this).find('.list').addClass('btn blue');
+
+		});
+	  
 	  if(window.parent.location !=  window.location){
 		$('.main_body').css('width', 730);
 		$('.centre_col').css('width', 705);
