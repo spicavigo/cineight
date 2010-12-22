@@ -1,4 +1,4 @@
-.btn { display: block; position: relative; background: #aaa; padding: 5px;  color: #fff; text-decoration: none; cursor: pointer; }
+.btn { display: block; position: relative; background: #aaa; padding: 5px;  color: #fff; text-decoration: none; cursor: pointer; font-weight: bold;}
 .btn * { font-style: normal; background-image: url('/static/images/btn.png'); background-repeat: no-repeat; display: block; position: relative; }
 .btn i { background-position: top left; position: absolute; margin-bottom: -5px; top: 0; left: 0; width: 5px; height: 5px; }
 .btn span { background-position: bottom left; left: -5px; padding: 0 0 5px 10px; margin-bottom: -5px; }
