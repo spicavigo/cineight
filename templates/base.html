@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="/static/css/master/footer.css" />
         <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/ie_specific.css" />
         <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/opera_specific.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/button.css" />
   
 {% for c in css %}
   <link rel="stylesheet" type="text/css" href="{{c}}" />
@@ -20,6 +21,7 @@
   <script type="text/javascript" src="/static/js/base.js"></script>
   <script  type="text/javascript" src="/static/js/css_browser_selector.js"></script>
   <script type="text/javascript" src="/static/js/master/fb.js"></script>
+  <script type="text/javascript" src="/static/js/button.js"></script>
   {% if USER %}
   <script type="text/javascript" src="/static/js/Orbited.js"></script>
   <script type="text/javascript" src="/static/js/lzOrbited.js">  </script>
@@ -45,16 +47,18 @@
 	{% endif %}
 	
 	$(function(){
-	  
+	  $('.list').addClass('btn blue');
 	  if(window.parent.location !=  window.location){
 		$('.main_body').css('width', 730);
 		$('.centre_col').css('width', 705);
 		$('.centre_col').css('margin-left', 25);
-		$('.centre_col').prepend('<div class="topbox"><div class="col">' + $('.BoxUser').html() + '</div>' + '<div class="rcol">' + $('.BoxSuggestion').html() + '</div>' + '<div class="clear"></div></div>');
-		$('.BoxUser').html('');
-		$('.BoxSuggestion').html('');
-		$('.TabSuggestion').css('margin-top', 10).css('margin-left', 10);
-		$('.user_info').css('margin-top', 10);
+		if ($('.BoxUser').length){
+		  $('.centre_col').prepend('<div class="topbox"><div class="col">' + $('.BoxUser').html() + '</div>' + '<div class="rcol">' + $('.BoxSuggestion').html() + '</div>' + '<div class="clear"></div></div>');
+		  $('.BoxUser').html('');
+		  $('.BoxSuggestion').html('');
+		  $('.TabSuggestion').css('margin-top', 10).css('margin-left', 10);
+		  $('.user_info').css('margin-top', 10);
+		}
 		$('.footerWrap').css('width', 730);
 	  }
 	});

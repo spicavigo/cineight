@@ -3,12 +3,11 @@
 }
 
 .recommender .uname {
-    width: 150px;
+    width: 170px;
     float: left;
 }
 
 .recommender .uaction {
-    width: 100px;
     float:right;
     text-align: right;
     cursor: pointer;
