@@ -1,16 +1,25 @@
 
 <div class="reco_element" data-id="{{id}}">
     <div class="reco_left">
-        <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">
-        <div class="reco_mname">
-            {{movie.name}}
+        <div class="col">
+            {% if movie.image %}
+            <img src="{{movie.image}}" alt="{{movie.name}}"/>
+            {% else %}
+            <img src="/static/images/imagena.png"/>
+            {% endif %}
         </div>
-        {% if movie.released.year %}
-        <div class="reco_myear">
-            ({{movie.released.year}})
+        <div class="col" style="padding-left:5px">
+            <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">
+            <div class="reco_mname bold large">
+                {{movie.name}}
+            </div>
+            {% if movie.released.year %}
+            <div class="reco_myear bold large">
+                ({{movie.released.year}})
+            </div>
+            {% endif %}
+            </a>
         </div>
-        {% endif %}
-        </a>
         <div class="clear"></div>
         {% include "master/RecommendForm.html" %}
     </div>

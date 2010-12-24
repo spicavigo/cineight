@@ -1,29 +1,39 @@
 
 <div class="reco_element" data-id="{{id}}">
     <div class="reco_left">
-        <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">
-            <div class="reco_mname">
-                {{movie.name}}
-            </div>
-            {% if movie.released.year %}
-            <div class="reco_myear">
-                ({{movie.released.year}})
-            </div>
+         <div class="col">
+            {% if movie.image %}
+            <img src="{{movie.image}}"  alt="{{movie.name}}"/>
+            {% else %}
+            <img src="/static/images/imagena.png"/>
             {% endif %}
-        </a>
+        </div>
+        <div class="col" style="padding-left:5px">
+            <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">
+                <div class="reco_mname bold large">
+                    {{movie.name}}
+                </div>
+                {% if movie.released.year %}
+                <div class="reco_myear bold large">
+                    ({{movie.released.year}})
+                </div>
+                {% endif %}
+            </a>
+            <div class="clear"></div>
+            <div class="reco_uname italic light">
+                by <a href='/user/{{user_from.id}}/{{user_from.user.first_name|slugify}}'>{{user_from}}</a>
+            </div>
+            <div class="reco_rate {% if iswarn %} warn {% endif %}">
+                <span class="bold">Rating: </span>{{rating}}
+            </div>
+            <div class="reco_ucom {% if iswarn %} warn {% endif %}">
+                <blockquote>{{comment}}</blockquote>
+            </div>
+            <div class="reco_ts date">
+                {{ts|timesince}} ago
+            </div>
+        </div>
         <div class="clear"></div>
-        <div class="reco_uname italic light">
-            by <a href='/user/{{user_from.id}}/{{user_from.user.first_name|slugify}}'>{{user_from}}</a>
-        </div>
-        <div class="reco_rate {% if iswarn %} warn {% endif %}">
-            <span class="bold">Rating: </span>{{rating}}
-        </div>
-        <div class="reco_ucom {% if iswarn %} warn {% endif %}">
-            <blockquote>{{comment}}</blockquote>
-        </div>
-        <div class="reco_ts date">
-            {{ts|timesince}} ago
-        </div>
         {% include "master/RecommendForm.html" %}
     </div>
     <div class="reco_right">

@@ -1,30 +1,39 @@
 
 <div class="movie_detail">
     <div class="movie_left">
-        <div class="movie_mname">
-            {{movie.name}}
+        <div class="col">
+            {% if movie.image %}
+            <img src="{{movie.image}}"  alt="{{movie.name}}"/>
+            {% else %}
+            <img src="/static/images/imagena.png"/>
+            {% endif %}
         </div>
-        {% if movie.released.year %}
-        <div class="movie_myear">
-            ({{movie.released.year}})
+        <div class="col" style="padding-left:5px">
+            <div class="movie_mname">
+                {{movie.name}}
+            </div>
+            {% if movie.released.year %}
+            <div class="movie_myear">
+                ({{movie.released.year}})
+            </div>
+            {% endif %}
+            <div class="clear"></div>
+            <div class="movie_plot">
+                <p>
+                    <a class="reveal">Reveal Plot &gt;&gt; </a> <br/>
+                    <span class="spoiler hidden">{% if movie.plot %} {{movie.plot}} {% else %} No plot available {% endif %}<br/></span>
+                </p>
+            </div>
         </div>
-        {% endif %}
         <div class="clear"></div>
-        <div class="movie_plot">
-            <p>
-                <a class="reveal">Reveal Plot &gt;&gt; </a> <br/>
-                <span class="spoiler hidden">{% if movie.plot %} {{movie.plot}} {% else %} No plot available {% endif %}<br/></span>
-            </p>
-        </div>
-        
     </div>
     <div class="movie_right">
         <ul class="list_buttons">
             <li class="italic">Add To</li>
-            <li data-id="{{wl_list}}" class="list mutex {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>
-            <li data-id="{{sl_list}}" class="list mutex {% ifequal list 'SL'%}selected{% endifequal %}">Seen 'Em</li>
-            <li data-id="{{fl_list}}" class="list mutex {% ifequal list 'FL'%}selected{% endifequal %}">Trash Can</li>
-            <li data-id="{{cl_list}}" class="list {% if is_cl %}selected{% endif %} compare_list">Compare List</li>
+            <li data-id="{{wl_list}}" class="btn blue list mutex {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>
+            <li data-id="{{sl_list}}" class="btn blue list mutex {% ifequal list 'SL'%}selected{% endifequal %}">Seen 'Em</li>
+            <li data-id="{{fl_list}}" class="btn blue list mutex {% ifequal list 'FL'%}selected{% endifequal %}">Trash Can</li>
+            <li data-id="{{cl_list}}" class="btn blue list {% if is_cl %}selected{% endif %} compare_list">Compare List</li>
         </ul>
     </div>
     <div class="clear"></div>

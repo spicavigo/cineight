@@ -24,6 +24,9 @@
   cursor:pointer;
 }
 
+.reco_ucom {
+    width: 330px;
+}
 ul.list_buttons li.list {
   cursor: pointer;
 }

@@ -108,6 +108,10 @@ input {
 .bold {
   font-weight: bold;
 }
+.large {
+  font-size: 13px;
+}
+
 .help_text{
   margin-bottom:3px;
   text-indent: 5px;

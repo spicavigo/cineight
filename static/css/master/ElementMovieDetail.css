@@ -20,16 +20,16 @@
 
 .movie_left {
   float:left;
-  width: 450px;
+  
 }
 
 .movie_right {
   float:right;
-  margin-top:70px;
 }
 
 .movie_plot{
   margin:5px;
+  width: 450px;
 }
 .show_reco {
   cursor:pointer;

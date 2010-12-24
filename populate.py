@@ -17,6 +17,7 @@ total = m.max()
 count = 0
 lcount = 0
 page = 1
+img_count=0
 while count < total:
     x = m.browse(page=page)
     page += 1
@@ -40,6 +41,13 @@ while count < total:
             alternative_name = e['alternative_name'] or ''
             last_modified_at = datetime.strptime(e['last_modified_at'], '%Y-%m-%d %H:%M:%S')
             released = e['released'] and datetime.strptime(e['released'], '%Y-%m-%d').date() or last_modified_at.date()
+            image = None
+            if e.get('images'):
+                for v in e['images']:
+                    if v.get('thumb'):
+                        img_count += 1
+                        image = v['thumb']
+                        break
             try:
                 movie = Movie.objects.get(id=int(e['id']))
                 if movie.last_modified_at < last_modified_at:
@@ -56,6 +64,8 @@ while count < total:
                     movie.alternative_name = alternative_name
                     movie.last_modified_at = last_modified_at
                     movie.released = released
+                    movie.image = image
+                    movie.save()
                 continue
             except:pass
             try:
@@ -63,9 +73,10 @@ while count < total:
                                      name=name, url = url, plot=plot, popularity=popularity,
                                      original_name = original_name, last_modified_at=last_modified_at, imdb_id = imdb_id,
                                      released = released, adult = adult, mtype = mtype, id = id,
-                                     alternative_name = alternative_name)
+                                     alternative_name = alternative_name, image=image)
             except:pass
         except:
             traceback.print_exc(file=sys.stdout)
             print e.items()
     print 'page = %d, count=%d, total=%d' % (page, count, total)
+print img_count

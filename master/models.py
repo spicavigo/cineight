@@ -19,6 +19,7 @@ class Movie(models.Model):
     adult = models.BooleanField()
     mtype = models.CharField(max_length=50)
     alternative_name = models.CharField(max_length = 255)
+    image = models.CharField(max_length=300, blank=True, null=True)
         
     def __unicode__(self):
         return u'%s(%s)' %(self.name, self.released and self.released.year)
