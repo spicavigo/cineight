@@ -30,10 +30,10 @@
     <div class="movie_right">
         <ul class="list_buttons">
             <li class="italic">Add To</li>
-            <li data-id="{{wl_list}}" class="btn blue list mutex {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>
-            <li data-id="{{sl_list}}" class="btn blue list mutex {% ifequal list 'SL'%}selected{% endifequal %}">Seen 'Em</li>
-            <li data-id="{{fl_list}}" class="btn blue list mutex {% ifequal list 'FL'%}selected{% endifequal %}">Trash Can</li>
-            <li data-id="{{cl_list}}" class="btn blue list {% if is_cl %}selected{% endif %} compare_list">Compare List</li>
+            <li data-id="{{wl_list}}" class="list mutex list_WL {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>
+            <li data-id="{{sl_list}}" class="list mutex list_SL {% ifequal list 'SL'%}selected{% endifequal %}">Seen 'Em</li>
+            <li data-id="{{fl_list}}" class="list mutex list_FL {% ifequal list 'FL'%}selected{% endifequal %}">Trash Can</li>
+            <li data-id="{{cl_list}}" class="list {% if is_cl %}selected{% endif %} compare_list">Compare List</li>
         </ul>
     </div>
     <div class="clear"></div>

@@ -50,7 +50,7 @@ def recommend(request):
     user = request.user.userprofile
     movie=M.Movie.objects.get(id=movie)
     followers = user.follower.all()
-    comment = request.GET.get('comment')
+    comment = request.GET.get('comment')[:254]
     obj, created = M.Reco.objects.get_or_create(user_from=user, user_to=M.UserProfile.objects.get(id=1), movie = movie, defaults = {'comment':comment})
     obj.comment = comment
     obj.save()
@@ -209,7 +209,22 @@ class RecoElement(Element):
                         'sl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'SL'),
                         'fl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'FL'),
                         'followers': self.user.follower.all(),
+                        'delete': '%s+%d' % (self.delete.key, self.client.id,),
                         }
+    
+    @staticmethod
+    @cb.register
+    def delete(request):
+        id = int(request.GET.get('data_id').split('+')[1])
+        reco = M.Reco.objects.get(id=id)
+        user = request.user.userprofile
+        if user == reco.user_from:
+            M.Reco.objects.filter(user_from=user, movie=reco.movie).delete()
+            return JsonResponse(json.dumps({'success': True}))
+        if user == reco.user_to:
+            reco.delete()
+            return JsonResponse(json.dumps({'success': True}))
+        return JsonResponse(json.dumps({'success': False}))
         
 class ListElement(Element):
     

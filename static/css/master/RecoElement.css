@@ -27,11 +27,6 @@
 .reco_ucom {
     width: 330px;
 }
-ul.list_buttons li.list {
-  cursor: pointer;
-}
-
-
 
 select {
   width: 100px;
@@ -39,4 +34,16 @@ select {
 
 .warn {
   color: #A82232;
+}
+
+.delete_reco{
+    background: url('/static/images/delete.png');
+    width: 15px;
+    height:15px;
+    float:right;
+    margin-right: 5px;
+}
+
+.delete_reco:hover {
+    background-position: left -30px;
 }

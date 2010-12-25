@@ -1,5 +1,22 @@
 $(function() {
+    function alternate(div){
+    $(div).find('>:odd').removeClass('elementEven').removeClass('elementOdd').addClass('elementOdd');
+    $(div).find('>:even').removeClass('elementOdd').removeClass('elementEven').addClass('elementEven');
+  }
     $('.rating').rating({'showCancel':false});
+    $(".delete_reco").tipTip({edgeOffset:10});
+    $('.delete_reco').live('click', function(){
+        var data = $(this).attr('data-id');
+        var that = this;
+        $.get(AJAX_URL, {'data_id': data}, function(html){
+            if (html.success){
+                var tab = $(that).parents('.lzTab');
+                $(that).parents('.elementEven').remove();
+                $(that).parents('.elementOdd').remove();
+                alternate($(tab).find('.elements'));
+            }
+        });
+    });
     $('.reco_form_movie').hide();
     $('.warn_form_movie').hide();
     //$('.reco_form_movie').show();

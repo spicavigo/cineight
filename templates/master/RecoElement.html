@@ -32,11 +32,16 @@
             <div class="reco_ts date">
                 {{ts|timesince}} ago
             </div>
+            
         </div>
         <div class="clear"></div>
         {% include "master/RecommendForm.html" %}
     </div>
     <div class="reco_right">
+        <div class="delete_reco clickable" title="Remove this recommendation" data-id="{{delete}}">
+            
+        </div>
+        <div class="clear"></div>
         <ul class="list_buttons" data-id="{{movie.id}}">
             <li class="italic">Add To</li>
             <li data-id="{{wl_list}}" class="list mutex list_WL {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>
