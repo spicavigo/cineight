@@ -1,8 +1,8 @@
 $(function() {
     function alternate(div){
-    $(div).find('>:odd').removeClass('elementEven').removeClass('elementOdd').addClass('elementOdd');
-    $(div).find('>:even').removeClass('elementOdd').removeClass('elementEven').addClass('elementEven');
-  }
+        $(div).find('>:odd').removeClass('elementEven').removeClass('elementOdd').addClass('elementOdd');
+        $(div).find('>:even').removeClass('elementOdd').removeClass('elementEven').addClass('elementEven');
+    }
     $('.rating').rating({'showCancel':false});
     $(".delete_reco").tipTip({edgeOffset:10});
     $('.delete_reco').live('click', function(){

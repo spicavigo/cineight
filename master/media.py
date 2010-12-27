@@ -2,8 +2,8 @@ from utils.media import Media
 
 class HeaderBoxMedia(Media):
     template = 'common/BoxEmpty.html'
-    js=['jquery.fancybox-1.3.1.pack.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js']
-    css=['jquery.fancybox-1.3.1.css']
+    js=['jquery.fancybox-1.3.1.pack.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js','jquery.tools.min.js']
+    css=['jquery.fancybox-1.3.1.css', 'tooltip.css']
 
 class HeaderTabMedia(Media):
     template = 'common/TabEmpty.html'
@@ -125,8 +125,8 @@ class SearchElementMedia(Media):
     
 class SearchResultBoxMedia(Media):
     template = 'common/BoxTabbed.html'
-    js = ['common/BoxTabbed.js','jquery.tools.min.js']
-    css = ['common/BoxTabbed.css', 'tooltip.css']
+    js = ['common/BoxTabbed.js']
+    css = ['common/BoxTabbed.css']
 
 class SearchResultTabMedia(Media):
     template = 'common/TabRA.html'
