@@ -89,3 +89,27 @@ class SearchPage(Page):
         
     def view(self, request, *args, **kwargs):
         return super(SearchPage, self).show(request, *args, **kwargs)
+
+class ListLandingPage(Page):
+    url = 'master_list_landing'
+    template = 'master/PageMain.html'
+    
+    def __init__(self):
+        self.header = B.HeaderBox
+        self.boxes = [B.SearchBox, B.ListListBox, B.UserBox, B.CompareBox, B.FeedbackBox, B.SuggestionBox]
+        super(ListLandingPage, self).__init__(login_required=True)
+        
+    def view(self, request, *args, **kwargs):
+        return super(ListLandingPage, self).show(request, *args, **kwargs)
+
+class ListPage(Page):
+    url = 'master_list_page'
+    template = 'master/PageMain.html'
+    
+    def __init__(self):
+        self.header = B.HeaderBox
+        self.boxes = [B.SearchBox, B.ListBox, B.UserBox, B.CompareBox, B.FeedbackBox, B.SuggestionBox]
+        super(ListPage, self).__init__(login_required=True)
+        
+    def view(self, request, *args, **kwargs):
+        return super(ListPage, self).show(request, *args, **kwargs)

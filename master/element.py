@@ -122,7 +122,9 @@ def follow(request):
 
 class HeaderElement(Element):
     def _prepare(self):
-        self.context = {'user': self.user.is_authenticated()}
+        self.context = {'user': self.user.is_authenticated(),
+                        'lists': M.List.objects.all()[:5],}
+        print M.List.objects.all()[:5]
 
 class LoginElement(Element):
     def _prepare(self):
@@ -356,3 +358,8 @@ class FeedbackElement(Element):
     def get_fb(request):
         print request.GET
         return HttpResponse('ok')
+
+class ListListElement(Element):
+    def _prepare(self):
+        self.context = {'name': self.client.name,
+                        'id': self.client.id}

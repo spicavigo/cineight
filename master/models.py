@@ -89,6 +89,17 @@ class AskReco(models.Model):
     movie = models.ForeignKey(Movie)
     timestamp = models.DateTimeField(auto_now_add=True)
     answer = models.CharField(max_length=2, choices=ASK_RECO_CHOICES)
+
+class List(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    
+    def __unicode__(self):
+        return u'%s' %(self.name,)
+    
+class PublicList(models.Model):
+    list = models.ForeignKey('List')
+    movie  = models.ForeignKey('Movie')
+    pos = models.IntegerField()
     
 TITLE_CHOICES = (
     ('MG', 'Moviegoer'),

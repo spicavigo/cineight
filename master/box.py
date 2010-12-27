@@ -143,3 +143,20 @@ class SuggestionBox(Box):
     def __init__(self, request, * args, ** kwargs):
         self.user = request.user.userprofile
         super(SuggestionBox, self).__init__(request, * args, ** kwargs)
+
+class ListListBox(Box):
+    _tab_class = [T.ListListTab]
+    title = 'Public Lists'
+    
+    def __init__(self, request, * args, ** kwargs):
+        self.user = request.user.userprofile
+        super(ListListBox, self).__init__(request, * args, ** kwargs)
+
+class ListBox(Box):
+    _tab_class = [T.ListTab, T.ListSeenTab, T.ListUnSeenTab, T.ListFilterTab]
+    title = ''
+    
+    def __init__(self, request, * args, ** kwargs):
+        self.user = request.user.userprofile
+        self.client = M.List.objects.get(id=kwargs.get('list_name'))
+        super(ListBox, self).__init__(request, * args, ** kwargs)

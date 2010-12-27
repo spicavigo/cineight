@@ -251,5 +251,63 @@ class SuggestionTab(Tab):
                 self.ids.append(M.UserProfile.objects.get(id=e['user_from']))
                 count += 1
                 if count == 3:break
-        
-        
+
+class ListListTab(Tab):
+    _element_class = E.ListListElement
+    title = 'Public Lists'
+    
+    def _prepare(self):
+        self.ids = M.List.objects.all()
+    
+    def show(self, *args, **kwargs):
+        return super(ListListTab, self).show(count = len(self.ids))
+
+class ListTab(Tab):
+    _element_class = E.ListElement
+    title = 'All'
+    
+    def _prepare(self):
+        self.ids = M.PublicList.objects.filter(list=self.client).order_by('pos')
+        self.context['title'] =self.client.name
+    
+    def show(self, *args, **kwargs):
+        return super(ListTab, self).show(count = len(self.ids))
+
+class ListSeenTab(Tab):
+    _element_class = E.ListElement
+    title = 'Seen \'Em'
+    
+    def _prepare(self):
+        movies = M.PublicList.objects.filter(list=self.client)        
+        self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'SL').order_by('-timestamp')
+        self.context['desc'] = 'Movies that you have seen in <b>%s</b> list' % self.client.name
+        self.context['id'] = 'SL'
+    
+    def show(self, *args, **kwargs):
+        return super(ListSeenTab, self).show(count = len(self.ids))
+
+class ListUnSeenTab(Tab):
+    _element_class = E.ListElement
+    title = 'To Watch'
+    
+    def _prepare(self):
+        movies = M.PublicList.objects.filter(list=self.client)        
+        self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'WL').order_by('-timestamp')
+        self.context['desc'] = 'Movies that you want to watch in <b>%s</b> list' % self.client.name
+        self.context['id'] = 'WL'
+    
+    def show(self, *args, **kwargs):
+        return super(ListUnSeenTab, self).show(count = len(self.ids))
+
+class ListFilterTab(Tab):
+    _element_class = E.ListElement
+    title = 'Trash'
+    
+    def _prepare(self):
+        movies = M.PublicList.objects.filter(list=self.client)        
+        self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'FL').order_by('-timestamp')
+        self.context['desc'] = 'Movies that you do not like in <b>%s</b> list' % self.client.name
+        self.context['id'] = 'FL'
+    
+    def show(self, *args, **kwargs):
+        return super(ListFilterTab, self).show(count = len(self.ids))

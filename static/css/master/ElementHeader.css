@@ -20,3 +20,66 @@
 .user_links, .user_links a{
     color: #fff;
 }
+
+
+ul.topnav {
+	list-style: none;
+	padding: 0 20px;
+	margin-top: 30px;
+    margin-left: 30px;
+	float: left;
+	/*width: 920px;*/
+	/*background: #222;*/
+	font-size: 1.2em;
+	/*background: url(topnav_bg.gif) repeat-x;*/
+}
+ul.topnav li {
+	float: left;
+	margin: 0;
+	padding: 0 15px 0 0;
+	position: relative; /*--Declare X and Y axis base for sub navigation--*/
+}
+ul.topnav li a{
+	padding: 0px 5px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	float: left;
+}
+ul.topnav li a:hover{
+	color: #9CB7D6;
+}
+ul.topnav li span { /*--Drop down trigger styles--*/
+	width: 12px;
+	height: 22px;
+	float: left;
+	background: url('/static/images/down.gif') no-repeat center center;
+}
+ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
+ul.topnav li ul.subnav {
+	list-style: none;
+	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+	left: 0; top: 20px;
+	background: white;
+	margin: 0; padding: 0;
+	display: none;
+	float: left;
+	width: 170px;
+	border: 1px solid #111;
+}
+ul.topnav li ul.subnav li{
+	margin: 0; padding: 0;
+	clear: both;
+	width: 170px;
+}
+html ul.topnav li ul.subnav li a {
+	float: left;
+	width: 145px;
+	
+	padding-left: 20px;
+    color: black
+}
+html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
+	background: #9CB7D6;
+    color: #3F4C6B;
+}

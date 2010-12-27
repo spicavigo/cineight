@@ -10,6 +10,7 @@ class HeaderTabMedia(Media):
 
 class HeaderElementMedia(Media):
     template = 'master/ElementHeader.html'
+    js = ['master/ElementHeader.js']
     css = ['master/ElementHeader.css']
 
 LoginBoxMedia = SignUpBoxMedia = HeaderBoxMedia
@@ -157,3 +158,9 @@ class SuggestionBoxMedia(Media):
     
 class SuggestionTabMedia(Media):
     template  = 'master/TabSuggestion.html'
+    
+ListBoxMedia = ListListBoxMedia = SearchResultBoxMedia
+ListTabMedia = ListListTabMedia = SearchResultTabMedia
+ListSeenTabMedia = ListUnSeenTabMedia = ListFilterTabMedia = ListTabMedia
+class ListListElementMedia(Media):
+    template = 'master/ElementListList.html'

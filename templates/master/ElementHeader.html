@@ -1,6 +1,21 @@
 <div class="header">
     <div class="header_wrapper">
-        <a class="logo" href="/home"><img src="/static/images/logo.png"/></a>
+        <div class="col">
+            <a class="logo" href="/home"><img src="/static/images/logo.png"/></a>
+            <ul class="col topnav">
+                <li>
+                    <a href="#">Lists</a>
+                    <ul class="subnav">
+                        {% for li in lists %}
+                        <li><a href="/lists/{{li.id}}/{{li.name|slugify}}">{{li.name}}</a></li>
+                        {% endfor %}
+                        <li><a href="/lists">More</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </div>
+        
         {% if user %}
             <div class="user_links">
                 <a href="/home">Home</a>

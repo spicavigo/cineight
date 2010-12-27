@@ -8,3 +8,5 @@
 from django.contrib import admin
 from master.models import *
 
+admin.site.register(List)
+admin.site.register(PublicList)
