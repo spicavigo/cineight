@@ -11,7 +11,7 @@ $(function(){
 		}, function(){
 			$(this).parent().find("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
 		});
-		return false;
+		//return false;
 		//Following events are applied to the trigger (Hover events for the trigger)
 		}).hover(function() {
 			//$(this).addClass("subhover"); //On hover over, add class "subhover"
