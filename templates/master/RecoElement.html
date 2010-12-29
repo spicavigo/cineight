@@ -3,21 +3,17 @@
     <div class="reco_left">
          <div class="col">
             {% if movie.image %}
-            <img src="{{movie.image}}"  alt="{{movie.name}}"/>
+            <img class="mimage" src="{{movie.image}}"  alt="{{movie.name}}"/>
             {% else %}
             <img src="/static/images/imagena.png"/>
             {% endif %}
         </div>
-        <div class="col" style="padding-left:5px">
+        <div class="col mdetail" style="padding-left:5px">
             <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">
                 <div class="reco_mname bold large">
-                    {{movie.name}}
+                    {{movie.name}} {% if movie.released.year %} ({{movie.released.year}}) {% endif %}
                 </div>
-                {% if movie.released.year %}
-                <div class="reco_myear bold large">
-                    ({{movie.released.year}})
-                </div>
-                {% endif %}
+                
             </a>
             <div class="clear"></div>
             <div class="reco_uname italic light">

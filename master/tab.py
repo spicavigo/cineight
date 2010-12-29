@@ -12,6 +12,12 @@ from utils.nodes import Node
 from utils.callback import Callback
 cb = Callback()
 
+def escape(q):
+    if not q: return q
+    li = ['+','-','&&','||','!','(',')','{', '}', '[', ']', '^', '"', '~', '*', '?', ':', '\\']
+    q = ''.join(map(lambda e: e in li and ' ' or e, q))
+    return q
+
 class HeaderTab(Tab):
     _element_class = E.HeaderElement
     title = ''
@@ -185,8 +191,8 @@ class SearchResultTab(Tab):
     title='Movies'
     
     def _prepare(self):
-        query_dict = {'query':self.client or '*'}
-        query_url = '_val_:"scale(log(sum(votes,1)),0,10)"^10 name:(%(query)s)^5 name:"%(query)s"^5 alternative_name:(%(query)s)^3 alternative_name:"%(query)s"^3 original_name:(%(query)s)^3 original_name:"%(query)s"^3' % query_dict
+        query_dict = {'query':escape(self.client) or '*'}
+        query_url = '_val_:"scale(log(sum(votes,1)),0,10)"^10 name:(%(query)s)^5 name:"%(query)s"^10 alternative_name:(%(query)s)^3 alternative_name:"%(query)s"^3 original_name:(%(query)s)^3 original_name:"%(query)s"^3' % query_dict
         query_url = urllib2.quote(query_url)
         static_url = settings.SOLR_URL + 'q=%s&version=2.2&wt=python&rows=100&start=0&qt=standard&fl=*,score'
         conn = urllib2.urlopen(static_url % query_url)

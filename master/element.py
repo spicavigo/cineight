@@ -16,6 +16,12 @@ from utils.callback import Callback
 cb = Callback()
 SERVER = s = xmlrpclib.Server('http://localhost:7777/', allow_none=True)
 
+def escape(q):
+    if not q: return q
+    li = ['+','-','&&','||','!','(',')','{', '}', '[', ']', '^', '"', '~', '*', '?', ':', '\\']
+    q = ''.join(map(lambda e: e in li and ' ' or e, q))
+    return q
+
 def _add_to_list(user, movie, li):
     if li=='CL':
         obj, created = M.UserMovieList.objects.get_or_create(user=user, movie=movie, list=li)
@@ -311,7 +317,7 @@ class SearchElement(Element):
     @staticmethod
     @cb.register
     def query(request):
-        q = request.GET.get('query')
+        q = escape(request.GET.get('query'))
         query_url = 'e_name:(%s) e_alternative_name:(%s) e_original_name:(%s)' % (q,q,q)
         query_url = urllib2.quote(query_url)
         static_url = settings.SOLR_URL + 'q=%s'

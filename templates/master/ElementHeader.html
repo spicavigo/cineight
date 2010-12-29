@@ -12,15 +12,16 @@
                         {% endfor %}
                         <li><a href="/lists">More</a></li>
                     </ul>
-                </li>                
+                </li>
+                <li>
+                    <a href="/home">Home</a>
+                </li>
             </ul>
             {% endif %}
         </div>
         
         {% if user %}
             <div class="user_links">
-                <a href="/home">Home</a>
-                |
                 <a href="/logout">Logout</a>
             </div>
         {% endif %}

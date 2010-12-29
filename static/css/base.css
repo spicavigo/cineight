@@ -189,3 +189,12 @@ ul.list_buttons li.list {
 li.list:hover{
     background-color: #d8dfea;
 }
+
+.mimage {
+  max-width: 128px;
+  max-height: 140px;  
+}
+
+.mdetail {
+  width: 70%;
+}
