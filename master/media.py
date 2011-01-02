@@ -2,8 +2,9 @@ from utils.media import Media
 
 class HeaderBoxMedia(Media):
     template = 'common/BoxEmpty.html'
-    js=['jquery.fancybox-1.3.1.pack.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js','jquery.tools.min.js']
-    css=['jquery.fancybox-1.3.1.css', 'tooltip.css']
+    js=['jquery.fancybox-1.3.1.pack.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js','jquery.tools.min.js', 'http://connect.facebook.net/en_US/all.js#xfbml=1',
+        'textarea.resize.js', 'master/CommentForm.js']
+    css=['jquery.fancybox-1.3.1.css', 'tooltip.css', 'master/CommentForm.css']
 
 class HeaderTabMedia(Media):
     template = 'common/TabEmpty.html'
@@ -164,3 +165,21 @@ ListTabMedia = ListListTabMedia = SearchResultTabMedia
 ListSeenTabMedia = ListUnSeenTabMedia = ListFilterTabMedia = ListTabMedia
 class ListListElementMedia(Media):
     template = 'master/ElementListList.html'
+
+class RollTabMedia(Media):
+    template = 'master/TabRoll.html'
+    css = ['master/TabAskReco.css', 'master/TabUpdate.css']
+
+class AskRecoTabMedia(Media):
+    template = 'master/TabAskReco.html'
+    css = ['master/TabAskReco.css']
+
+class UpdateTabMedia(Media):
+    template = 'master/TabUpdate.html'
+    css = ['master/TabUpdate.css']
+    
+class AskRecoElementMedia(Media):
+    template = 'master/ElementAskReco.html'
+
+class UpdateElementMedia(Media):
+    template = 'master/ElementUpdate.html'

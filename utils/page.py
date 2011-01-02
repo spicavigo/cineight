@@ -77,7 +77,7 @@ class Page(Container):
         self.context['js'] = self.js
         #if hasattr(request.user, 'userprofile'):
         if self.url == 'master_home_page':
-            self.context['USER'] = request.user.userprofile.id
+            self.context['USER'] = request.user.userprofile
         return HttpResponse(super(Page, self).show(self.template, None, None))
 
     def get_css_js(self):

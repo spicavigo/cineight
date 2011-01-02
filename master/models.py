@@ -90,6 +90,21 @@ class AskReco(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     answer = models.CharField(max_length=2, choices=ASK_RECO_CHOICES)
 
+class Activity(models.Model):
+    user = models.ForeignKey('UserProfile')
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    movie = models.ForeignKey('Movie', blank=True, null=True)
+    follow = models.ForeignKey('UserProfile', related_name='follow_activity', blank=True, null=True)
+
+class Message(models.Model):
+    user = models.ForeignKey('UserProfile')
+    timestamp = models.DateTimeField(auto_now_add=True)
+    list = models.ForeignKey('UserMovieList', blank=True, null=True)
+    movie = models.ForeignKey('Movie', blank=True, null=True)
+    user_from = models.ForeignKey('UserProfile', related_name='user_from', blank=True, null=True)
+    msg = models.TextField()
+    
 class List(models.Model):
     name = models.CharField(max_length=255, unique=True)
     

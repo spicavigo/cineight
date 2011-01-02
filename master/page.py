@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from master import box as B
 from master import data_methods as dm
-
+from master import models as M
 from django.contrib.auth import authenticate, login
 import urllib
 
@@ -64,6 +64,7 @@ class MoviePage(Page):
         super(MoviePage, self).__init__(login_required=True)
         
     def view(self, request, *args, **kwargs):
+        self.context['movie'] = M.Movie.objects.get(id=kwargs.get('movie'))
         return super(MoviePage, self).show(request, *args, **kwargs)
         
 class UserPage(Page):

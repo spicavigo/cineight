@@ -13,15 +13,19 @@
                 <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">{{movie.name}} {% if movie.released.year %} ({{movie.released.year}}) {% endif %}</a>
             </div>
             <div class="clear"></div>
+            <fb:like href="http://cineight.com/movie/{{movie.id}}/{{movie.name|slugify}}" layout="button_count" show_faces="true" width="200"></fb:like>
             <div class="movie_plot">
                 <p>
                     <a class="reveal">Reveal Plot &gt;&gt; </a> <br/>
                     <span class="spoiler hidden">{% if movie.plot %} {{movie.plot}} {% else %} No plot available {% endif %}<br/></span>
                 </p>
             </div>
+            
         </div>
          <div class="clear"></div>
-        {% include "master/RecommendForm.html" %}
+        <div>
+            {% include "master/RecommendForm.html" %}
+        </div>
     </div>
     <div class="movie_right">
         <ul class="list_buttons">

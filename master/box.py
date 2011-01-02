@@ -25,7 +25,7 @@ class SignUpBox(Box):
     title = ''
 
 class RecoBox(Box):
-    _tab_class = [T.ReverseRecoTab, T.ForwardRecoTab, T.SeenListTab, T.UnseenListTab, T.FilterListTab]
+    _tab_class = [T.RollTab, T.ReverseRecoTab, T.SeenListTab, T.UnseenListTab, T.FilterListTab] #[T.ReverseRecoTab, T.ForwardRecoTab, T.SeenListTab, T.UnseenListTab, T.FilterListTab]
     title=''
     
     def __init__(self, request, * args, ** kwargs):

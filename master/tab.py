@@ -317,3 +317,28 @@ class ListFilterTab(Tab):
     
     def show(self, *args, **kwargs):
         return super(ListFilterTab, self).show(count = len(self.ids))
+
+class RollTab(Tab):
+    _element_class = E.ListElement
+    title = 'Roll'
+    
+    def _prepare(self):
+        self.ids = []
+        t1 = AskRecoTab(user=self.user, is_default=True, tab_client=None)
+        t2 = UpdateTab(user=self.user, is_default=True, tab_client=None)
+        self.context['updates'] = t2.show()
+        self.context['asks'] = t1.show()
+        
+class AskRecoTab(Tab):
+    _element_class = E.AskRecoElement
+    title = ''
+    
+    def _prepare(self):
+        self.ids = M.AskReco.objects.filter(user_to=self.user).order_by('-timestamp')
+        
+class UpdateTab(Tab):
+    _element_class = E.UpdateElement
+    title = 'Updates'
+    
+    def _prepare(self):
+        self.ids = M.Activity.objects.filter(user__in=[e.id for e in self.user.follow.all()]).order_by('-timestamp')

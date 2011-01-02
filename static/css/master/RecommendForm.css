@@ -31,3 +31,7 @@
 .warn_form_movie .ui-rating-hover {
     background-position:left -16px;
 }
+
+.reco_form {
+	margin: 5px;
+}

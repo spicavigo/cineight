@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.forms.fields import email_re
 from django.http import HttpResponse
 from django.conf import settings
+from django.template.defaultfilters import slugify
 from utils.json_utils import JsonResponse
 from master import models as M
 from master import data_methods as dm
@@ -15,13 +16,32 @@ from utils.element import Element
 from utils.callback import Callback
 cb = Callback()
 SERVER = s = xmlrpclib.Server('http://localhost:7777/', allow_none=True)
-
+MSG_STR = {
+    'WL': 'wants to watch',
+    'SL': 'has watched',
+    'FL': 'does not like'
+}
 def escape(q):
     if not q: return q
     li = ['+','-','&&','||','!','(',')','{', '}', '[', ']', '^', '"', '~', '*', '?', ':', '\\']
     q = ''.join(map(lambda e: e in li and ' ' or e, q))
     return q
 
+@cb.register
+def comment(request):
+    msg = request.GET.get('msg')
+    reco_id = request.GET.get('reco_id')
+    list_id = request.GET.get('list_id')
+    if reco_id:
+        reco = N.Reco.objects.get(id=reco_id)
+        M.Message.objects.create(user=request.user.userprofile, movie =reco.movie, user_from = reco.user_from, msg=msg)
+        return HttpResponse('ok')
+    if list_id:
+        li = M.UserMovieList.objects.get(id=list_id)
+        M.Message.objects.create(user = request.user.userprofile, list=li, msg=msg)
+        return HttpResponse('ok')
+    return HttpResponse('fail')
+    
 def _add_to_list(user, movie, li):
     if li=='CL':
         obj, created = M.UserMovieList.objects.get_or_create(user=user, movie=movie, list=li)
@@ -41,11 +61,21 @@ def _add_to_list(user, movie, li):
             except:pass
             m.list = li
             m.save()
+            M.Activity.objects.filter(user=user, movie=movie).delete()
+            message = '<a href="/user/%(user_id)d/%(user_slug)s">%(user)s</a> %(list)s <a href="/movie/%(movie_id)d/%(movie_slug)s">%(movie)s</a>.' % {'user_id': user.id,
+                                            'movie_id' : movie.id, 'user': user.user.first_name, 'list': MSG_STR[li], 'movie': movie, 'movie_slug': slugify(movie.name),
+                                            'user_slug': slugify(user.user.first_name)}
+            M.Activity.objects.create(user=user, message=message, movie=movie)
             try:
                 SERVER.added(m.id)
             except:pass
             return
     m = M.UserMovieList.objects.create(user=user, movie=movie, list=li)
+    M.Activity.objects.filter(user=user, movie=movie).delete()
+    message = '<a href="/user/%(user_id)d/%(user_slug)s">%(user)s</a> %(list)s <a href="/movie/%(movie_id)d/%(movie_slug)s">%(movie)s</a>.' % {'user_id': user.id,
+                                            'movie_id' : movie.id, 'user': user.user.first_name, 'list': MSG_STR[li], 'movie': movie, 'movie_slug': slugify(movie.name),
+                                            'user_slug': slugify(user.user.first_name)}
+    M.Activity.objects.create(user=user, message=message, movie=movie)
     try:
         SERVER.added(m.id)
     except:pass
@@ -101,6 +131,7 @@ def add_to_list(request):
 
 @cb.register
 def follow(request):
+    print 1
     peer = request.GET.get('data_id').split('+')[1]
     user = request.user.userprofile
     peer = M.UserProfile.objects.get(id=peer)
@@ -108,10 +139,16 @@ def follow(request):
         user.follow.remove(peer)
         peer.follower.remove(user)
         M.Reco.objects.filter(user_from=peer, user_to=user).delete()
+        M.Activity.objects.filter(user=user, follow=peer).delete()
         response = 'Follow'
     else:
         user.follow.add(peer)
         peer.follower.add(user)
+        print 2
+        message = '<a href="/user/%d/%s">%s</a> has started following <a href="/user/%d/%s">%s</a>' % (user.id, slugify(user.user.first_name),
+                                                                                                       user.user.first_name, peer.id, slugify(peer.user.first_name), peer.user.first_name)
+        print message
+        M.Activity.objects.create(user=user, follow=peer, message=message)
         recs = M.Reco.objects.filter(user_from=peer)
         temp={}
         for e in recs:
@@ -252,8 +289,12 @@ class ListElement(Element):
                         'sl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'SL'),
                         'fl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'FL'),
                         'followers': self.user.follower.all(),
+                        'comments': M.Message.objects.filter(list = self.client).order_by('timestamp'),
+                        'list_id': self.client.id,
+                        'comment_submit': comment.key,
+                        'show_comment': isinstance(self.client, M.UserMovieList),
                         }
-
+        
 class MovieDetailElement(Element):
     
     def _prepare(self):
@@ -369,3 +410,22 @@ class ListListElement(Element):
     def _prepare(self):
         self.context = {'name': self.client.name,
                         'id': self.client.id}
+
+class AskRecoElement(Element):
+    def _prepare(self):
+        self.context = {'reco': self.client}
+
+class UpdateElement(Element):
+    def _prepare(self):
+        li=None
+        comments = []
+        if self.client.movie:
+            try:
+                li = M.UserMovieList.objects.filter(movie=self.client.movie, user = self.client.user)
+                li = [e for e in li if e.list != 'CL'][0]
+                comments = M.Message.objects.filter(list = li).order_by('timestamp')
+                li=li.id
+            except:
+                pass
+        self.context = {'activity': self.client, 'list_id': li, 'comment_submit': comment.key, 'comments': comments}
+        

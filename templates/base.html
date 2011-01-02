@@ -4,6 +4,15 @@
 <script> document.domain = document.domain; </script>
 <head>
   <title>{% block title %} CinEight {% endblock %}</title>
+  {% if movie %}
+  <meta property="og:title" content="{{movie.name}}"/>
+  <meta property="og:type" content="movie"/>
+  <meta property="og:url" content="http://cineight.com/movie/{{movie.id}}/{{movie.name|slugify}}"/>
+  <meta property="og:image" content="{{movie.image}}"/>
+  <meta property="og:site_name" content="CinEight"/>
+  <meta property="fb:admins" content="103058839759878"/>
+  <meta property="og:description" content="{{movie.plot}}"/>
+  {% endif %}
   <meta name="description" content="Recommend movies, recieve recommendation on movies. Also, manage movies that you have seen or want to. Its all about movies." />
   <meta name="keywords" content="movie, recommend, get recommendation, manage movies, review, movie rating, share revies, share movies" />
   <meta http-equiv="Content-Type" content="text/html;charset=utf8" />
@@ -35,7 +44,8 @@
 <script type="text/javascript">
 	AJAX_URL = "{% url ajax_url %}";
 	{% if USER %}
-	USER = {{USER}};
+	USER = {{USER.id}};
+	NAME = "{{USER}}";
 	{% else %}
 	  {% if FB_REDIRECT %}
 	  $(function(){
@@ -68,6 +78,7 @@
 		}
 		$('.footerWrap').css('width', 730);
 	  }
+	  $('textarea').autoResize();
 	});
 </script>
 <script type="text/javascript">
