@@ -3,7 +3,7 @@
 <html>
 <script> document.domain = document.domain; </script>
 <head>
-  <title>{% block title %} CinEight {% endblock %}</title>
+  <title>{% block title %} {% if movie %} {{movie}} {% else %} CinEight {% endif %}{% endblock %}</title>
   {% if movie %}
   <meta property="og:title" content="{{movie.name}}"/>
   <meta property="og:type" content="movie"/>
