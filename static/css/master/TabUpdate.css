@@ -1,0 +1,23 @@
+.UpdateTab .elements a{
+    font-weight: bold
+}
+
+.UpdateTab .elements .elementEven, .UpdateTab .elements .elementOdd, .UpdateTab .elements .message{
+    padding: 5px;
+}
+
+.comments{
+    margin:5px;
+    border: solid #a7a7a8 1px;
+    padding:5px;
+}
+
+.comment {
+    border-bottom: 1px solid #9cb7d6;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.message{
+    width: 400px;
+}

@@ -1,0 +1,20 @@
+<div>
+    {% if activity.movie %}
+    <div class="col">
+        {% if activity.movie.image %}
+        <img class="mimage" src="{{activity.movie.image}}"  alt="{{activity.movie.name}}"/>
+        {% else %}
+            <img src="/static/images/imagena.png"/>
+        {% endif %}
+    </div>
+    {% endif %}
+    <div class="col">
+        <div class="message">
+        {{activity.message|safe}}
+        </div>
+        {% if activity.movie %}
+        {% include "master/CommentForm.html" %}
+        {% endif %}
+    </div>
+    <div class="clear"></div>
+</div>

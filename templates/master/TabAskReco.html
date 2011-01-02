@@ -1,0 +1,21 @@
+<div class="lzTab RATab AskRecoTab">
+{% autoescape off %}
+{% if elements %}
+<div class="title large bold">Asked Recommendations</div>
+{% endif %}
+  <div class="elements">
+    {% for e in elements %}
+      <div class="{% cycle 'elementEven' 'elementOdd' %}">
+     {{ e }}
+      </div>
+    {% endfor %}
+  </div>
+      <div class="tabBtns">
+        {% if Next %}
+        <div class="tabNextBtn tabNav" data-id="{{Next.data_id}}">
+          More
+        </div>
+        {% endif %}
+      </div>
+{% endautoescape %}
+</div>

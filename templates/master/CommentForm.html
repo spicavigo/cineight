@@ -1,0 +1,19 @@
+<div class="comments">        
+    {% for comment in comments %}
+    <div class="comment">
+        <div class="large"><a href="/user/{{comment.user.id}}">{{comment.user}}</a> says:</div>
+        <div style="padding-left: 10px">
+            {{comment.msg}}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="comment">
+        <form class="comment_form">
+            <textarea name="msg" class="comment_area" value="Write a Comment ..."></textarea>
+            <input type="hidden" name="reco_id" value="{{reco_id}}"/>
+            <input type="hidden" name="list_id" value="{{list_id}}"/>
+            <input type="hidden" name="data_id" value="{{comment_submit}}"/>
+            <input type="submit" class="btn blue comment_submit" style="height: 30px; margin-left: 305px;" value="Submit"/>
+        </form>
+    </div>
+</div>
