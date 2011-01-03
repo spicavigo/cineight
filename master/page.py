@@ -9,6 +9,7 @@ from master import box as B
 from master import data_methods as dm
 from master import models as M
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import AnonymousUser
 import urllib
 
 class LandingPage(Page):
@@ -64,7 +65,7 @@ class MoviePage(Page):
         super(MoviePage, self).__init__(login_required=False)
         
     def __call__(self,request,*args,**kwargs):
-        if not hasattr(request.user,'userprofile'):
+        if isinstance(request.user, AnonymousUser):
             self.boxes = [B.MovieDetailBox,]
         return super(MoviePage, self).__call__(request, *args, **kwargs)
         
