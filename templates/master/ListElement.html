@@ -5,7 +5,7 @@
             {% if movie.image %}
             <img class="mimage" src="{{movie.image}}" alt="{{movie.name}}"/>
             {% else %}
-            <img src="/static/images/imagena.png"/>
+            <img src="/static/images/imagena.png" width="92px" height="138px"/>
             {% endif %}
         </div>
         <div class="col mdetail" style="padding-left:5px">
@@ -15,7 +15,7 @@
             </div>
             </a>
             <div class="clear"></div>
-            <fb:like href="http://cineight.com/movie/{{movie.id}}/{{movie.name|slugify}}" layout="button_count" show_faces="true" width="200"></fb:like>
+            <fb:like href="http://apps.facebook.com/cineight/movie/{{movie.id}}/{{movie.name|slugify}}" layout="button_count" show_faces="true" width="200"></fb:like>
             {% if show_comment %}
             {% include "master/CommentForm.html" %}
             {% endif %}

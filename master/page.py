@@ -61,7 +61,12 @@ class MoviePage(Page):
     def __init__(self):
         self.header = B.HeaderBox
         self.boxes = [B.SearchBox, B.MovieDetailBox, B.RecommenderBox, B.ReviewBox, B.CompareBox, B.FeedbackBox]
-        super(MoviePage, self).__init__(login_required=True)
+        super(MoviePage, self).__init__(login_required=False)
+        
+    def __call__(self,request,*args,**kwargs):
+        if request.user.is_anonymous():
+            self.boxes = [B.MovieDetailBox,]
+        return super(MoviePage, self).__call__(request, *args, **kwargs)
         
     def view(self, request, *args, **kwargs):
         self.context['movie'] = M.Movie.objects.get(id=kwargs.get('movie'))

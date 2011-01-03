@@ -299,9 +299,12 @@ class MovieDetailElement(Element):
     
     def _prepare(self):
         list_tmplt = '%s+%d+%s'
-        lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client)
-        li = len(lists) and lists[0].list or ''
-        is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client, list='CL'))
+        li = is_cl = user = None
+        if isinstance(self.user, M.UserProfile):
+            lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client)
+            li = len(lists) and lists[0].list or ''
+            is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client, list='CL'))
+            user = True
         self.context = {'movie': self.client,
                         'list': li,
                         'is_cl': is_cl,
@@ -310,7 +313,8 @@ class MovieDetailElement(Element):
                         'wl_list': list_tmplt % (add_to_list.key, self.client.id, 'WL'),
                         'sl_list': list_tmplt % (add_to_list.key, self.client.id, 'SL'),
                         'fl_list': list_tmplt % (add_to_list.key, self.client.id, 'FL'),
-                        'followers': self.user.follower.all(),
+                        'followers': [], #self.user.follower.all(),
+                        'user': user,
                         }
 
 class RecommenderElement(Element):

@@ -52,7 +52,7 @@ class MovieDetailBox(Box):
     
     def __init__(self, request, * args, ** kwargs):
         self.client = M.Movie.objects.get(id=kwargs.get('movie'))
-        self.user = request.user.userprofile
+        self.user = getattr(request.user, 'userprofile', request.user)
         super(MovieDetailBox, self).__init__(request, * args, ** kwargs)
     
 class RecommenderBox(Box):

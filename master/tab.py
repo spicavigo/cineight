@@ -342,3 +342,18 @@ class UpdateTab(Tab):
     
     def _prepare(self):
         self.ids = M.Activity.objects.filter(user__in=[e.id for e in self.user.follow.all()]).order_by('-timestamp')
+    
+    def show(self, is_json=False, start=0, count=10):
+        #self.context['title'] = Node(self.title, data_id=self.get_data.key)
+        r= super(UpdateTab, self).show(None, is_json, start, count,
+                next_key = '%s+%s' % (self.get_next.key, self.client or ''),
+                prev_key = '%s+%s' % (self.get_next.key, self.client or ''))
+        return r
+
+    @staticmethod
+    @cb.register
+    def get_next(request):
+        data_id = request.GET.get('data_id').split('+')[1:]
+        start = int(data_id[1])
+        query = data_id[0]
+        return HttpResponse(UpdateTab(request.user.userprofile, True, query).show(start=start)['html'])
