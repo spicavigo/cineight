@@ -64,7 +64,7 @@ class MoviePage(Page):
         super(MoviePage, self).__init__(login_required=False)
         
     def __call__(self,request,*args,**kwargs):
-        if request.user.is_anonymous():
+        if not hasattr(request.user,'userprofile'):
             self.boxes = [B.MovieDetailBox,]
         return super(MoviePage, self).__call__(request, *args, **kwargs)
         
