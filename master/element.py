@@ -131,7 +131,6 @@ def add_to_list(request):
 
 @cb.register
 def follow(request):
-    print 1
     peer = request.GET.get('data_id').split('+')[1]
     user = request.user.userprofile
     peer = M.UserProfile.objects.get(id=peer)
@@ -144,10 +143,9 @@ def follow(request):
     else:
         user.follow.add(peer)
         peer.follower.add(user)
-        print 2
         message = '<a href="/user/%d/%s">%s</a> has started following <a href="/user/%d/%s">%s</a>' % (user.id, slugify(user.user.first_name),
                                                                                                        user.user.first_name, peer.id, slugify(peer.user.first_name), peer.user.first_name)
-        print message
+
         M.Activity.objects.create(user=user, follow=peer, message=message)
         recs = M.Reco.objects.filter(user_from=peer)
         temp={}
@@ -167,7 +165,6 @@ class HeaderElement(Element):
     def _prepare(self):
         self.context = {'user': self.user.is_authenticated(),
                         'lists': M.List.objects.all()[:5],}
-        print M.List.objects.all()[:5]
 
 class LoginElement(Element):
     def _prepare(self):
@@ -189,7 +186,7 @@ class LoginElement(Element):
             success = False
         else:
             login(request, user)
-        print json.dumps({'success': success, 'url': '/home', 'error': error})
+        
         return JsonResponse(json.dumps({'success': success, 'url': '/home', 'error': error}))
 
 class SignUpElement(Element):
@@ -407,7 +404,7 @@ class FeedbackElement(Element):
     @staticmethod
     @cb.register
     def get_fb(request):
-        print request.GET
+        
         return HttpResponse('ok')
 
 class ListListElement(Element):
