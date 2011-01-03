@@ -67,7 +67,9 @@ class MoviePage(Page):
     def __call__(self,request,*args,**kwargs):
         if isinstance(request.user, AnonymousUser):
             self.boxes = [B.MovieDetailBox,]
-        return super(MoviePage, self).view(request, *args, **kwargs)
+        else:
+            self.boxes = [B.SearchBox, B.MovieDetailBox, B.RecommenderBox, B.ReviewBox, B.CompareBox, B.FeedbackBox]
+        return super(MoviePage, self).__call__(request, *args, **kwargs)
         
     def view(self, request, *args, **kwargs):
         self.context['movie'] = M.Movie.objects.get(id=kwargs.get('movie'))
