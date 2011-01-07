@@ -267,7 +267,8 @@ class FriendSuggestionTab(Tab):
     def _prepare(self):
         friends = dm.get_fb_friends(self.client)
         following = [e.user.username for e in self.user.follow.all()]
-        self.ids = [M.User.objects.get(username=e).userprofile for e in list(set(friends) - set(following))][:3]
+        self.ids = M.user.objects.filter(username__in = list(set(friends) - set(following)))[:3]
+        self.ids = [e.userprofile for e in self.ids]
         
     
 class ListListTab(Tab):
