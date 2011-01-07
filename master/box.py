@@ -141,7 +141,7 @@ class SuggestionBox(Box):
     _tab_class = [T.SuggestionTab, T.FriendSuggestionTab]
     
     def __init__(self, request, * args, ** kwargs):
-        if user.authmeta_set.filter(provider='Facebook').count():
+        if request.user.authmeta_set.filter(provider='Facebook').count():
             self._tab_class = [T.SuggestionTab, T.FriendSuggestionTab]
         else:
             self._tab_class = [T.SuggestionTab,]
