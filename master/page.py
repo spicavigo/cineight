@@ -47,6 +47,7 @@ class LandingPage(Page):
                 #1. get movies from FB profile
                 #2. Convert them to CE
                 #3. Call recommend for each
+                
                 movies = dm.get_fb_movies(request)
                 [dm.recommend(user.userprofile, M.Movie.objects.get(id=e)) for e in movies]
             return HttpResponseRedirect('/home')

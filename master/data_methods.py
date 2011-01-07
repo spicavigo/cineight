@@ -191,13 +191,16 @@ def get_graph(request):
     return facebook.GraphAPI(access_token)
     
 def get_fb_movies(request):
-    graph = get_graph(request)
-    movies = graph.request("me/movies")
-    return filter(None, [exact_search(e['name']) for e in movies['data']])
+    try:
+        graph = get_graph(request)
+        movies = graph.request("me/movies")
+        return filter(None, [exact_search(e['name']) for e in movies['data']])
+    except: return []
 
 def get_fb_friends(request):
-    graph = get_graph(request)
-    friends = graph.get_connections("me", "friends")
-    return [e['id'] for e in friends['data']]
-    return []
+    try:
+        graph = get_graph(request)
+        friends = graph.get_connections("me", "friends")
+        return [e['id'] for e in friends['data']]
+    except: return []
     
