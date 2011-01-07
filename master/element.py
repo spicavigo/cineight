@@ -79,44 +79,17 @@ def _add_to_list(user, movie, li):
     try:
         SERVER.added(m.id)
     except:pass
+
     
 @cb.register
 def recommend(request):
     movie = request.GET.get('data_id').split('+')[1]
     user = request.user.userprofile
-    movie=M.Movie.objects.get(id=movie)
-    followers = user.follower.all()
     comment = request.GET.get('comment')[:254]
-    obj, created = M.Reco.objects.get_or_create(user_from=user, user_to=M.UserProfile.objects.get(id=1), movie = movie, defaults = {'comment':comment})
-    obj.comment = comment
-    obj.save()
-    
+    movie=M.Movie.objects.get(id=movie)
     rating = int(request.GET.get('rating'))
-    robj, rcreated = M.MovieRating.objects.get_or_create(user=user, movie=movie, defaults={'rating':rating})
-    robj.rating = rating
-    robj.save()
     
-    if created:
-        try:
-            SERVER.reco_add(user.id, obj.id)
-        except:pass
-        
-    for f in followers:
-        obj, created = M.Reco.objects.get_or_create(user_from=user, user_to=f, movie = movie, defaults = {'comment':comment})
-        obj.comment = comment
-        obj.save()
-        if created:
-            try:
-                SERVER.reco_add(f.id, obj.id)
-            except:pass
-    
-    obj, created = M.MovieReview.objects.get_or_create(user=user, movie=movie, defaults={'review': comment})
-    obj.review = comment
-    obj.save()
-    li = rating > 0 and 'SL' or 'FL'
-    if not M.UserMovieList.objects.filter(user=user, movie=movie, list=li).count():
-        _add_to_list(user, movie, li)
-    
+    dm.recommend(user, movie, comment, rating)
     dm.tweet(movie, rating)
     from master.tab import ReviewTab
     return HttpResponse(ReviewTab(user, True, tab_client=movie).show()['html'])

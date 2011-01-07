@@ -256,7 +256,6 @@ class TwitterBackend:
         
 class FacebookBackend:
     def authenticate(self, request, user=None):
-        print 'In Facebook'
         cookie = facebook.get_user_from_cookie(request.COOKIES,
                                                FACEBOOK_APP_ID,
                                                FACEBOOK_SECRET_KEY)

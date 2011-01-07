@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     url(r'^user/(?P<user>\d+)/.*?$', mpage.UserPage(), name='master_user_page'),
     url(r'^search$', mpage.SearchPage(), name = 'master_search_page'),
     url(r'^lists$', mpage.ListLandingPage(), name='master_list_landing'),
-    url(r'^lists/(?P<list_name>\d+)/.*?$', mpage.ListPage(), name='master_list_page')
+    url(r'^lists/(?P<list_name>\d+)/.*?$', mpage.ListPage(), name='master_list_page'),
 )
 urlpatterns += patterns("django.views",
         url(r"%s(?P<path>.*)/$" % settings.MEDIA_URL[1:], "static.serve", {

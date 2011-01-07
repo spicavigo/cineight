@@ -1,12 +1,17 @@
 <div class="lzBox BoxSuggestion">
-<!--
-{% if title %}
-  <div class="boxTitle">
-    {{ title }}
-  </div>
-{% endif %}
--->
-{% for t in tabs %}
-  {{ t.html }}
-{% endfor %}
+    <ul class="suggest_tab_title" style="list-style: none outside none;">
+        {% for t in tabs reversed%}
+        <li class="{% if forloop.last %} active {% endif %}"> <a href="#tabdiv{{id}}{{t.id}}">{{t.title}}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="clear"></div>
+    {% for t in tabs %}
+    <div class="suggest_tab hidden" id="tabdiv{{id}}{{t.id}}">
+        {{ t.html }}
+    </div>
+    {% endfor %}
+    <div class="suggest_content">
+        {{tabs.0.html}}
+    </div>
 </div>
+

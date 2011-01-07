@@ -24,12 +24,14 @@ class LandingPage(Page):
     def view(self, request):
         self.context['FB_REDIRECT'] = False
         user = None
+
         if request.GET.get('signed_request'):
             data = dm.parse_signed_request(request.GET.get('signed_request'))
             #if not data or not data.get('user_id'):
             args = dict(client_id=settings.FACEBOOK_APP_ID, redirect_uri='http://apps.facebook.com/cineight/', scope  = ','.join(settings.FACEBOOK_EXTENDED_PERMISSIONS))#,type='user_agent', display='popup')
             self.context['FB_URL'] = "https://graph.facebook.com/oauth/authorize?" + urllib.urlencode(args)
             self.context['FB_REDIRECT'] = True
+
             #else:
             #    user = authenticate(username=data['user_id'], password='')
                 
@@ -40,6 +42,13 @@ class LandingPage(Page):
         if user:
             login(request, user)
         if request.user.is_authenticated():
+            user = request.user
+            if user.authmeta_set.filter(provider='Facebook').count():
+                #1. get movies from FB profile
+                #2. Convert them to CE
+                #3. Call recommend for each
+                movies = dm.get_fb_movies(request)
+                [dm.recommend(user.userprofile, M.Movie.objects.get(id=e)) for e in movies]
             return HttpResponseRedirect('/home')
         return super(LandingPage, self).show(request)
         

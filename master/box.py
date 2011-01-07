@@ -138,10 +138,11 @@ class FeedbackBox(Box):
         super(FeedbackBox, self).__init__(request, * args, ** kwargs)
 
 class SuggestionBox(Box):
-    _tab_class = [T.SuggestionTab]
+    _tab_class = [T.SuggestionTab, T.FriendSuggestionTab]
     
     def __init__(self, request, * args, ** kwargs):
         self.user = request.user.userprofile
+        self.client = request
         super(SuggestionBox, self).__init__(request, * args, ** kwargs)
 
 class ListListBox(Box):

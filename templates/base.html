@@ -72,7 +72,7 @@
 		$('.centre_col').css('width', 705);
 		$('.centre_col').css('margin-left', 25);
 		if ($('.BoxUser').length){
-		  $('.centre_col').prepend('<div class="topbox"><div class="col">' + $('.BoxUser').html() + '</div>' + '<div class="rcol">' + $('.BoxSuggestion').html() + '</div>' + '<div class="clear"></div></div>');
+		  $('.centre_col').prepend('<div class="topbox" style="height: 130px;"><div class="col">' + $('.BoxUser').html() + '</div>' + '<div class="rcol" >' + $('.BoxSuggestion').html() + '</div>' + '<div class="clear"></div></div>');
 		  $('.BoxUser').html('');
 		  $('.BoxSuggestion').html('');
 		  $('.TabSuggestion').css('margin-top', 10).css('margin-left', 10);
@@ -113,6 +113,7 @@
 		  xfbml  : false  // parse XFBML
 		});
 		FB.Canvas.setAutoResize( 100 );
+		
 	  });
 	}
   });

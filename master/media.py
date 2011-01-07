@@ -156,10 +156,14 @@ class FeedbackElementMedia(Media):
 
 class SuggestionBoxMedia(Media):
     template  = 'master/BoxSuggestion.html'
-    
+    css = ['master/BoxSuggestion.css']
+    js = ['master/BoxSuggestion.js']
+
 class SuggestionTabMedia(Media):
     template  = 'master/TabSuggestion.html'
-    
+
+FriendSuggestionTabMedia = SuggestionTabMedia
+
 ListBoxMedia = ListListBoxMedia = SearchResultBoxMedia
 ListTabMedia = ListListTabMedia = SearchResultTabMedia
 ListSeenTabMedia = ListUnSeenTabMedia = ListFilterTabMedia = ListTabMedia

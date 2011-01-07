@@ -16,6 +16,8 @@ $(function(){
             $(that).parents('.lzTab').find('.elements').append($(html).find('.elements').html());
             $(that).parents('.lzTab').find('.tabBtns').replaceWith($(html).find('.tabBtns'));
             $('.rating:not("#ui-rating-null")').rating({'showCancel':false});
+            $('textarea').autoResize();
+            init_textarea();
             clicked = false;
         });
     });

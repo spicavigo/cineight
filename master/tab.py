@@ -10,6 +10,7 @@ from master import element as E
 from master import models as M
 from utils.nodes import Node
 from utils.callback import Callback
+from master import data_methods as dm
 cb = Callback()
 
 def escape(q):
@@ -246,6 +247,7 @@ class FeedbackTab(Tab):
 
 class SuggestionTab(Tab):
     _element_class = E.SearchResultUserElement
+    title = 'Leaders'
     
     def _prepare(self):
         recs = sorted(M.Reco.objects.filter(user_to=1).values('user_from').annotate(count=Count('user_from')), key=lambda rec: rec['count'], reverse=True)
@@ -258,6 +260,16 @@ class SuggestionTab(Tab):
                 count += 1
                 if count == 3:break
 
+class FriendSuggestionTab(Tab):
+    _element_class = E.SearchResultUserElement
+    title = 'FB Friends'
+    
+    def _prepare(self):
+        friends = dm.get_fb_friends(self.client)
+        following = [e.user.username for e in self.user.follow.all()]
+        self.ids = [M.User.objects.get(username=e).userprofile for e in list(set(friends) - set(following))][:3]
+        
+    
 class ListListTab(Tab):
     _element_class = E.ListListElement
     title = 'Public Lists'
