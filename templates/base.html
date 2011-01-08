@@ -79,7 +79,7 @@
 		  $('.user_info').css('margin-top', 10);
 		}
 		$('.footerWrap').css('width', 730);
-		window.parent.$("body").animate({scrollTop:0}, 'slow');
+		
 	  }
 	  $('textarea').autoResize();
 	});
@@ -99,7 +99,7 @@
 </script>
 </head>
 
-<body>
+<body onload="location.href='#'">
   {% block js_templates %} {% endblock %}
   <div id="fb-root">
     </div>
