@@ -2,7 +2,7 @@ from utils.media import Media
 
 class HeaderBoxMedia(Media):
     template = 'common/BoxEmpty.html'
-    js=['jquery.fancybox-1.3.1.pack.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js','jquery.tools.min.js', 'http://connect.facebook.net/en_US/all.js#xfbml=1',
+    js=['jquery.fancybox-1.3.1.js','jquery.easing-1.3.pack.js','jquery.mousewheel-3.0.2.pack.js','jquery.tools.min.js', 'http://connect.facebook.net/en_US/all.js#xfbml=1',
         'textarea.resize.js', 'master/CommentForm.js']
     css=['jquery.fancybox-1.3.1.css', 'tooltip.css', 'master/CommentForm.css']
 

@@ -54,7 +54,7 @@
 		},
 
 		fancybox_get_viewport = function() {
-			return [ $(window).width(), $(window).height(), $(document).scrollLeft(), $(document).scrollTop() ];
+			return [ (window.innerWidth ? window.innerWidth : $(window).width()), (window.innerHeight ? window.innerHeight : $(window).height()), $(document).scrollLeft(), $(document).scrollTop() ];
 		},
 
 		fancybox_get_zoom_to = function () {
