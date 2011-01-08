@@ -226,6 +226,8 @@ def update_fb_data(request):
     
 def get_fb_movies(request):
     movies_old, movies, _, _ = update_fb_data(request)
+    movies_old = [tuple(e) for e in movies_old]
+    movies = [tuple(e) for e in movies_old]
     movies = list(set(movies) - set(movies_old))
     return filter(None, [exact_search(e[1]) for e in movies])
     
