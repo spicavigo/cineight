@@ -12,3 +12,9 @@
     text-align: right;
     cursor: pointer;
 }
+
+.comment {
+    border-bottom: 1px solid #9cb7d6;
+    margin-bottom: 5px;
+    padding: 5px;
+}
