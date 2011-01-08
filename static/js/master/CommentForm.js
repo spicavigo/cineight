@@ -41,4 +41,12 @@ $(function(){
             }
         }); 
     });
+    $('.action_comment>span').live('click', function(){
+        var data = $(this).parent('.action_comment').siblings('.comments');
+        if ($(data).is(':hidden')){
+            $(data).fadeIn('slow');
+        } else {
+            $(data).fadeOut('slow');
+        }
+    });
 });

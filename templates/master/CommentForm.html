@@ -1,4 +1,5 @@
-<div class="comments">        
+<div class="action_comment"><span class="clickable">Comments</span></div>
+<div class="comments hidden">        
     {% for comment in comments %}
     <div class="comment">
         <div class="large"><a href="/user/{{comment.user.id}}">{{comment.user}}</a> says:</div>

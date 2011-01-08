@@ -206,6 +206,7 @@ class RecoElement(Element):
         list_tmplt = '%s+%d+%s'
         lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie)
         rating = M.MovieRating.objects.filter(user=self.client.user_from, movie=self.client.movie)[0].rating
+        lists = filter(lambda x: x.list != 'CL', lists)
         li = len(lists) and lists[0].list or ''
         is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie, list='CL'))
         self.context = {
@@ -247,6 +248,7 @@ class ListElement(Element):
         list_tmplt = '%s+%d+%s'
         is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie, list='CL'))
         lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie)
+        lists = filter(lambda x: x.list != 'CL', lists)
         li = len(lists) and lists[0].list or ''
         self.context = {
                         'id': self.client.id,
@@ -272,6 +274,7 @@ class MovieDetailElement(Element):
         li = is_cl = user = None
         if isinstance(self.user, M.UserProfile):
             lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client)
+            lists = filter(lambda x: x.list != 'CL', lists)
             li = len(lists) and lists[0].list or ''
             is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client, list='CL'))
             user = True

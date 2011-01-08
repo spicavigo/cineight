@@ -1,0 +1,10 @@
+.action_comment{
+    color:#043763;
+    margin-left: 5px;
+    margin-top: 5px;
+    font-size: 12px;
+}
+
+.action_comment:hover {
+    text-decoration: underline;
+}
