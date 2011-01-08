@@ -123,6 +123,12 @@ TITLE_CHOICES = (
     ('CI', 'Critic'),
 )
 
+class FBData(models.Model):
+    user = models.ForeignKey('UserProfile')
+    movies = models.TextField()
+    friends = models.TextField()
+    timestamp = models.DateTimeField(auto_now=True)
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     follower = models.ManyToManyField('self', related_name='follower_user', symmetrical=False, blank = True, null = True)

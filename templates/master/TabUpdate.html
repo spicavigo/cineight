@@ -4,8 +4,9 @@
 
   <div class="elements">
     {% ifequal elements|length 0 %}
-      Start by following a few users.
-      Visit the various lists or search for movies.
+    <div class="bold large">
+      Track your movies in various <a href="/lists">Public Lists</a>
+    </div>
     {% endifequal %}
     {% for e in elements %}
       <div class="{% cycle 'elementEven' 'elementOdd' %}">

@@ -13,6 +13,7 @@ import ast
 import urllib2, urllib
 import facebook
 from django.template.defaultfilters import slugify
+from datetime import datetime, timedelta
 
 SERVER = s = xmlrpclib.Server('http://localhost:7777/', allow_none=True)
 
@@ -189,18 +190,48 @@ def get_graph(request):
         #graph = facebook.GraphAPI(access_token)
         #uid = graph.get_object('me')['id']
     return facebook.GraphAPI(access_token)
-    
-def get_fb_movies(request):
+
+def _get_fb_movies(request):
     try:
         graph = get_graph(request)
         movies = graph.request("me/movies")
-        return filter(None, [exact_search(e['name']) for e in movies['data']])
+        return [(e['id'], e['name']) for e in movies['data']]
     except: return []
 
-def get_fb_friends(request):
+def _get_fb_friends(request):
     try:
         graph = get_graph(request)
         friends = graph.get_connections("me", "friends")
         return [e['id'] for e in friends['data']]
     except: return []
+    
+def update_fb_data(request):
+    fbdata = M.FBData.objects.filter(user=request.user.userprofile)
+    if len(fbdata):
+        fbdata = fbdata[0]
+        movies_old = json.loads(fbdata.movies)
+        friends_old = json.loads(fbdata.friends)
+        if datetime.now() - fbdata.timestamp > timedelta(1):
+            movies = _get_fb_movies(request)
+            friends = _get_fb_friends(request)
+            fbdata.movies = json.dumps(movies)
+            fbdata.friends = json.dumps(friends)
+            fbdata.save()
+            return movies_old, movies, friends_old, friends
+        return movies_old, movies_old, friends_old, friends_old
+    movies = _get_fb_movies(request)
+    friends = _get_fb_friends(request)
+    fbdata = M.FBData.objects.create(user=request.user.userprofile, movies=json.dumps(movies), friends = json.dumps(friends))
+    return movies, movies, friends, friends
+    
+def get_fb_movies(request):
+    movies_old, movies, _, _ = update_fb_data(request)
+    movies = list(set(movies) - set(movies_old))
+    return filter(None, [exact_search(e[1]) for e in movies])
+    
+
+def get_fb_friends(request):
+    _, _, _, friends = update_fb_data(request)
+    return friends
+
     
