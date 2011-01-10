@@ -48,8 +48,8 @@ class LandingPage(Page):
                 #2. Convert them to CE
                 #3. Call recommend for each
                 
-                movies = dm.get_fb_movies(request)
-                [dm.recommend(user.userprofile, M.Movie.objects.get(id=e)) for e in movies]
+                dm.get_fb_movies(request)
+                
             return HttpResponseRedirect('/home')
         return super(LandingPage, self).show(request)
         

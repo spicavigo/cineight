@@ -219,20 +219,23 @@ def update_fb_data(request):
             fbdata.movies = json.dumps(movies)
             fbdata.friends = json.dumps(friends)
             fbdata.save()
+            movies_old = [tuple(e) for e in movies_old]
+            movies = [tuple(e) for e in movies_old]
+            movies = list(set(movies) - set(movies_old))
+            m2 = filter(None, [exact_search(e[1]) for e in movies])
+            [recommend(request.user.userprofile, M.Movie.objects.get(id=e)) for e in m2]
             return movies_old, movies, friends_old, friends
         return movies_old, movies_old, friends_old, friends_old
     movies = _get_fb_movies(request)
     friends = _get_fb_friends(request)
     fbdata = M.FBData.objects.create(user=request.user.userprofile, movies=json.dumps(movies), friends = json.dumps(friends))
+    m2 = filter(None, [exact_search(e[1]) for e in movies])
+    [recommend(request.user.userprofile, M.Movie.objects.get(id=e)) for e in m2]
     return [], movies, friends, friends
     
 def get_fb_movies(request):
-    movies_old, movies, _, _ = update_fb_data(request)
-    movies_old = [tuple(e) for e in movies_old]
-    movies = [tuple(e) for e in movies_old]
-    movies = list(set(movies) - set(movies_old))
-    return filter(None, [exact_search(e[1]) for e in movies])
-    
+    update_fb_data(request)
+   
 
 def get_fb_friends(request):
     _, _, _, friends = update_fb_data(request)
