@@ -12,6 +12,11 @@ $(function(){
         $.get(AJAX_URL, {
             'data_id': data_id
         }, function(html) {
+            try{
+                FB.XFBML.Host.parseDomElement(ele);
+            } catch(err) {
+                
+            }
             $(html).find("span.spoiler").hide();
             $(that).parents('.lzTab').find('.elements').append($(html).find('.elements').html());
             $(that).parents('.lzTab').find('.tabBtns').replaceWith($(html).find('.tabBtns'));
