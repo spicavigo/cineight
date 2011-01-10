@@ -1,4 +1,4 @@
-<div class="action_comment"><span class="clickable">Comments</span></div>
+<div class="action_comment"><span class="clickable">{% ifnequal comments|length 0 %} {{comments|length} {% endifnequal %} Comments</span></div>
 <div class="comments hidden">        
     {% for comment in comments %}
     <div class="comment">

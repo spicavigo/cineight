@@ -13,7 +13,7 @@ $(function(){
             'data_id': data_id
         }, function(html) {
             try{
-                FB.XFBML.Host.parseDomElement(ele);
+                FB.XFBML.parse();
             } catch(err) {
                 
             }
