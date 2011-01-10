@@ -214,6 +214,8 @@ def update_fb_data(request):
         if datetime.now() - fbdata.timestamp > timedelta(1):
             movies = _get_fb_movies(request)
             friends = _get_fb_friends(request)
+            if len(movies) == 0 and len(friends) == 0:
+                return movies_old, movies_old, friends_old, friends_old
             fbdata.movies = json.dumps(movies)
             fbdata.friends = json.dumps(friends)
             fbdata.save()
