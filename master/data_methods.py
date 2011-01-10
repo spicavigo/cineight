@@ -224,7 +224,7 @@ def update_fb_data(request):
     movies = _get_fb_movies(request)
     friends = _get_fb_friends(request)
     fbdata = M.FBData.objects.create(user=request.user.userprofile, movies=json.dumps(movies), friends = json.dumps(friends))
-    return movies, movies, friends, friends
+    return [], movies, friends, friends
     
 def get_fb_movies(request):
     movies_old, movies, _, _ = update_fb_data(request)
