@@ -299,7 +299,7 @@ class ListSeenTab(Tab):
         self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'SL').order_by('-timestamp')
         self.context['desc'] = 'Movies that you have seen in <b>%s</b> list' % self.client.name
         self.context['id'] = 'SL'
-        self.title = 'Seen \'Em (%d/%d)' % (len(self.ids), len(movies))
+        self.context['title'] = 'Seen \'Em (%d/%d)' % (len(self.ids), len(movies))
 
 
 class ListUnSeenTab(Tab):
@@ -311,7 +311,7 @@ class ListUnSeenTab(Tab):
         self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'WL').order_by('-timestamp')
         self.context['desc'] = 'Movies that you want to watch in <b>%s</b> list' % self.client.name
         self.context['id'] = 'WL'
-        self.title = 'To Watch (%d/%d)' % (len(self.ids), len(movies))
+        self.context['title'] = 'To Watch (%d/%d)' % (len(self.ids), len(movies))
     
 
 class ListFilterTab(Tab):
@@ -323,7 +323,7 @@ class ListFilterTab(Tab):
         self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'FL').order_by('-timestamp')
         self.context['desc'] = 'Movies that you do not like in <b>%s</b> list' % self.client.name
         self.context['id'] = 'FL'
-        self.title = 'Trash (%d/%d)' % (len(self.ids), len(movies))
+        self.context['title'] = 'Trash (%d/%d)' % (len(self.ids), len(movies))
     
 
 class RollTab(Tab):
