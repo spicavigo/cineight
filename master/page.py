@@ -49,7 +49,6 @@ class LandingPage(Page):
                 #3. Call recommend for each
                 
                 dm.get_fb_movies(request)
-                
             return HttpResponseRedirect('/home')
         return super(LandingPage, self).show(request)
         
