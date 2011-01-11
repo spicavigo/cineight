@@ -33,7 +33,7 @@ def comment(request):
     reco_id = request.GET.get('reco_id')
     list_id = request.GET.get('list_id')
     if reco_id:
-        reco = N.Reco.objects.get(id=reco_id)
+        reco = M.Reco.objects.get(id=reco_id)
         M.Message.objects.create(user=request.user.userprofile, movie =reco.movie, user_from = reco.user_from, msg=msg)
         return HttpResponse('ok')
     if list_id:
