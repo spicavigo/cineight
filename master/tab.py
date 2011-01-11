@@ -289,8 +289,6 @@ class ListTab(Tab):
         self.ids = M.PublicList.objects.filter(list=self.client).order_by('pos')
         self.context['title'] =self.client.name
     
-    def show(self, *args, **kwargs):
-        return super(ListTab, self).show(count = len(self.ids))
 
 class ListSeenTab(Tab):
     _element_class = E.ListElement
@@ -301,9 +299,8 @@ class ListSeenTab(Tab):
         self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'SL').order_by('-timestamp')
         self.context['desc'] = 'Movies that you have seen in <b>%s</b> list' % self.client.name
         self.context['id'] = 'SL'
-    
-    def show(self, *args, **kwargs):
-        return super(ListSeenTab, self).show(count = len(self.ids))
+        self.title = 'Seen \'Em (%d/%d)' % (len(self.ids), len(movies))
+
 
 class ListUnSeenTab(Tab):
     _element_class = E.ListElement
@@ -314,9 +311,8 @@ class ListUnSeenTab(Tab):
         self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'WL').order_by('-timestamp')
         self.context['desc'] = 'Movies that you want to watch in <b>%s</b> list' % self.client.name
         self.context['id'] = 'WL'
+        self.title = 'To Watch (%d/%d)' % (len(self.ids), len(movies))
     
-    def show(self, *args, **kwargs):
-        return super(ListUnSeenTab, self).show(count = len(self.ids))
 
 class ListFilterTab(Tab):
     _element_class = E.ListElement
@@ -327,9 +323,8 @@ class ListFilterTab(Tab):
         self.ids = M.UserMovieList.objects.filter(movie__in = [e.movie.id for e in movies], user = self.user, list = 'FL').order_by('-timestamp')
         self.context['desc'] = 'Movies that you do not like in <b>%s</b> list' % self.client.name
         self.context['id'] = 'FL'
+        self.title = 'Trash (%d/%d)' % (len(self.ids), len(movies))
     
-    def show(self, *args, **kwargs):
-        return super(ListFilterTab, self).show(count = len(self.ids))
 
 class RollTab(Tab):
     _element_class = E.ListElement
