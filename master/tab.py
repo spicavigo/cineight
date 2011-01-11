@@ -43,8 +43,8 @@ class ForwardRecoTab(Tab):
     def show(self, is_json=False, start=0, count=10):
         #self.context['title'] = Node(self.title, data_id=self.get_data.key)
         r= super(ForwardRecoTab, self).show(None, is_json, start, count,
-                next_key = '%s+%s' % (self.get_next.key, self.client.id),
-                prev_key = '%s+%s' % (self.get_next.key, self.client.id))
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
         return r
 
     @staticmethod
@@ -68,8 +68,8 @@ class ReverseRecoTab(Tab):
     def show(self, is_json=False, start=0, count=10):
         #self.context['title'] = Node(self.title, data_id=self.get_data.key)
         r= super(ReverseRecoTab, self).show(None, is_json, start, count,
-                next_key = '%s+%s' % (self.get_next.key, self.client.id),
-                prev_key = '%s+%s' % (self.get_next.key, self.client.id))
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
         return r
 
     @staticmethod
@@ -93,8 +93,8 @@ class SeenListTab(Tab):
     def show(self, is_json=False, start=0, count=10):
         #self.context['title'] = Node(self.title, data_id=self.get_data.key)
         r= super(SeenListTab, self).show(None, is_json, start, count,
-                next_key = '%s+%s' % (self.get_next.key, self.client.id),
-                prev_key = '%s+%s' % (self.get_next.key, self.client.id))
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
         return r
 
     @staticmethod
@@ -117,8 +117,8 @@ class UnseenListTab(Tab):
     def show(self, is_json=False, start=0, count=10):
         #self.context['title'] = Node(self.title, data_id=self.get_data.key)
         r= super(UnseenListTab, self).show(None, is_json, start, count,
-                next_key = '%s+%s' % (self.get_next.key, self.client.id),
-                prev_key = '%s+%s' % (self.get_next.key, self.client.id))
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
         return r
 
     @staticmethod
@@ -141,8 +141,8 @@ class FilterListTab(Tab):
     def show(self, is_json=False, start=0, count=10):
         #self.context['title'] = Node(self.title, data_id=self.get_data.key)
         r= super(FilterListTab, self).show(None, is_json, start, count,
-                next_key = '%s+%s' % (self.get_next.key, self.client.id),
-                prev_key = '%s+%s' % (self.get_next.key, self.client.id))
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
         return r
 
     @staticmethod
@@ -289,6 +289,21 @@ class ListTab(Tab):
         self.ids = M.PublicList.objects.filter(list=self.client).order_by('pos')
         self.context['title'] =self.client.name
     
+    def show(self, is_json=False, start=0, count=10):
+        #self.context['title'] = Node(self.title, data_id=self.get_data.key)
+        r= super(ListTab, self).show(None, is_json, start, count,
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
+        return r
+
+    @staticmethod
+    @cb.register
+    def get_next(request):
+        data_id = request.GET.get('data_id').split('+')[1:]
+        start = int(data_id[1])
+        list = M.List.objects.get(id=data_id[0])
+        return HttpResponse(ListTab(request.user.userprofile, True, list).show(start=start)['html'])
+        
 
 class ListSeenTab(Tab):
     _element_class = E.ListElement
@@ -301,7 +316,21 @@ class ListSeenTab(Tab):
         self.context['id'] = 'SL'
         self.context['title'] = 'Seen \'Em (%d/%d)' % (len(self.ids), len(movies))
 
+    def show(self, is_json=False, start=0, count=10):
+        #self.context['title'] = Node(self.title, data_id=self.get_data.key)
+        r= super(ListSeenTab, self).show(None, is_json, start, count,
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
+        return r
 
+    @staticmethod
+    @cb.register
+    def get_next(request):
+        data_id = request.GET.get('data_id').split('+')[1:]
+        start = int(data_id[1])
+        list = M.List.objects.get(id=data_id[0])
+        return HttpResponse(ListSeenTab(request.user.userprofile, True, list).show(start=start)['html'])
+        
 class ListUnSeenTab(Tab):
     _element_class = E.ListElement
     title = 'To Watch'
@@ -313,6 +342,21 @@ class ListUnSeenTab(Tab):
         self.context['id'] = 'WL'
         self.context['title'] = 'To Watch (%d/%d)' % (len(self.ids), len(movies))
     
+    def show(self, is_json=False, start=0, count=10):
+        #self.context['title'] = Node(self.title, data_id=self.get_data.key)
+        r= super(ListUnSeenTab, self).show(None, is_json, start, count,
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
+        return r
+
+    @staticmethod
+    @cb.register
+    def get_next(request):
+        data_id = request.GET.get('data_id').split('+')[1:]
+        start = int(data_id[1])
+        list = M.List.objects.get(id=data_id[0])
+        return HttpResponse(ListUnSeenTab(request.user.userprofile, True, list).show(start=start)['html'])
+        
 
 class ListFilterTab(Tab):
     _element_class = E.ListElement
@@ -325,6 +369,21 @@ class ListFilterTab(Tab):
         self.context['id'] = 'FL'
         self.context['title'] = 'Trash (%d/%d)' % (len(self.ids), len(movies))
     
+    def show(self, is_json=False, start=0, count=10):
+        #self.context['title'] = Node(self.title, data_id=self.get_data.key)
+        r= super(ListFilterTab, self).show(None, is_json, start, count,
+                next_key = '%s+%d' % (self.get_next.key, self.client.id),
+                prev_key = '%s+%d' % (self.get_next.key, self.client.id))
+        return r
+
+    @staticmethod
+    @cb.register
+    def get_next(request):
+        data_id = request.GET.get('data_id').split('+')[1:]
+        start = int(data_id[1])
+        list = M.List.objects.get(id=data_id[0])
+        return HttpResponse(ListFilterTab(request.user.userprofile, True, list).show(start=start)['html'])
+        
 
 class RollTab(Tab):
     _element_class = E.ListElement
