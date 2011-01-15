@@ -1,18 +1,19 @@
-function init_textarea(){
-        $('.comment_area').each(function(){
+function init_textarea(ele){
+        if(ele == undefined) {ele=$('body'); } else {ele = $(ele);}
+        ele.find('.comment_area').each(function(){
             $(this).css('width','352px');
             if ($(this)[0].value == ''){
                 $(this)[0].value = 'Write a Comment ...';
                 $(this).css('color', '#a7a7a8');
             }
         });
-        $('.reco_element .comment_area').each(function(){
+        ele.find('.reco_element .comment_area').each(function(){
             $(this).css('width','302px');
         });
-        $('.reco_element .comment_submit').each(function(){
+        ele.find('.reco_element .comment_submit').each(function(){
                 $(this).css('margin-left','254px');
         });
-        $('.comment_area').focus(function(){
+        ele.find('.comment_area').focus(function(){
                                 if ($(this)[0].value == 'Write a Comment ...'){
                                     $(this)[0].value = '';
                                     $(this).css('color', '#363637');

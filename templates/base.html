@@ -29,6 +29,7 @@
   <link rel="stylesheet" type="text/css" href="{{c}}" />
 {% endfor %}
   <script type="text/javascript" src="/static/js/jquery.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.appear-1.1.1.min.js"></script>
   <script type="text/javascript" src="/static/js/base.js"></script>
   <script  type="text/javascript" src="/static/js/css_browser_selector.js"></script>
   <script type="text/javascript" src="/static/js/master/fb.js"></script>
@@ -66,7 +67,12 @@
 			$(this).find('.list').addClass('btn blue');
 
 		});*/
-	  
+	  $('.mimage').appear(function(){
+		  var that = $(this);
+		  $(this).attr('src', that.attr('data-src'));
+		}, {
+		  one: true
+		  });
 	  if(window.parent.location !=  window.location){
 		$('.main_body').css('width', 730);
 		$('.centre_col').css('width', 705);

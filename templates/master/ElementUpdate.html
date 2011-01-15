@@ -2,7 +2,7 @@
     {% if activity.movie %}
     <div class="col">
         {% if activity.movie.image %}
-        <img class="mimage" src="{{activity.movie.image}}"  alt="{{activity.movie.name}}"/>
+        <img class="mimage" data-src="{{activity.movie.image}}"  alt="{{activity.movie.name}}"/>
         {% else %}
             <img src="/static/images/imagena.png" width="92px" height="138px"/>
         {% endif %}
