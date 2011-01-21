@@ -35,8 +35,9 @@ $(function(){
         var msg = $(this).find('.comment_area').val();
         var data = $(this).serialize();
         var that = this;
+        $(that).find('textarea').val('');
         $.get(AJAX_URL, data, function(html){
-            if (html == 'ok'){
+            if (html.success){
                 var a = '<div class="comment"><div class="large"><a href="/user/' + USER + '">' + NAME + '</a> says:</div><div style="padding-left: 10px">' + msg + '</div></div>';
                 $(that).parents('.comments').prepend(a);
             }

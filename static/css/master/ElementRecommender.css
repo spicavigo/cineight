@@ -5,6 +5,7 @@
 .recommender .uname {
     width: 170px;
     float: left;
+    margin-left: 5px;
 }
 
 .recommender .uaction {

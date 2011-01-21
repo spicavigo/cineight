@@ -73,16 +73,20 @@
 		}, {
 		  one: true
 		  });
-	  if(window.parent.location !=  window.location){
+	  if(window.parent.location ==  window.location){
 		$('.main_body').css('width', 730);
 		$('.centre_col').css('width', 705);
 		$('.centre_col').css('margin-left', 25);
+		var boxuser = $('.BoxUser').html();
+		var sugg = $('.BoxSuggestion').html();
 		if ($('.BoxUser').length){
-		  $('.centre_col').prepend('<div class="topbox" style="height: 130px;"><div class="col">' + $('.BoxUser').html() + '</div>' + '<div class="rcol" >' + $('.BoxSuggestion').html() + '</div>' + '<div class="clear"></div></div>');
-		  $('.BoxUser').html('');
-		  $('.BoxSuggestion').html('');
+		  $('.BoxUser').remove();
+		  $('.BoxSuggestion').remove();
+		  $('.centre_col').prepend('<div class="topbox"><div class="col lzBox BoxUser">' + boxuser + '</div>' + '<div class="rcol lzBox BoxSuggestion" >' + sugg + '</div>' + '<div class="clear"></div></div>');
 		  $('.TabSuggestion').css('margin-top', 10).css('margin-left', 10);
 		  $('.user_info').css('margin-top', 10);
+		  $('.BoxUser').css('width', 250).css('height', 150).css('margin-top', 5);
+		  $('.BoxSuggestion').css('width', 250).css('height', 150);
 		}
 		$('.footerWrap').css('width', 730);
 		//$('#fancybox-wrap').css('top, ,50px !important').css('left', '200px !important'); 

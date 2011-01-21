@@ -39,8 +39,9 @@ def comment(request):
     if list_id:
         li = M.UserMovieList.objects.get(id=list_id)
         M.Message.objects.create(user = request.user.userprofile, list=li, msg=msg)
-        return HttpResponse('ok')
-    return HttpResponse('fail')
+        li.save()
+        return JsonResponse(json.dumps({'success':True}))
+    return JsonResponse(json.dumps({'success':True}))
     
 def _add_to_list(user, movie, li):
     if li=='CL':
@@ -330,12 +331,12 @@ class UserElement(Element):
 
 class SearchElement(Element):
     def _prepare(self):
-        self.context = {'q': self.client or '', 'data_id': self.query.key}
+        self.context = {'q': self.client.strip() or '', 'data_id': self.query.key}
     
     @staticmethod
     @cb.register
     def query(request):
-        q = escape(request.GET.get('query'))
+        q = escape(request.GET.get('query')).strip()
         query_url = 'e_name:(%s) e_alternative_name:(%s) e_original_name:(%s)' % (q,q,q)
         query_url = urllib2.quote(query_url)
         static_url = settings.SOLR_URL + 'q=%s'

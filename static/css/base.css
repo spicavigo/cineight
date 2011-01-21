@@ -158,7 +158,6 @@ textarea {
 }
 
 .topbox{
-  border-bottom: 1px dotted #a7a7a8;
   padding-bottom: 5px;
 }
 
@@ -191,11 +190,18 @@ li.list:hover{
 }
 
 .mimage {
-  max-width: 128px;
-  max-height: 140px;  
+  width: 92px;
+  height: 138px;  
 }
 
 .mdetail {
   width: 70%;
 }
 
+.light {
+  color: #a7a7a8;
+}
+
+.dark {
+  color: #363637;
+}

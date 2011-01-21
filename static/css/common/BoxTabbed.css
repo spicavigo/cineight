@@ -6,6 +6,7 @@ ul.tabs {
 	height: 33px; /*--Set height of tabs--*/
 	/*border-bottom: 1px solid #999;*/
 	width: 100%;
+	margin-top: 5px;
 	
 }
 ul.tabs li {
@@ -51,6 +52,8 @@ html ul.tabs li.active a:hover {
 .tab_container {
 	/*border: 1px solid #999;
 	border-top: none;*/
+	
+	border-top:none;
 	overflow: hidden;
 	clear: both;
 	float: left; width: 100%;
@@ -58,4 +61,11 @@ html ul.tabs li.active a:hover {
 }
 .tab_content {
 	padding: 5px;
+}
+
+.BoxTabbed{
+	-moz-border-radius: 5px 5px 5px 5px;
+	-moz-box-shadow: 1px 0 3px #EEEEEE;
+	border: 1px solid #CCCCCC;
+	
 }

@@ -68,7 +68,7 @@ class UserMovieList(models.Model):
     user = models.ForeignKey('UserProfile')
     movie = models.ForeignKey('Movie')
     list = models.CharField(max_length=2, choices=MOVIE_LIST_CHOICES)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now=True)
     
 class AltName(models.Model):
     name = models.CharField(max_length=255)

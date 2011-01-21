@@ -1,17 +1,51 @@
 .search_movie{
     margin-top: 10px;
     margin-bottom: 10px;
+    
+    display: inline;
+    float: left;
+    margin-bottom: 4px;
+    margin-left: -2px;
+    margin-right: 0;
+    padding: 5px 10px;
+    width:380;
 }
 
 .search_input {
-    float:left;
+    
+    width:100%;
 }
 
-.search_btn {
-    float:left;
-    margin-left:5px;
+#main-query {
+    -moz-box-shadow: 0 0 5px #CCCCCC inset;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    display: inline;
+    float: left;
+    font-size: 14px;
+    margin: 0;
+    outline: 0 none;
+    padding: 5px 60px 5px 0.5em;
+    width:250px;
+    height: 20px;
 }
-.search_btn input{
-    padding: 0px;
-    height: auto;
+.search_btn {
+    
+    
+}
+.search_btn {
+    margin-left:5px;
+    background: url("/static/images/search_icon.png") no-repeat scroll 50% 50% #DDDDDD;
+    border: 1px solid #CCCCCC;
+    display: inline;
+    font-size: 1em;
+    height: 32px;
+    line-height: 100%;
+    margin-left: -34px;
+    overflow: hidden;
+    padding: 0.5em 1em;
+    right: 0;
+    text-align: center;
+    text-indent: -9999em;
+    width: 35px;
 }
