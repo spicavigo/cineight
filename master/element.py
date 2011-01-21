@@ -331,7 +331,7 @@ class UserElement(Element):
 
 class SearchElement(Element):
     def _prepare(self):
-        self.context = {'q': self.client.strip() or '', 'data_id': self.query.key}
+        self.context = {'q': self.client and self.client.strip() or '', 'data_id': self.query.key}
     
     @staticmethod
     @cb.register
