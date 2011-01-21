@@ -192,7 +192,8 @@ class SearchResultTab(Tab):
     title='Movies'
     
     def _prepare(self):
-        query_dict = {'query':escape(self.client.strip()) or '*'}
+        q = escape(self.client)
+        query_dict = {'query': q and q.strip()or '*'}
         query_url = '_val_:"scale(log(sum(votes,1)),0,10)"^10 name:(%(query)s)^5 name:"%(query)s"^10 alternative_name:(%(query)s)^3 alternative_name:"%(query)s"^3 original_name:(%(query)s)^3 original_name:"%(query)s"^3' % query_dict
         query_url = urllib2.quote(query_url)
         static_url = settings.SOLR_URL + 'q=%s&version=2.2&wt=python&rows=100&start=0&qt=standard&fl=*,score'
@@ -224,7 +225,7 @@ class SearchResultUserTab(Tab):
     title = 'Users'
     
     def _prepare(self):
-        self.ids = M.UserProfile.objects.filter(user__username__icontains=self.client.strip() or '')
+        self.ids = M.UserProfile.objects.filter(user__username__icontains=self.client and self.client.strip() or '')
     
     def show(self, is_json=False, start=0, count=10):
         #self.context['title'] = Node(self.title, data_id=self.get_data.key)
