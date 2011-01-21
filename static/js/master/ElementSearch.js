@@ -14,7 +14,7 @@ $(function() {
     });
     $('#main-query').focus(function(){
         var that = $(this);
-        if (that.val() == 'Search for User or Input...'){
+        if (that.val() == 'Search for User or Movie...'){
             that.val('');
             that.removeClass('italic light');
             AC.enable();
@@ -25,12 +25,12 @@ $(function() {
         if (that.val() == ''){
             AC.disable();
             $('#main-query').addClass('italic light');
-            that.val('Search for User or Input...');
+            that.val('Search for User or Movie...');
         }
     });
-    if($('#main-query').val() == '' || $('#main-query').val() == 'Search for User or Input...' ){
+    if($('#main-query').val() == '' || $('#main-query').val() == 'Search for User or Movie...' ){
         AC.disable();
         $('#main-query').addClass('italic light');
-        $('#main-query').val('Search for User or Input...');
+        $('#main-query').val('Search for User or Movie...');
     }
 });
