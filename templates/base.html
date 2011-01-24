@@ -21,14 +21,16 @@
   <link rel="stylesheet" type="text/css" href="/static/css/common/reset.css" />
   <link rel="stylesheet" type="text/css" href="/static/css/base.css" />
   <link rel="stylesheet" type="text/css" href="/static/css/master/footer.css" />
-        <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/ie_specific.css" />
-        <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/opera_specific.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/ie_specific.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/browser_specific/opera_specific.css" />
   <link rel="stylesheet" type="text/css" href="/static/css/button.css" />
   
 {% for c in css %}
   <link rel="stylesheet" type="text/css" href="{{c}}" />
 {% endfor %}
   <script type="text/javascript" src="/static/js/jquery.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+  <script type="text/javascript" src="/static/js/jquery.qtip.js"></script>
   <script type="text/javascript" src="/static/js/jquery.appear-1.1.1.min.js"></script>
   <script type="text/javascript" src="/static/js/base.js"></script>
   <script  type="text/javascript" src="/static/js/css_browser_selector.js"></script>
@@ -46,6 +48,10 @@
   {% endblock %}
 <script type="text/javascript">
 	AJAX_URL = "{% url ajax_url %}";
+	{% if USER_NAME %}
+	USER_NAME = "{{USER_NAME}}";
+	USER_ID = {{USER_NAME.id}};
+	{% endif %}
 	{% if USER %}
 	USER = {{USER.id}};
 	NAME = "{{USER}}";
@@ -67,12 +73,12 @@
 			$(this).find('.list').addClass('btn blue');
 
 		});*/
-	  $('.mimage').appear(function(){
+	  /*$('.mimage').appear(function(){
 		  var that = $(this);
 		  $(this).attr('src', that.attr('data-src'));
 		}, {
 		  one: true
-		  });
+		  });*/
 	  if(window.parent.location !=  window.location){
 		$('.main_body').css('width', 730);
 		$('.centre_col').css('width', 705);
@@ -86,7 +92,7 @@
 		  $('.TabSuggestion').css('margin-top', 10).css('margin-left', 10);
 		  $('.user_info').css('margin-top', 10);
 		  $('.BoxUser').css('width', 250).css('height', 150).css('margin-top', 5);
-		  $('.BoxSuggestion').css('width', 250).css('height', 150);
+		  $('.BoxSuggestion').css('width', 300).css('height', 150);
 		}
 		$('.footerWrap').css('width', 730);
 		//$('#fancybox-wrap').css('top, ,50px !important').css('left', '200px !important'); 

@@ -36,7 +36,7 @@
         <div class="tabContent">
         {% for t in tabs %}
           {% if t.is_default %}
-            <div class="panes" id="tabdiv{{id}}{{t.id}}" data-next="{{Next.data_id}}"> 
+            <div class="panes" id="tabdiv{{id}}{{t.id}}" data-next="{{Next.data_id}}">
              {{ t.html }}
             </div>
           {% endif %}

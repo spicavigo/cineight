@@ -6,6 +6,7 @@
     color: #363637;
 }
 
+
 .reco_mname, .reco_myear {
     float:left;
     margin-right: 5px;
@@ -13,7 +14,12 @@
 
 .reco_left {
   float:left;
-  width: 75%
+  width: 70%
+}
+
+.grid * .reco_left {
+    float:left;
+    width: auto;
 }
 
 .reco_right {

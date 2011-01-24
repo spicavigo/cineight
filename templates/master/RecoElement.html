@@ -1,11 +1,13 @@
 
 <div class="reco_element" data-id="{{id}}">
+    <div class="delete_reco clickable" title="Remove this recommendation" data-id="{{delete}}"></div>
+    <div class="clear"></div>
     <div class="reco_left">
-         <div class="col">
+         <div class="col mim">
             {% if movie.image %}
-            <img class="mimage" data-src="{{movie.image}}"  alt="{{movie.name}}"/>
+            <img class="mimage" src="{{movie.image}}"  alt="{{movie.name}}"/>
             {% else %}
-            <img src="/static/images/imagena.png" width="92px" height="138px"/>
+            <img class="mimage" src="/static/images/imagena.png" alt="{{movie.name}}" width="92px" height="138px"/>
             {% endif %}
         </div>
         <div class="col mdetail" style="padding-left:5px">
@@ -31,12 +33,8 @@
             
         </div>
         <div class="clear"></div>
-        <div>
-            {% include "master/RecommendForm.html" %}
-        </div>
     </div>
     <div class="reco_right">
-        <div class="delete_reco clickable" title="Remove this recommendation" data-id="{{delete}}"></div>
         <ul class="list_buttons" data-id="{{movie.id}}">
             <li class="italic">Add To</li>
             <li data-id="{{wl_list}}" class="list mutex list_WL {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>
@@ -46,4 +44,7 @@
         </ul>
     </div>
     <div class="clear"></div>
+    <div class="reco_foot">
+        {% include "master/RecommendForm.html" %}
+    </div>
 </div>

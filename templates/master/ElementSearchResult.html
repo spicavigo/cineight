@@ -1,11 +1,11 @@
 
-<div class="movie_detail">
+<div class="reco_element movie_detail">
     <div class="movie_left">
-        <div class="col">
+        <div class="col mim">
             {% if movie.image %}
-            <img class="mimage" data-src="{{movie.image}}" alt="{{movie.name}}"/>
+            <img class="mimage" src="{{movie.image}}" alt="{{movie.name}}"/>
             {% else %}
-            <img src="/static/images/imagena.png" width="92px" height="138px"/>
+            <img class="mimage" src="/static/images/imagena.png" alt="{{movie.name}}" width="92px" height="138px"/>
             {% endif %}
         </div>
         <div class="col mdetail" style="padding-left:5px">
@@ -23,9 +23,7 @@
             
         </div>
          <div class="clear"></div>
-        <div>
-            {% include "master/RecommendForm.html" %}
-        </div>
+        
     </div>
     <div class="movie_right">
         <ul class="list_buttons">
@@ -37,4 +35,7 @@
         </ul>
     </div>
     <div class="clear"></div>
+    <div class="reco_foot">
+        {% include "master/RecommendForm.html" %}
+    </div>
 </div>

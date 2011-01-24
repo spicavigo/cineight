@@ -75,7 +75,8 @@ class Page(Container):
         self.context['footer'] = hasattr(self, 'footer') and self.footer(request, module=self.module).show() or ''
         self.context['css'] = self.css
         self.context['js'] = self.js
-        #if hasattr(request.user, 'userprofile'):
+        if hasattr(request.user, 'userprofile'):
+            self.context['USER_NAME'] = request.user.userprofile
         if self.url == 'master_home_page':
             self.context['USER'] = request.user.userprofile
         return HttpResponse(super(Page, self).show(self.template, None, None))

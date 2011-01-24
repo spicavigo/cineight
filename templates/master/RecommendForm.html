@@ -1,4 +1,4 @@
-        <div class="reco_form" style="width:500px">
+        <div class="reco_form" style="width:100%">
             <div class="reco_action clickable btn blue" style="float:left; margin-right:10px">
                 Recommend
             </div>
@@ -22,24 +22,14 @@
                             <option value="5">5</option>
                         </select>
                     </div>
-                    <div class="fieldWrapper" style="float:left;margin-left:10px;">
+                    <div class="fieldWrapper" style="float:left;margin-left:10px; width: 80%">
                         <div class="fieldLabel">
                             <label>Comment</label>
                         </div>
                         <textarea name="comment"></textarea>
                     </div>
                     <input type="hidden" name="data_id" value="{{recommend}}"/>
-                    <div class="fieldWrapper hidden" style="float:left;margin-left:10px;">
-                        <div class="fieldLabel">
-                            <label>To</label>
-                        </div>
-                        <div class="peer_selector">All</div>
-                        <div class="peer_selection hidden" style="height:100px; width: 100px; overflow:auto">
-                            {% for peer in followers %}
-                            <input name="peer" type="checkbox" value="{{peer.id}}">{{peer.user.username}}<br/>
-                            {% endfor %}
-                        </div>
-                    </div>
+                    <div class="clear"></div>
                     <div class="submit_reco" style="float:right; margin-top:10px;">
                         <input type="submit" class="btn blue" style="height: 30px" value="Submit"/>
                     </div>
@@ -60,24 +50,14 @@
                             <option value="-5">-5</option>
                         </select>
                     </div>
-                    <div class="fieldWrapper" style="float:left;margin-left:10px;">
+                    <div class="fieldWrapper" style="float:left;margin-left:10px;width: 80%">
                         <div class="fieldLabel">
                             <label>Comment</label>
                         </div>
                         <textarea name="comment"></textarea>
                     </div>
                     <input type="hidden" name="data_id" value="{{recommend}}"/>
-                    <div class="fieldWrapper hidden" style="float:left;margin-left:10px;">
-                        <div class="fieldLabel">
-                            <label>To</label>
-                        </div>
-                        <div class="peer_selector">All</div>
-                        <div class="peer_selection hidden" style="height:100px; width: 100px; overflow:auto">
-                            {% for peer in followers %}
-                            <input name="peer" type="checkbox" value="{{peer.id}}">{{peer.user.username}}<br/>
-                            {% endfor %}
-                        </div>
-                    </div>
+                    <div class="clear"></div>
                     <div class="submit_reco" style="float:right; margin-top:10px;">
                         <input type="submit" class="btn blue" style="height: 30px" value="Submit"/>
                     </div>

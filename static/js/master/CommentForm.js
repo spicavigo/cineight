@@ -1,17 +1,17 @@
 function init_textarea(ele){
         if(ele == undefined) {ele=$('body'); } else {ele = $(ele);}
         ele.find('.comment_area').each(function(){
-            $(this).css('width','352px');
+            //$(this).css('width','100%');
             if ($(this)[0].value == ''){
                 $(this)[0].value = 'Write a Comment ...';
                 $(this).css('color', '#a7a7a8');
             }
         });
         ele.find('.reco_element .comment_area').each(function(){
-            $(this).css('width','302px');
+            //$(this).css('width','100%');
         });
         ele.find('.reco_element .comment_submit').each(function(){
-                $(this).css('margin-left','254px');
+                $(this).css('margin-left','50%');
         });
         ele.find('.comment_area').focus(function(){
                                 if ($(this)[0].value == 'Write a Comment ...'){
@@ -38,7 +38,7 @@ $(function(){
         $(that).find('textarea').val('');
         $.get(AJAX_URL, data, function(html){
             if (html.success){
-                var a = '<div class="comment"><div class="large"><a href="/user/' + USER + '">' + NAME + '</a> says:</div><div style="padding-left: 10px">' + msg + '</div></div>';
+                var a = '<div class="comment"><div class="large"><a href="/user/' + USER_ID + '">' + USER_NAME + '</a> says:</div><div style="padding-left: 10px">' + msg + '</div></div>';
                 $(that).parents('.comments').prepend(a);
             }
         }); 

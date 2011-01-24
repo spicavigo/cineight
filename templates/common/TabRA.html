@@ -1,4 +1,6 @@
 <div class="lzTab RATab">
+<div style="float:right; width: 74px; height: 24px;"><div class="tolist selected"></div><div class="togrid"></div></div>
+<div class="clear"></div>
 {% autoescape off %}
   {{display_title}}
 
@@ -9,6 +11,7 @@
       </div>
     {% endfor %}
   </div>
+  <div class="clear"></div>
   {% ifequal elements|length 0 %}
     <div class="RAEmpty">
       {% if desc %}
