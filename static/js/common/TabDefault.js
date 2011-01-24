@@ -54,7 +54,13 @@ $(function(){
                 new_parent.find('.mimage').each(function(){
                     $(this).after('<div class="img_title">' + $(this).attr('alt').substr(0, 30) +'</div>');
                     $(this).qtip({
-                        content: { text: $(this).parents('.reco_element').html() },
+                        content: {
+                            text: $(this).parents('.reco_element').html(),
+                            title: {
+                                text: true,
+                                button: true
+                            }
+                        },
                         show: {
                             when: 'mouseover',
                             solo: true
@@ -64,15 +70,28 @@ $(function(){
                         },
                         style: {
                             width: 420,
-                            background: '#F6F6F6',
+                            title: {
+                                height: 10
+                            },
+                            border: {
+                                width: 8
+                            },
+                            /*background: '#F6F6F6',
                             border: {
                                 width: 1,
                                 radius: 3,
                                 color: '#3F4C6B'
-                            }
+                            },*/
+                            name: 'light'
+                        },
+                        api: {
+                            onRender: function(){
+                                this.elements.tooltip.draggable({ handle: "div.qtip-title", cursor: "crosshair"});
+                                this.elements.tooltip.find('textarea').autoResize();
+                                init_textarea(this.elements.tooltip);}
                         },
                         position: {
-                            target: 'mouse',                            
+                            target: 'mouse',                    
                             viewport: $(window),
                             adjust: { screen: true, mouse: false }
                         }
@@ -110,7 +129,13 @@ $(function(){
         elems.find('.mimage').each(function(){
             $(this).after('<div class="img_title">' + $(this).attr('alt').substr(0, 30) +'</div>');
             $(this).qtip({
-                content: { text: $(this).parents('.reco_element').html() },
+                content: {
+                    text: $(this).parents('.reco_element').html(),
+                    title: {
+                        text: true,
+                        button: true
+                    }
+                },
                 show: {
                     when: 'mouseover',
                     solo: true
@@ -120,15 +145,25 @@ $(function(){
                 },
                 style: {
                     width: 420,
-                    background: '#F6F6F6',
+                    title: {
+                        height: 10
+                    },
+                    border: {
+                        width: 8
+                    },
+                    /*background: '#F6F6F6',
                     border: {
                         width: 1,
                         radius: 3,
                         color: '#3F4C6B'
-                    }
+                    },*/
+                    name: 'light'
                 },
                 api: {
-                    onRender: function(){this.elements.tooltip.draggable();this.elements.tooltip.find('textarea').autoResize();init_textarea(this.elements.tooltip);}
+                    onRender: function(){
+                        this.elements.tooltip.draggable({ handle: "div.qtip-title", cursor: "crosshair"});
+                        this.elements.tooltip.find('textarea').autoResize();
+                        init_textarea(this.elements.tooltip);}
                 },
                 position: {
                     target: 'mouse',                    
