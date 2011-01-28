@@ -10,6 +10,7 @@
 .reco_mname, .reco_myear {
     float:left;
     margin-right: 5px;
+    
 }
 
 .reco_left {
@@ -20,6 +21,7 @@
 .grid * .reco_left {
     float:left;
     width: auto;
+    position: relative;
 }
 
 .reco_right {
@@ -52,4 +54,38 @@ select {
 
 .delete_reco:hover {
     background-position: left -30px;
+}
+
+.reco_left .list_buttons{
+    display: none;
+}
+
+.grid * .reco_left .list_buttons {
+    background: none repeat scroll 0 0 white;
+    opacity: 0.8;
+    position: absolute;
+}
+
+.grid * .reco_left .list_buttons .list {
+    height: 20px;
+    padding: 5px 0;
+    margin: 1px 2px 1px 1px;
+    width: 20px;
+}
+
+.grid * .reco_left .list_buttons .list.selected {
+    background-color: #FFDEAD;
+}
+
+a.reveal {
+  font-size:10px;
+  padding: 1px;
+  background: #3F4C6B;
+  color: white;
+  font-style: italic;
+  cursor: pointer;
+  margin:2px;
+}
+.movie_plot{
+  margin:5px;
 }

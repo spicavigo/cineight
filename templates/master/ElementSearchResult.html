@@ -1,6 +1,6 @@
 
 <div class="reco_element movie_detail">
-    <div class="movie_left">
+    <div class="reco_left">
         <div class="col mim">
             {% if movie.image %}
             <img class="mimage" src="{{movie.image}}" alt="{{movie.name}}"/>
@@ -8,6 +8,12 @@
             <img class="mimage" src="/static/images/imagena.png" alt="{{movie.name}}" width="92px" height="138px"/>
             {% endif %}
         </div>
+        <ul class="list_buttons col" data-id="{{movie.id}}">
+            <li data-id="{{wl_list}}" alt="To Watch" class="list mutex list_WL {% ifequal list 'WL'%}selected{% endifequal %}"></li>
+            <li data-id="{{sl_list}}" alt="Seen 'Em" class="list mutex list_SL {% ifequal list 'SL'%}selected{% endifequal %}"></li>
+            <li data-id="{{fl_list}}" alt="Trash Can" class="list mutex list_FL {% ifequal list 'FL'%}selected{% endifequal %}"></li>
+            <li data-id="{{cl_list}}" alt="Compare List" class="list {% if is_cl %}selected{% endif %} compare_list"></li>
+        </ul>
         <div class="col mdetail" style="padding-left:5px">
             <div class="movie_mname bold large">
                 <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">{{movie.name}} {% if movie.released.year %} ({{movie.released.year}}) {% endif %}</a>
@@ -25,7 +31,7 @@
          <div class="clear"></div>
         
     </div>
-    <div class="movie_right">
+    <div class="reco_right">
         <ul class="list_buttons">
             <li class="italic">Add To</li>
             <li data-id="{{wl_list}}" class="list mutex list_WL {% ifequal list 'WL'%}selected{% endifequal %}">To Watch</li>

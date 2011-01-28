@@ -24,4 +24,12 @@ $(document).ready(function() {
             hide: 'mouseout'
          });
     });*/
+    $('.list_buttons li').each(function(){
+        var that = this;
+        $(this).qtip({
+            content: {text: false},
+            show: 'mouseover',
+            hide: 'mouseout'
+         });
+    });
 });

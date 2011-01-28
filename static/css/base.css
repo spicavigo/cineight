@@ -161,19 +161,19 @@ textarea {
 }
 
 .list_WL{
-  background: url("/static/images/watch.png") no-repeat 0 50% transparent;
+  background: url("/static/images/watch.png") no-repeat right 50% transparent;
 }
 
 .list_SL{
-  background: url("/static/images/seen.png") no-repeat 0 50% transparent;
+  background: url("/static/images/seen.png") no-repeat right 50% transparent;
 }
 
 .list_FL{
-  background: url("/static/images/trash.png") no-repeat 0 50% transparent;
+  background: url("/static/images/trash.png") no-repeat right 50% transparent;
 }
 
 .compare_list{
-  background: url("/static/images/cmp.png") no-repeat 0 50% transparent;
+  background: url("/static/images/cmp.png") no-repeat right 50% transparent;
 }
 
 ul.list_buttons li.list {

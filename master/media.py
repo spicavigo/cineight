@@ -123,7 +123,7 @@ class SearchTabMedia(Media):
 class SearchElementMedia(Media):
     template = 'master/ElementSearch.html'
     js=['jquery.autocomplete-min.js', 'master/ElementSearch.js']
-    css=['master/ElementSearch.css', 'autocomplete.css']
+    css=['master/ElementSearch.css', 'autocomplete.css', 'master/RecoElement.css']
     
 class SearchResultBoxMedia(Media):
     template = 'common/BoxTabbed.html'

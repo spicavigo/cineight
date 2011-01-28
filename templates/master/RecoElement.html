@@ -7,9 +7,15 @@
             {% if movie.image %}
             <img class="mimage" src="{{movie.image}}"  alt="{{movie.name}}"/>
             {% else %}
-            <img class="mimage" src="/static/images/imagena.png" alt="{{movie.name}}" width="92px" height="138px"/>
+            <img class="mimage" src="/static/images/imagena.png" alt="{{movie.name}}" width="92px" height="138px"/> 
             {% endif %}
         </div>
+        <ul class="list_buttons col" data-id="{{movie.id}}">
+            <li data-id="{{wl_list}}" alt="To Watch" class="list mutex list_WL {% ifequal list 'WL'%}selected{% endifequal %}"></li>
+            <li data-id="{{sl_list}}" alt="Seen 'Em" class="list mutex list_SL {% ifequal list 'SL'%}selected{% endifequal %}"></li>
+            <li data-id="{{fl_list}}" alt="Trash Can" class="list mutex list_FL {% ifequal list 'FL'%}selected{% endifequal %}"></li>
+            <li data-id="{{cl_list}}" alt="Compare List" class="list {% if is_cl %}selected{% endif %} compare_list"></li>
+        </ul>
         <div class="col mdetail" style="padding-left:5px">
             <a href="/movie/{{movie.id}}/{{movie.name|slugify}}">
                 <div class="reco_mname bold large">
