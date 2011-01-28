@@ -16,5 +16,12 @@ $(document).ready(function() {
 		$(activeTab).fadeIn(1000); //Fade in the active ID content
 		return false;
 	});
-    $(".tabs li a").tipTip({maxWidth: "auto"});
+    //$(".tabs li a").tipTip({maxWidth: "auto"});
+    /*$('.tabs li a').each(function(){
+        $(this).qtip({
+            content: {text: $(this).attr('title')},
+            show: 'mouseover',
+            hide: 'mouseout'
+         });
+    });*/
 });

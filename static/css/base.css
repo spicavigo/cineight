@@ -98,9 +98,8 @@ input {
 }
 
 .site_help{
-  font-size: 14px;
-  margin-left:30px;
-  margin-top: 15px;
+  margin-left:5px;
+  margin-top: 20px;
 }
 
 .help_title{
@@ -273,4 +272,8 @@ li.list:hover{
 
 .togrid:hover, .togrid.selected{
   background: url('/static/images/grid_a.png') no-repeat;
+}
+
+#help_site {
+  font-size: 14px;
 }

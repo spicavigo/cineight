@@ -331,7 +331,11 @@ class UserElement(Element):
 
 class SearchElement(Element):
     def _prepare(self):
-        self.context = {'q': self.client and self.client.strip() or '', 'data_id': self.query.key}
+        user = self.user.user
+        fb = False
+        if user.authmeta_set.filter(provider='Facebook').count():
+            fb = True
+        self.context = {'q': self.client and self.client.strip() or '', 'data_id': self.query.key, 'fb': fb}
     
     @staticmethod
     @cb.register

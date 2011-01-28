@@ -1,13 +1,11 @@
 .search_movie{
     margin-top: 10px;
     margin-bottom: 10px;
-    
     display: inline;
-    float: left;
     margin-bottom: 4px;
     margin-left: -2px;
     margin-right: 0;
-    padding: 5px 10px;
+    padding: 5px 0px 5px 10px;
     width:380;
 }
 

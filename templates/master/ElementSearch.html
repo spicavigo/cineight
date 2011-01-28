@@ -1,4 +1,4 @@
-<div class="search_movie col" data-id="{{data_id}}">
+<div class="search_movie col" data-id="{{data_id}}" style="padding: 5px 0px 5px 10px;">
     <form method='post' action='/search'>
         <div class="search_input">
         <!--label>Search for a Movie or User: </label-->
@@ -15,6 +15,11 @@
 <div class="col site_help">
     <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fapps%2Fapplication.php%3Fid%3D103058839759878&amp;layout=button_count&amp;show_faces=false&amp;width=95&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:21px;" allowTransparency="true"></iframe>
 </div>
+{% if fb %}
+<div class="col site_help clickable">
+<div class=" btn blue" onclick="FB.ui({method: 'apprequests', app_id:'103058839759878', api_key: 'c122097e890413c6e580389748eac133', message: 'Join CinEight to follow my movie lists and recommendations and create your own.'});">Invite FB Friends</div>
+</div>
+{% endif %}
 
 <div class="clear"></div>
 {% if q %}
