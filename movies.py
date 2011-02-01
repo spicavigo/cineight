@@ -15,11 +15,11 @@ config = {}
 config['apikey'] = "6637129319cffe50882ff9bff60745ef"#"a8b9f96dde091408a03cb4c78477bd14"
 
 config['urls'] = {}
-config['urls']['movie.search'] = "http://api.themoviedb.org/2.1/Movie.search/en/xml/%(apikey)s/%%s" % (config)
-config['urls']['movie.getInfo'] = "http://api.themoviedb.org/2.1/Movie.getInfo/en/xml/%(apikey)s/%%s" % (config)
-config['urls']['movie.browse'] = "http://api.themoviedb.org/2.1/Movie.browse/en/xml/%(apikey)s" % (config)
-config['urls']['movie.getLatest'] = "http://api.themoviedb.org/2.1/Movie.getLatest/en/xml/%(apikey)s" % (config)
-config['urls']['hash.getInfo'] = "http://api.themoviedb.org/2.1/Hash.getInfo/en/xml/%(apikey)s/%%s" % (config)
+config['urls']['movie.search'] = "http://api.themoviedb.org/2.1/Movie.search/en-US/xml/%(apikey)s/%%s" % (config)
+config['urls']['movie.getInfo'] = "http://api.themoviedb.org/2.1/Movie.getInfo/en-US/xml/%(apikey)s/%%s" % (config)
+config['urls']['movie.browse'] = "http://api.themoviedb.org/2.1/Movie.browse/en-US/xml/%(apikey)s" % (config)
+config['urls']['movie.getLatest'] = "http://api.themoviedb.org/2.1/Movie.getLatest/en-US/xml/%(apikey)s" % (config)
+config['urls']['hash.getInfo'] = "http://api.themoviedb.org/2.1/Hash.getInfo/en-US/xml/%(apikey)s/%%s" % (config)
 
 import os
 import struct
