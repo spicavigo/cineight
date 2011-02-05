@@ -107,7 +107,7 @@ def recommend(request):
     user = request.user.userprofile
     movie=M.Movie.objects.get(id=movie)
     dm.recommend(user, movie, rating)
-    #dm.tweet(movie, rating)
+    dm.tweet(movie, rating)
     return JsonResponse(json.dumps({'success': True}))
     
 @cb.register
