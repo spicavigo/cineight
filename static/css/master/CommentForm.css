@@ -1,24 +1,29 @@
 .action_comment{
-    color:#043763;
     margin-left: 5px;
     margin-top: 5px;
     font-size: 12px;
 }
 
-.action_comment:hover {
+.action_comment span:hover {
     text-decoration: underline;
 }
+.action_comment span {
+    font-weight:bold;
+    color:#043763;
+}
+
 
 .comments{
     margin:5px;
-    border: solid #a7a7a8 1px;
+    border: solid #DAE7F7 1px;
     padding:5px;
-    
+    background: #DAE7F7;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -moz-box-shadow: 1px 0 3px #EEEEEE;
 }
 
 .comment {
     border-bottom: 1px solid #9cb7d6;
-    margin-bottom: 5px;
     padding: 5px;
     width: 90%;
 }

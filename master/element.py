@@ -28,6 +28,16 @@ def escape(q):
     return q
 
 @cb.register
+def rating_cb(request):
+    rating=request.GET.get('rating')
+    movie = request.GET.get('data_id').split('+')[1]
+    obj, _ = M.MovieRating.objects.get_or_create(user=request.user.userprofile, movie=M.Movie.objects.get(id=movie), defaults={'rating': rating})
+    obj.rating=rating
+    obj.save()
+    print rating, movie
+    return JsonResponse(json.dumps({'sucess':True}))
+    
+@cb.register
 def comment(request):
     msg = request.GET.get('msg')
     reco_id = request.GET.get('reco_id')
@@ -40,6 +50,8 @@ def comment(request):
         li = M.UserMovieList.objects.get(id=list_id)
         M.Message.objects.create(user = request.user.userprofile, list=li, msg=msg)
         li.save()
+        activity = M.Activity.objects.get(movie=li.movie, user=li.user)
+        activity.save()
         return JsonResponse(json.dumps({'success':True}))
     return JsonResponse(json.dumps({'success':True}))
     
@@ -62,21 +74,26 @@ def _add_to_list(user, movie, li):
             except:pass
             m.list = li
             m.save()
-            M.Activity.objects.filter(user=user, movie=movie).delete()
+            #M.Activity.objects.filter(user=user, movie=movie).delete()
             message = '<a href="/user/%(user_id)d/%(user_slug)s">%(user)s</a> %(list)s <a href="/movie/%(movie_id)d/%(movie_slug)s">%(movie)s</a>.' % {'user_id': user.id,
                                             'movie_id' : movie.id, 'user': user.user.first_name, 'list': MSG_STR[li], 'movie': movie, 'movie_slug': slugify(movie.name),
                                             'user_slug': slugify(user.user.first_name)}
-            M.Activity.objects.create(user=user, message=message, movie=movie)
+            act, _=M.Activity.objects.get_or_create(user=user, movie=movie)
+            act.message = message
+            act.save()
             try:
                 SERVER.added(m.id)
             except:pass
             return
     m = M.UserMovieList.objects.create(user=user, movie=movie, list=li)
-    M.Activity.objects.filter(user=user, movie=movie).delete()
+    #M.Activity.objects.filter(user=user, movie=movie).delete()
     message = '<a href="/user/%(user_id)d/%(user_slug)s">%(user)s</a> %(list)s <a href="/movie/%(movie_id)d/%(movie_slug)s">%(movie)s</a>.' % {'user_id': user.id,
                                             'movie_id' : movie.id, 'user': user.user.first_name, 'list': MSG_STR[li], 'movie': movie, 'movie_slug': slugify(movie.name),
                                             'user_slug': slugify(user.user.first_name)}
-    M.Activity.objects.create(user=user, message=message, movie=movie)
+    act, _ =M.Activity.objects.get_or_create(user=user, movie=movie)
+    act.message = message
+    act.save()
+
     try:
         SERVER.added(m.id)
     except:pass
@@ -84,16 +101,14 @@ def _add_to_list(user, movie, li):
     
 @cb.register
 def recommend(request):
-    movie = request.GET.get('data_id').split('+')[1]
+    data = request.GET.get('data_id').split('+')[1:]
+    movie = data[0]
+    rating=int(data[1])
     user = request.user.userprofile
-    comment = request.GET.get('comment')[:254]
     movie=M.Movie.objects.get(id=movie)
-    rating = int(request.GET.get('rating'))
-    
-    dm.recommend(user, movie, comment, rating)
-    dm.tweet(movie, rating)
-    from master.tab import ReviewTab
-    return HttpResponse(ReviewTab(user, True, tab_client=movie).show()['html'])
+    dm.recommend(user, movie, rating)
+    #dm.tweet(movie, rating)
+    return JsonResponse(json.dumps({'success': True}))
     
 @cb.register
 def add_to_list(request):
@@ -206,27 +221,33 @@ class RecoElement(Element):
     def _prepare(self):
         list_tmplt = '%s+%d+%s'
         lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie)
-        rating = M.MovieRating.objects.filter(user=self.client.user_from, movie=self.client.movie)[0].rating
         lists = filter(lambda x: x.list != 'CL', lists)
         li = len(lists) and lists[0].list or ''
         is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie, list='CL'))
+        is_recod = len(M.Reco.objects.filter(user_from=self.user, movie=self.client.movie))
+        my_rating = M.MovieRating.objects.filter(user=self.user, movie=self.client.movie)
+        my_rating = my_rating and my_rating[0].rating or None
         self.context = {
                         'id': self.client.id,
                         'user_from': self.client.user_from,
                         'movie': self.client.movie,
                         'ts': self.client.timestamp,
                         'comment': self.client.comment,
-                        'rating': rating,
-                        'iswarn': rating<0,
+                        'is_warn': self.client.is_warn,
                         'list': li,
                         'is_cl': is_cl,
-                        'recommend': '%s+%d' % (recommend.key, self.client.movie.id,),
+                        'recommend': '%s+%d+1' % (recommend.key, self.client.movie.id,),
+                        'warn': '%s+%d+0' % (recommend.key, self.client.movie.id,),
                         'cl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'CL'),
                         'wl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'WL'),
                         'sl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'SL'),
                         'fl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'FL'),
                         'followers': self.user.follower.all(),
                         'delete': '%s+%d' % (self.delete.key, self.client.id,),
+                        'rating_range': range(1,11),
+                        'is_recod': is_recod,
+                        'my_rating': my_rating,
+                        'rating_cb': '%s+%d' % (rating_cb.key, self.client.movie.id),
                         }
     
     @staticmethod
@@ -251,12 +272,20 @@ class ListElement(Element):
         lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie)
         lists = filter(lambda x: x.list != 'CL', lists)
         li = len(lists) and lists[0].list or ''
+        recos = M.Reco.objects.filter(user_from=self.user, movie=self.client.movie)
+        is_recod = is_warn = False
+        if recos:
+            is_recod = True
+            is_warn = recos[0].is_warn
+        my_rating = M.MovieRating.objects.filter(user=self.user, movie=self.client.movie)
+        my_rating = my_rating and my_rating[0].rating or None
         self.context = {
                         'id': self.client.id,
                         'movie': self.client.movie,
                         'list': li, #self.client.list,
                         'is_cl': is_cl,
-                        'recommend': '%s+%d' % (recommend.key, self.client.movie.id,),
+                        'recommend': '%s+%d+1' % (recommend.key, self.client.movie.id,),
+                        'warn': '%s+%d+0' % (recommend.key, self.client.movie.id,),
                         'cl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'CL'),
                         'wl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'WL'),
                         'sl_list': list_tmplt % (add_to_list.key, self.client.movie.id, 'SL'),
@@ -266,29 +295,48 @@ class ListElement(Element):
                         'list_id': self.client.id,
                         'comment_submit': comment.key,
                         'show_comment': isinstance(self.client, M.UserMovieList),
+                        'rating_range': range(1,11),
+                        'is_recod': is_recod,
+                        'is_warn': is_warn,
+                        'my_rating': my_rating,
+                        'rating_cb': '%s+%d' % (rating_cb.key, self.client.movie.id),
                         }
         
 class MovieDetailElement(Element):
     
     def _prepare(self):
         list_tmplt = '%s+%d+%s'
-        li = is_cl = user = None
+        li = is_cl = user = is_recod = my_rating =None
         if isinstance(self.user, M.UserProfile):
             lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client)
             lists = filter(lambda x: x.list != 'CL', lists)
             li = len(lists) and lists[0].list or ''
             is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client, list='CL'))
+            recos = M.Reco.objects.filter(user_from=self.user, movie=self.client)
+            is_recod = is_warn = False
+            if recos:
+                is_recod = True
+                is_warn = recos[0].is_warn
+            
+            my_rating = M.MovieRating.objects.filter(user=self.user, movie=self.client)
+            my_rating = my_rating and my_rating[0].rating or None
             user = True
         self.context = {'movie': self.client,
                         'list': li,
                         'is_cl': is_cl,
-                        'recommend': '%s+%d' % (recommend.key, self.client.id,),
+                        'recommend': '%s+%d+1' % (recommend.key, self.client.id,),
+                        'warn': '%s+%d+0' % (recommend.key, self.client.id,),
                         'cl_list': list_tmplt % (add_to_list.key, self.client.id, 'CL'),
                         'wl_list': list_tmplt % (add_to_list.key, self.client.id, 'WL'),
                         'sl_list': list_tmplt % (add_to_list.key, self.client.id, 'SL'),
                         'fl_list': list_tmplt % (add_to_list.key, self.client.id, 'FL'),
                         'followers': [], #self.user.follower.all(),
                         'user': user,
+                        'rating_range': range(1,11),
+                        'is_recod': is_recod,
+                        'my_rating': my_rating,
+                        'rating_cb': '%s+%d' % (rating_cb.key, self.client.id),
+                        'is_warn': is_warn,
                         }
 
 class RecommenderElement(Element):
@@ -361,15 +409,27 @@ class SearchResultElement(Element):
         lists = M.UserMovieList.objects.filter(user=self.user, movie=self.client)
         li = len(lists) and lists[0].list or ''
         is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client, list='CL'))
+        recos = M.Reco.objects.filter(user_from=self.user, movie=self.client)
+        is_recod = is_warn = False
+        if recos:
+            is_recod = True
+            is_warn = recos[0].is_warn
+        my_rating = M.MovieRating.objects.filter(user=self.user, movie=self.client)
+        my_rating = my_rating and my_rating[0].rating or None
         self.context = {'movie': self.client,
                         'list': li,
                         'is_cl': is_cl,
-                        'recommend': '%s+%d' % (recommend.key, self.client.id,),
+                        'recommend': '%s+%d+1' % (recommend.key, self.client.id,),
+                        'warn': '%s+%d+0' % (recommend.key, self.client.id,),
                         'cl_list': list_tmplt % (add_to_list.key, self.client.id, 'CL'),
                         'wl_list': list_tmplt % (add_to_list.key, self.client.id, 'WL'),
                         'sl_list': list_tmplt % (add_to_list.key, self.client.id, 'SL'),
                         'fl_list': list_tmplt % (add_to_list.key, self.client.id, 'FL'),
                         'followers': self.user.follower.all(),
+                        'rating_range': range(1,11),
+                        'is_recod': is_recod,
+                        'my_rating': my_rating,
+                        'rating_cb': '%s+%d' % (rating_cb.key, self.client.id),
                         }
 
 class SearchResultUserElement(Element):

@@ -102,20 +102,15 @@ def tweet(movie, rating):
         settings.API.update_status('#Recommended - %s #movie #cineight' % str(movie))
     
 
-def recommend(user, movie, comment="", rating=5):
+def recommend(user, movie, rating):
     followers = user.follower.all()
-    
+    comment=""
+    is_warn = rating == 0
     obj, created = M.Reco.objects.get_or_create(user_from=user, user_to=M.UserProfile.objects.get(id=1), movie = movie, defaults = {'comment':comment})
     obj.comment = comment
+    obj.is_warn = is_warn
     obj.save()
     
-    robj, rcreated = M.MovieRating.objects.get_or_create(user=user, movie=movie, defaults={'rating':rating})
-    robj.rating = rating
-    robj.save()
-    
-    obj2, created = M.MovieReview.objects.get_or_create(user=user, movie=movie, defaults={'review': comment})
-    obj2.review = comment
-    obj2.save()
     li = rating > 0 and 'SL' or 'FL'
     if not M.UserMovieList.objects.filter(user=user, movie=movie, list=li).count():
         _add_to_list(user, movie, li)
@@ -129,6 +124,7 @@ def recommend(user, movie, comment="", rating=5):
     for f in followers:
         obj, created = M.Reco.objects.get_or_create(user_from=user, user_to=f, movie = movie, defaults = {'comment':comment})
         obj.comment = comment
+        obj.is_warn = is_warn
         obj.save()
         if created:
             try:

@@ -37,18 +37,34 @@ $(function(){
         var that = this;
         $(that).find('textarea').val('');
         $.get(AJAX_URL, data, function(html){
-            if (html.success){
                 var a = '<div class="comment"><div class="large"><a href="/user/' + USER_ID + '">' + USER_NAME + '</a> says:</div><div style="padding-left: 10px">' + msg + '</div></div>';
-                $(that).parents('.comments').prepend(a);
-            }
+                //$(that).parents('.comment').prepend(a);
+                $(a).insertBefore($(that).parents('.comment'));
         }); 
     });
     $('.action_comment>span').live('click', function(){
         var data = $(this).parent('.action_comment').siblings('.comments');
         if ($(data).is(':hidden')){
             $(data).fadeIn('slow');
+            $(this).html('Hide');
         } else {
             $(data).fadeOut('slow');
+            $(this).html('Show');
         }
     });
+    $('.comments').each(function(){
+        var comments = $(this).children('.comment');
+        if (comments.length > 3){
+            $(this).prepend('<div class="show_all link">Show All</div>');
+            for(var i=comments.length-3; i<comments.length; i++){
+                comments.eq(i).show();
+            }            
+        } else {
+            comments.show();
+        }
+    });
+    $('.show_all').live('click', function(){
+        $(this).siblings().show();
+        $(this).remove();
+    })
 });

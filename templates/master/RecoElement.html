@@ -23,18 +23,20 @@
                 </div>
             </a>
             <div class="clear"></div>
+            <div class="rate_text"><b>Your Rating: </b> <span class="rate_value">{% if my_rating %}{{my_rating}}/10{% else %} Not yet rated {% endif %}</span></div>
+            <select class="rating" data-id="{{rating_cb}}">
+                {% for v in rating_range %}
+                <option value="{{v}}" {% ifequal my_rating v %}selected="yes"{%endifequal%}>{{v}}</option>
+                {% endfor %}
+            </select>
+            <div class="clear"></div>
             <!--fb:like href="http://apps.facebook.com/cineight/movie/{{movie.id}}/{{movie.name|slugify}}" layout="button_count" show_faces="true" width="200"></fb:like-->
             <div class="reco_uname italic light">
+                {% if is_warn %} <span class="warn"> Warned </span> {% else %} <span style="color:#43A366"> Recommended </span> {% endif %}
                 by <a href='/user/{{user_from.id}}/{{user_from.user.first_name|slugify}}'>{{user_from}}</a>
             </div>
-            <div class="reco_rate {% if iswarn %} warn {% endif %}">
-                <span class="bold">Rating: </span>{{rating}}
-            </div>
-            <div class="reco_ucom {% if iswarn %} warn {% endif %}">
-                <blockquote>{{comment}}</blockquote>
-            </div>
             <div class="reco_ts date">
-                {{ts|timesince}} ago
+                Added {{ts|timesince}} ago
             </div>
             
         </div>

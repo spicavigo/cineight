@@ -13,6 +13,13 @@
                 {{movie.name}} {% if movie.released.year %} ({{movie.released.year}}) {% endif %}
             </div>
             <div class="clear"></div>
+            <div class="rate_text"><b>Your Rating: </b> <span class="rate_value">{% if my_rating %}{{my_rating}}/10{% else %} Not yet rated {% endif %}</span></div>
+            <select class="rating" data-id="{{rating_cb}}">
+                {% for v in rating_range %}
+                <option value="{{v}}" {% ifequal my_rating v %}selected="yes"{%endifequal%}>{{v}}</option>
+                {% endfor %}
+            </select>
+            <div class="clear"></div>
             <fb:like href="http://apps.facebook.com/cineight/movie/{{movie.id}}/{{movie.name|slugify}}" layout="button_count" show_faces="true" width="200"></fb:like>
             <div class="movie_plot">
                 <p>

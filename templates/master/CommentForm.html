@@ -1,7 +1,7 @@
-<div class="action_comment"><span class="clickable">{% ifnotequal comments|length 0 %}{{comments|length}}{% endifnotequal %} Comments</span></div>
-<div class="comments hidden">        
+<div class="action_comment">{% ifnotequal comments|length 0 %}{{comments|length}} Comments {% endifnotequal %} </div>
+<div class="comments">        
     {% for comment in comments %}
-    <div class="comment">
+    <div class="comment hidden">
         <div class="large"><a href="/user/{{comment.user.id}}">{{comment.user}}</a> says:</div>
         <div style="padding-left: 10px">
             {{comment.msg}}
@@ -14,7 +14,7 @@
             <input type="hidden" name="reco_id" value="{{reco_id}}"/>
             <input type="hidden" name="list_id" value="{{list_id}}"/>
             <input type="hidden" name="data_id" value="{{comment_submit}}"/>
-            <input type="submit" class="btn blue comment_submit" style="height: 30px; float:right;" value="Submit"/>
+            <input type="submit" class="btn blue comment_submit" style="height: 30px; float:right;margin-top: 10px; margin-right: 30px" value="Submit"/>
         </form>
         <div class="clear"></div>
     </div>

@@ -1,66 +1,10 @@
         <div class="reco_form" style="width:100%">
-            <div class="reco_action clickable btn blue" style="float:left; margin-right:10px">
-                Recommend
+            <div class="reco_action clickable {% if is_recod and not is_warn %} r_selected {% endif %}" style="float:left; margin:4px" data-id="{{recommend}}">
+                <img src="/static/images/like.png" alt="Recommend"/>
             </div>
             
-            <div class="warn_action clickable btn blue" style="float:left; margin-left:10px">
-                Warn
+            <div class="warn_action clickable {% if is_recod and is_warn %} r_selected {% endif %}" style="float:left; margin:4px" data-id="{{warn}}">
+                <img src="/static/images/dislike.png" alt="Warn"/>
             </div>
             <div class="clear"></div>
-            <form class="reco_form_movie hidden">
-                <fieldset>
-                    <legend><b>Recommend</b></legend>
-                    <div class="fieldWrapper" style="float:left">
-                        <div class="fieldLabel">
-                            <label>Rating</label>
-                        </div>
-                        <select class="rating" name="rating">
-                            <option value="1"  selected="yes">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-                    <div class="fieldWrapper" style="float:left;margin-left:10px; width: 80%">
-                        <div class="fieldLabel">
-                            <label>Comment</label>
-                        </div>
-                        <textarea name="comment"></textarea>
-                    </div>
-                    <input type="hidden" name="data_id" value="{{recommend}}"/>
-                    <div class="clear"></div>
-                    <div class="submit_reco" style="float:right; margin-top:10px;">
-                        <input type="submit" class="btn blue" style="height: 30px" value="Submit"/>
-                    </div>
-                </fieldset>
-            </form>
-            <form class="warn_form_movie hidden">
-                <fieldset>
-                    <legend><b>Warn</b></legend>
-                    <div class="fieldWrapper" style="float:left">
-                        <div class="fieldLabel">
-                            <label>Rating</label>
-                        </div>
-                        <select class="rating" name="rating">
-                            <option value="-1"  selected="yes">-1</option>
-                            <option value="-2">-2</option>
-                            <option value="-3">-3</option>
-                            <option value="-4">-4</option>
-                            <option value="-5">-5</option>
-                        </select>
-                    </div>
-                    <div class="fieldWrapper" style="float:left;margin-left:10px;width: 80%">
-                        <div class="fieldLabel">
-                            <label>Comment</label>
-                        </div>
-                        <textarea name="comment"></textarea>
-                    </div>
-                    <input type="hidden" name="data_id" value="{{recommend}}"/>
-                    <div class="clear"></div>
-                    <div class="submit_reco" style="float:right; margin-top:10px;">
-                        <input type="submit" class="btn blue" style="height: 30px" value="Submit"/>
-                    </div>
-                </fieldset>
-            </form>
         </div>

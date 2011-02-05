@@ -161,20 +161,37 @@ textarea {
 }
 
 .list_WL{
-  background: url("/static/images/watch.png") no-repeat right 50% transparent;
+  background: url("/static/images/watch.png") no-repeat  0 50% transparent;
 }
 
 .list_SL{
-  background: url("/static/images/seen.png") no-repeat right 50% transparent;
+  background: url("/static/images/seen.png") no-repeat 0 50% transparent;
 }
 
 .list_FL{
-  background: url("/static/images/trash.png") no-repeat right 50% transparent;
+  background: url("/static/images/trash.png") no-repeat 0 50% transparent;
 }
 
 .compare_list{
+  background: url("/static/images/cmp.png") no-repeat 0 50% transparent;
+}
+
+.grid * .list_WL{
+  background: url("/static/images/watch.png") no-repeat right 50% transparent;
+}
+
+.grid * .list_SL{
+  background: url("/static/images/seen.png") no-repeat right 50% transparent;
+}
+
+.grid * .list_FL{
+  background: url("/static/images/trash.png") no-repeat right 50% transparent;
+}
+
+.grid * .compare_list{
   background: url("/static/images/cmp.png") no-repeat right 50% transparent;
 }
+
 
 ul.list_buttons li.list {
   cursor: pointer;
@@ -251,7 +268,7 @@ li.list:hover{
 }
 
 .tolist, .togrid {
-  margin-right:10px;
+  margin-right:5px;
   width:27px;
   height:19px;
   cursor: pointer;
@@ -276,4 +293,27 @@ li.list:hover{
 
 #help_site {
   font-size: 14px;
+}
+
+.link {
+  color: #043763;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.r_selected{
+  background: #A0D7E8;
+}
+
+.reco_form .reco_action:hover, .reco_form .warn_action:hover{
+  background: #A0D7E8;
+}
+
+.reco_form .reco_action, .reco_form .warn_action{
+  padding: 5px;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -moz-box-shadow: 1px 0 3px #EEEEEE;
 }

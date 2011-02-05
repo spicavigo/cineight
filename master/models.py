@@ -49,6 +49,7 @@ class Reco(models.Model):
     movie = models.ForeignKey(Movie)
     timestamp = models.DateTimeField(auto_now_add=True)
     comment = models.CharField(max_length=255, blank = True)
+    is_warn = models.BooleanField(default=False)
 
     def __unicode__(self):
         return u'%s(%d)' %(str(self.movie), self.movie.id)
@@ -93,7 +94,7 @@ class AskReco(models.Model):
 class Activity(models.Model):
     user = models.ForeignKey('UserProfile')
     message = models.TextField()
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now=True)
     movie = models.ForeignKey('Movie', blank=True, null=True)
     follow = models.ForeignKey('UserProfile', related_name='follow_activity', blank=True, null=True)
 

@@ -11,7 +11,7 @@
 .ui-rating a {
 	cursor: pointer;
 }
-.reco_form_movie .ui-rating-full  {
+.ui-rating-full  {
     background-position:left -32px;;
 }
 
@@ -20,7 +20,7 @@
 }
 
 
-.reco_form_movie .ui-rating-hover {
+.ui-rating-hover {
     background-position:left -32px;
 }
 
@@ -34,4 +34,5 @@
 
 .reco_form {
 	margin: 5px;
+	margin-left: 0px;
 }

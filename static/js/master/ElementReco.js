@@ -62,16 +62,33 @@ $(function() {
         }
     })
     $('.reco_action').live('click', function(){
-        var form_acted = $(this).siblings('.reco_form_movie');
+        /*var form_acted = $(this).siblings('.reco_form_movie');
         $('.reco_form_movie').not(form_acted).hide('fast');
         $('.warn_form_movie').hide('fast');
-        $(form_acted).toggle('slow');
+        $(form_acted).toggle('slow');*/
+        $(this).parents('.reco_form').children().removeClass('r_selected');
+        $(this).addClass('r_selected');
+        var data_id = $(this).attr('data-id');
+        $.get(AJAX_URL, {data_id: data_id}, function(){});
     });
     
     $('.warn_action').live('click', function(){
-        var form_acted = $(this).siblings('.warn_form_movie');
+        /*var form_acted = $(this).siblings('.warn_form_movie');
         $('.warn_form_movie').not(form_acted).hide('fast');
         $('.reco_form_movie').hide('fast');
-        $(form_acted).toggle('slow');
+        $(form_acted).toggle('slow');*/
+        var data_id = $(this).attr('data-id');
+        $(this).parents('.reco_form').children().removeClass('r_selected');
+        $(this).addClass('r_selected');
+        
+        $.get(AJAX_URL, {data_id: data_id}, function(){});
     });
+    
+    $('.rating').bind('change', function(){
+        var value = $(this).val();
+        $(this).siblings('.rate_text').children('span').html(' ' + value + '/10');
+        var data_id = $(this).attr('data-id');
+        $.get(AJAX_URL, {data_id: data_id, rating: value}, function(){});
+        
+    })
 });
