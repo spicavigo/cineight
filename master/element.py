@@ -224,7 +224,12 @@ class RecoElement(Element):
         lists = filter(lambda x: x.list != 'CL', lists)
         li = len(lists) and lists[0].list or ''
         is_cl = len(M.UserMovieList.objects.filter(user=self.user, movie=self.client.movie, list='CL'))
-        is_recod = len(M.Reco.objects.filter(user_from=self.user, movie=self.client.movie))
+        recos = M.Reco.objects.filter(user_from=self.user, movie=self.client.movie)
+        is_recod = is_warn = False
+        if recos:
+            is_recod = True
+            is_warn = recos[0].is_warn
+        #is_recod = len(M.Reco.objects.filter(user_from=self.user, movie=self.client.movie))
         my_rating = M.MovieRating.objects.filter(user=self.user, movie=self.client.movie)
         my_rating = my_rating and my_rating[0].rating or None
         self.context = {
@@ -233,7 +238,7 @@ class RecoElement(Element):
                         'movie': self.client.movie,
                         'ts': self.client.timestamp,
                         'comment': self.client.comment,
-                        'is_warn': self.client.is_warn,
+                        'is_user_warn': self.client.is_warn,
                         'list': li,
                         'is_cl': is_cl,
                         'recommend': '%s+%d+1' % (recommend.key, self.client.movie.id,),
@@ -246,6 +251,7 @@ class RecoElement(Element):
                         'delete': '%s+%d' % (self.delete.key, self.client.id,),
                         'rating_range': range(1,11),
                         'is_recod': is_recod,
+                        'is_warn': is_warn,
                         'my_rating': my_rating,
                         'rating_cb': '%s+%d' % (rating_cb.key, self.client.movie.id),
                         }
