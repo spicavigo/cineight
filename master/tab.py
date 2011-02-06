@@ -409,7 +409,7 @@ class UpdateTab(Tab):
     title = 'Updates'
     
     def _prepare(self):
-        self.ids = M.Activity.objects.filter(user__in=[e.id for e in self.user.follow.all()]).order_by('-timestamp')
+        self.ids = M.Activity.objects.filter(user__in=[e.id for e in self.user.follow.all()] + [self.user.id]).order_by('-timestamp')
     
     def show(self, is_json=False, start=0, count=10):
         #self.context['title'] = Node(self.title, data_id=self.get_data.key)
