@@ -64,6 +64,8 @@ html ul.tabs li.active a:hover {
 }
 
 .BoxTabbed{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	-moz-box-shadow: 1px 0 3px #EEEEEE;
 	border: 1px solid #CCCCCC;

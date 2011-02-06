@@ -115,7 +115,7 @@
 </script>
 </head>
 
-<body onload="location.href='#top'">
+<body onload="location.href='#top'" {% block body_class_block %}{% endblock %}>
   <a id="top"></a>
   {% block js_templates %} {% endblock %}
   <div id="fb-root">

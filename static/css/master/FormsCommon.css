@@ -16,6 +16,8 @@ select {
   height: 22px;
   font-size: 11px;
   -moz-border-radius: 0px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .fieldLabel {

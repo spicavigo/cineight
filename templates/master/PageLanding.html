@@ -3,18 +3,20 @@
 {% block extra_head %}
 <link rel="stylesheet" type="text/css" href="/static/css/master/PageMain.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/master/PageTwoColumnCommon.css" />
+<script type="text/javascript" src="http://use.typekit.com/vrp7bnk.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 {% endblock %}
 
 {% block header %}
     {{ header }}
 {% endblock %}
-
+{% block body_class_block %} class="page_landing"{% endblock %}
 {% block main_body %}
 {% if FB_REDIRECT %}
 {% else %}
   <div class="main_body">
 
-    <div class="col how_to">
+    <!--div class="col how_to">
       <p>
         Hello World! CinEight works on the principle of "to each his own" and helps you pick movies on the advice of your friends and people whom you believe to have similar tastes in movies.
       </p>
@@ -25,15 +27,17 @@
         <li>2) Make recommendations to users who choose to follow you</li>
         <li>3) Manage your movies - past, present and future</li>
       </ul>
-      <!--For demo, just enter the site using the following login details.<br/><br/>
+      For demo, just enter the site using the following login details.<br/><br/>
       <span class="bold">Login:</span> demouser@cineight.com<br/>
-      <span class="bold">Password:</span> demouser<br/><br/>-->
+      <span class="bold">Password:</span> demouser<br/><br/>
       <br/>
       Read the <a href="http://blog.cineight.com/get-started" target="_blank">How to get started guide</a> to learn more.<br/><br/>
       Do leave your feedback. We are alive and listening!
-    </div>
-    <div class="col">
+    </div-->
+    <div class="logins tk-museo">
+	  <div>
       {{ boxes.0 }}
+	  </div>
       {{ boxes.1 }}
       <br/>
       Login Via:
@@ -50,10 +54,10 @@
 
     </div>
     <div class="clear"></div>
-    <div class="how_to">
+    <!--div class="how_to">
       <div><a href="http://blog.cineight.com/the-dead-a-look-inside-the-mind-of-lt-brian-m">Interview with Rob Freeman (The Dead)</a></div>
       <div><a href="http://blog.cineight.com/get-started">CinEight - Getting Started</a></div>
-    </div>
+    </div-->
   </div>
 {% endif %}
 
