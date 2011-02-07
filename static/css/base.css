@@ -345,7 +345,6 @@ li.list:hover{
   -moz-box-shadow: 1px 0 3px #EEEEEE;
   border-radius: 5px;
   margin-top: 70px;
-  margin-left: 35px;
   padding-right: 45px;
   width: 270px;
 }
@@ -362,4 +361,32 @@ li.list:hover{
 
 .page_landing * .header{
   background:none;
+}
+.openid_large_btn{
+  margin-right: 10px;
+}
+
+.sub{
+  background: white;
+  opacity:0.7;
+  padding: 5px;
+  font-size: 16px;
+  margin-left: 20px;
+  float:left;
+  width: 585px;
+  display:hidden;
+  height: 45px;
+  padding-top: 25px;
+  display:none;
+}
+
+.page_landing * .sub{
+  display: block;
+}
+
+.logo span {
+  display:none;
+}
+.page_landing * .logo span{
+  display:block;
 }
