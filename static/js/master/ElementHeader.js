@@ -11,5 +11,14 @@ $(function(){
 		}
 		//Following events are applied to the trigger (Hover events for the trigger)
 	});
+	$("ul.topnav > li > span").click(function() { //When trigger is clicked...
+		if ($(this).parent().find("ul.subnav").length){
+		//Following events are applied to the subnav itself (moving subnav up and down)
+			$(this).parent().find("ul.subnav").toggle(); //Drop down the subnav on click
+			$(this).parent().toggleClass('selected');
+			return false;
+		}
+		//Following events are applied to the trigger (Hover events for the trigger)
+	});
 
 });

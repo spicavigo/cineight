@@ -60,6 +60,7 @@ ul.topnav li span { /*--Drop down trigger styles--*/
 	height: 22px;
 	float: left;
 	background: url('/static/images/down.gif') no-repeat center center;
+    cursor:pointer;
 }
 ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
 ul.topnav li ul.subnav {
