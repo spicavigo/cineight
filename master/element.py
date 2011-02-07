@@ -67,6 +67,7 @@ def _add_to_list(user, movie, li):
                 try:
                     SERVER.removed(m.id)
                 except:pass
+                M.Activity.objects.filter(user=user, movie=movie).delete()
                 m.delete()
                 return
             try:
